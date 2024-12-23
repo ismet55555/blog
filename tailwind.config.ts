@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Sora', ...defaultTheme.fontFamily.sans]
+        // sans: ['Sora', ...defaultTheme.fontFamily.sans]
+        sans: ['Inconsolata', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         lightModeBg: '#E6E6E6',

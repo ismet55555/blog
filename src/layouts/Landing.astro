@@ -1,17 +1,7 @@
 ---
 import config from '@/config'
 import { ViewTransitions } from 'astro:transitions'
-
 import BaseHead from '@/components/BaseHead.astro'
-import Nav from '@/components/Nav.astro'
-import Footer from '@/components/Footer.astro'
-
-// import '@fontsource/sora/400.css'
-// import '@fontsource/sora/500.css'
-// import '@fontsource/sora/700.css'
-import '@fontsource/inconsolata/400.css'
-import '@fontsource/inconsolata/500.css'
-import '@fontsource/inconsolata/700.css'
 
 const {
   meta: { title, description = config.description }
@@ -24,16 +14,11 @@ const {
     <ViewTransitions />
   </head>
   <body
-    class="mx-auto max-w-[900px] bg-lightModeBg px-5 text-lightModeText scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
+    class="bg-lightModeBg text-lightModeText dark:bg-darkModeBg dark:text-darkModeText"
   >
-    <Nav />
-    <main
-      class="min-h-[calc(100dvh-90px-70px)] py-10 w500:min-h-[calc(100dvh-110px-70px)]"
-    >
+    <main class="flex min-h-screen flex-col items-center text-center">
       <slot />
     </main>
-    <Footer />
-
     <script>
       import config from '@/config'
 
