@@ -24,5 +24,7 @@ export default defineConfig({
     mdx(),
     react()
   ],
-  site: 'https://astro-minimal.netlify.app/'
+  // site: 'https://astro-minimal.netlify.app/'
+  site: 'https://ismet55555.github.io',
+  base: 'blog-test'
 })
