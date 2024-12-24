@@ -9,10 +9,17 @@ import PostPreview from '@/components/PostPreview.astro'
 const allPosts = await getCollection('posts')
 
 // All posts sorted by publishing datetime
-const sortedPosts = allPosts.sort(
-  (a, b) =>
-    // eslint-disable-next-line prettier/prettier
-    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+// Also render the post
+const sortedPosts = await Promise.all(
+  allPosts
+    .sort(
+      (a, b) =>
+        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    )
+    .map(async (post) => {
+      const { remarkPluginFrontmatter } = await post.render()
+      return { ...post, remarkPluginFrontmatter }
+    })
 )
 ---
 
@@ -24,6 +31,7 @@ const sortedPosts = allPosts.sort(
         title={post.data.title}
         description={post.data.description}
         pubDate={post.data.pubDate}
+        minutesRead={post.remarkPluginFrontmatter?.minutesRead || '0 min read'}
       />
     ))
   }

@@ -1,10 +1,10 @@
 ---
-const { url, title, description, pubDate } = Astro.props
+const { url, title, description, pubDate, minutesRead } = Astro.props
 ---
 
 <!-- Preview on the list of blog posts -->
 <a
-  href={url}
+  href={`/techblog/${url}`}
   class="dark:hover:border:border-accentColor
   mb-[30px]
   block
@@ -49,6 +49,10 @@ const { url, title, description, pubDate } = Astro.props
     </svg>
     <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">
       {pubDate}
+    </p>
+    <span class="mx-2 text-gray-600">|</span>
+    <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">
+      {minutesRead}
     </p>
   </div>
 </a>

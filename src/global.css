@@ -2,6 +2,11 @@ mark {
   @apply bg-accentColor;
 }
 
+prose p {
+  margin-bottom: 2em;
+}
+
+/* ------------------------------------- */
 /* NOTE: "old" is the page we are leaving, "new" is where we are going */
 
 ::view-transition-old(root),
@@ -29,3 +34,4 @@ mark {
     transform: translateX(-100%);
   }
 }
+/* ------------------------------------- */

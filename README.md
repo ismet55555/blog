@@ -1,10 +1,6 @@
-# Minimal
+# techblog
 
-Minimal is a minimalistic astro theme for blogs.
-
-## Get started
-
-[Create a new repo](https://github.com/ekmas/minimal/generate) from this template.
+My personal technical blog made with [Astro](https://astro.build/)
 
 ## Features
 

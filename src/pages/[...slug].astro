@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 
 import Layout from '@/layouts/BlogPost.astro'
+import Aside from '../components/Aside.astro'
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('posts')
@@ -13,9 +14,12 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { Content } = await entry.render()
+const { Content, remarkPluginFrontmatter } = await entry.render()
 ---
 
-<Layout frontmatter={entry.data}>
-  <Content />
+<Layout
+  frontmatter={entry.data}
+  minutesRead={remarkPluginFrontmatter.minutesRead}
+>
+  <Content components={{ Aside: Aside }} />
 </Layout>

@@ -4,7 +4,7 @@ import '@/global.css'
 import Base from '@/layouts/Base.astro'
 import PostInfo from '@/components/PostInfo.astro'
 
-const { frontmatter } = Astro.props
+const { frontmatter, minutesRead } = Astro.props
 ---
 
 <Base meta={{ title: frontmatter.title }}>
@@ -51,6 +51,7 @@ const { frontmatter } = Astro.props
       title={frontmatter.title}
       date={frontmatter.pubDate}
       tags={frontmatter.tags}
+      minutesRead={minutesRead || '0 min read'}
     />
     <slot />
   </div>

@@ -1,8 +1,11 @@
-import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
+import expressiveCode from 'astro-expressive-code'
+import icon from 'astro-icon'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
-import expressiveCode from 'astro-expressive-code'
+import remarkToc from 'remark-toc'
+import tailwind from '@astrojs/tailwind'
+import { defineConfig } from 'astro/config'
+import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,9 +25,31 @@ export default defineConfig({
       }
     }),
     mdx(),
-    react()
+    react(),
+    icon()
   ],
+  markdown: {
+    remarkPlugins: [
+      [
+        remarkToc,
+        {
+          heading: 'Table of Contents',
+          tight: true,
+          maxDepth: 2,
+          tocClass: 'blah-blah',
+          cssClasses: {
+            // Classes to be referenced in CSS
+            toc: 'toc-class',
+            link: 'toc-link',
+            listItem: 'toc-list-item'
+          }
+        }
+      ],
+      remarkReadingTime
+    ]
+  },
+
   // site: 'https://astro-minimal.netlify.app/'
   site: 'https://ismet55555.github.io',
-  base: 'techblog'
+  base: '/techblog'
 })
