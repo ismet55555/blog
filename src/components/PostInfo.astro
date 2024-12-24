@@ -2,6 +2,7 @@
 const { title, date, tags } = Astro.props
 ---
 
+<!-- Top part of the blog post page -->
 <div class="mb-5">
   <h2 transition:name={`${title}-${date}`} class="my-0 w-max text-4xl">
     {title}

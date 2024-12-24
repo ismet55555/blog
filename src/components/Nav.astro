@@ -5,18 +5,22 @@ import ThemeSwitcher from '@/components/ThemeSwitcher'
 <nav
   class="flex h-[90px] items-center justify-between w500:h-[110px] w500:flex-col w500:py-4"
 >
-  <a class="transition-colors hover:text-accentColor" href="/">
-    <h2 class="text-3xl font-medium w500:text-2xl">Ismet Blog</h2>
+  <a class="transition-colors hover:text-accentColor" href="/techblog">
+    <h2 class="w600:text-2xl text-3xl font-medium">TECH BLOG</h2>
   </a>
 
   <div class="flex items-center text-lg w500:text-base">
     <a class="mr-10 transition-colors hover:text-accentColor" href="/tags"
       >Tags</a
     >
-    <a class="mr-10 transition-colors hover:text-accentColor" href="/about"
-      >About</a
+    <a class="mr-10 transition-colors hover:text-accentColor" href="/"
+      >IsmetHandzic.com</a
     >
 
     <ThemeSwitcher client:load />
   </div>
 </nav>
+<div>
+  Welcome to my technical blog. I hope you can find something interesting or
+  useful here.
+</div>

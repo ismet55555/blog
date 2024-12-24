@@ -9,13 +9,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // sans: ['Sora', ...defaultTheme.fontFamily.sans]
         sans: ['Inconsolata', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         lightModeBg: '#E6E6E6',
         darkModeBg: '#1A1A1A',
-        accentColor: '#A682FF',
+        accentColor: '#519639',
         lightModeText: 'black',
         darkModeText: 'white'
       },

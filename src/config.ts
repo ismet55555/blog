@@ -13,8 +13,8 @@ type Config = {
 
 export default {
   author: 'Ismet Handzic',
-  title: 'Minimal - Ismet blog theme',
-  description: 'Just something to test',
+  title: 'Tech Blog',
+  description: 'A tech blog of random technical posts',
   lang: 'en',
   themes: {
     dark: 'github-dark',

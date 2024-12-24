@@ -26,5 +26,5 @@ export default defineConfig({
   ],
   // site: 'https://astro-minimal.netlify.app/'
   site: 'https://ismet55555.github.io',
-  base: 'blog-test'
+  base: 'techblog'
 })

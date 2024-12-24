@@ -6,9 +6,7 @@ import BaseHead from '@/components/BaseHead.astro'
 import Nav from '@/components/Nav.astro'
 import Footer from '@/components/Footer.astro'
 
-// import '@fontsource/sora/400.css'
-// import '@fontsource/sora/500.css'
-// import '@fontsource/sora/700.css'
+// Font
 import '@fontsource/inconsolata/400.css'
 import '@fontsource/inconsolata/500.css'
 import '@fontsource/inconsolata/700.css'
@@ -24,7 +22,15 @@ const {
     <ViewTransitions />
   </head>
   <body
-    class="mx-auto max-w-[900px] bg-lightModeBg px-5 text-lightModeText scrollbar scrollbar-thumb-accentColor dark:bg-darkModeBg dark:text-darkModeText"
+    class="mx-auto
+    max-w-[900px]
+    bg-lightModeBg
+    px-5
+    text-lightModeText
+    scrollbar
+    scrollbar-thumb-accentColor
+    dark:bg-darkModeBg
+    dark:text-darkModeText"
   >
     <Nav />
     <main

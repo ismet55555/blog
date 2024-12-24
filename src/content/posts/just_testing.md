@@ -14,7 +14,7 @@ tags: ['rust', 'programming']
 
 ## The Embedded Fantasy
 
-Imagine the following scenerio: You get a call from a good and respected
+**Imagine the following scenerio:** You get a `call from a` good and respected
 friend. After some informal conversation he switches his tone and prepares to
 carefully ask you for an opinion on an idea he has. At this point you already
 know what is going to happen next.
