@@ -3,6 +3,7 @@ import '@/global.css'
 
 import Base from '@/layouts/Base.astro'
 import PostInfo from '@/components/PostInfo.astro'
+import PostNavigation from '@/components/PostNavigation.astro'
 
 const { frontmatter, minutesRead } = Astro.props
 ---
@@ -36,15 +37,15 @@ const { frontmatter, minutesRead } = Astro.props
     dark:prose-table:text-darkModeText
     dark:prose-tr:text-darkModeText
     dark:prose-td:text-darkModeText
-    w500:text-base
+    w500:text-lg
     w500:leading-[2.2]
-    w500:prose-h1:text-2xl
-    w500:prose-h2:text-xl
+    w500:prose-h1:text-3xl
+    w500:prose-h2:text-2xl
     w500:prose-h3:text-lg
-    w500:prose-h4:text-base
-    w500:prose-h5:text-base
-    w500:prose-h6:text-base
-    w400:text-sm
+    w500:prose-h4:text-lg
+    w500:prose-h5:text-lg
+    w500:prose-h6:text-lg
+    w400:text-base
     w400:leading-[2.2]"
   >
     <PostInfo
@@ -54,6 +55,11 @@ const { frontmatter, minutesRead } = Astro.props
       minutesRead={minutesRead || '0 min read'}
     />
     <slot />
+
+    <PostNavigation
+      nextPost={frontmatter.nextPost}
+      previousPost={frontmatter.previousPost}
+    />
   </div>
 </Base>
 

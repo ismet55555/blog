@@ -1,81 +1,110 @@
 ---
 title: 'Big Button - Part 1 - Introcution'
 description: 'An introduction to the big button embedded project'
-pubDate: 'Dec 23 2024'
-tags: ['button', 'embedded', 'rust', 'programming']
+pubDate: 'Dec 25 2024'
+tags: ['big-button', 'embedded', 'rust', 'programming']
+# nextPost: 
+#   slug: "markdown-style-guide"
+#   title: "Title of Next Post"
+# previousPost:
+#   slug: "markdown-style-guide"
+#   title: "Title of Previous Post"
 ---
 
 
 ## Table of Contents
 
 ## The Embedded Fantasy
-***
 
-**Imagine the following scenerio:** You get a `call from a` good and respected
-friend. After some informal conversation he switches his tone and prepares to
+**Imagine the following scenerio:** You get a call from a good and respected
+friend. After some informal conversation he/she switches their tone and prepares to
 carefully ask you for an opinion on an idea he has. At this point you already
 know what is going to happen next.
 
+<img
+   src="/src/assets/images/button/intro/friends-talking.jpg"
+   alt="cool relevant image"
+   class="w-2/3 mx-auto border border-2 border-accentColor"
+/>
+
 As a IT professional, you have experienced
-this a hundred times. A friend or relative corners you at some event and
-"confidentially" shares his/her genius industry disruptive idea. So you go
-into autopilot-politly-interested mode, carefully scanning the conversation
+this a many times. A friend or relative corners you at some event and
+*"confidentially"* shares his/her genius industry disruptive idea with a glimmer in their eyes.
+So you go into autopilot-politly-interested mode, carefully scanning the conversation
 for an exit. But something is different. The more you listen, the more your
 friend's story and idea catches your attention.
 
-You become more inspired.
-You can tell he has done his homework. There are some basic questions that
-need to be answered, but in all, this isn't just something he woke up with
-today. This seems to be the real deal.
+You become more engaged and inspired.
+You can tell he has done his/her homework. There are some basic questions that
+need to be answered, but in all, this is not just something he woke up with
+today. To you this seems to be the real deal.
 
 To be more specific, your friend's idea is a prototype of a physical device,
-maybe even a Internet of Things (IoT) device. You are inspired, energized,
+maybe even a Internet of Things (IoT) device or some wearable. You are galvanized, energized,
 and want to help, however, it is obvious that you don't have any embedded
-systems knowledge and would not know where to start.... that is, until you
-find this blog series!
+systems knowledge and would not know where to start .... that is, until you
+find this random online blog series!
 
-Alright, maybe this intro to embedded system rust programming is a little too
+Alright, maybe this intro story to [embedded system](todo.com) [rust programming](todo.com) is a little too
 dramatic and too specific, but I do hope I got your attention to read further!
 
 ## About This Blog Series
 
-### Project Backstory
 
+### Vauge Project Backstory
+
+Let me explain how this entire blog series came about.
 Where I live, trash pick up is Tuesdays and Fridays. Or is it Mondays and
-Thursdays? Well, maybe one of those days is Wednesday...? After 10 years
-living in the same residence, I still question myself and still can
+Thursdays? Well, maybe one of those days is Wednesday...?
+
+<img
+   src="/src/assets/images/button/intro/trash-pickup.png"
+   alt="cool relevant image"
+   class="w-2/3 mx-auto border border-2 border-accentColor"
+/>
+
+After 10 years living in the same residence, I still question myself and still can
 miss trash day. This can leave trash inside for too long or leave
 trash outside for too long, depending on timing.
 
-<Aside variant="warning">
-  Use this to tell people not to do something.
-</Aside>
+Now, I could do two very easy things to solve this issue.
 
-<Aside variant="tip">
-  Use this to tell people not to do something.
-</Aside>
-
-<Aside variant="note">
-  Use this to tell people not to do something.
-</Aside>
-
-Now, I could do two very easy things to remediate this issue.
-
-1. Stop being an idiot and just memorize the days.
-2. Set a recurring alarm on my phone for the days.
+1. Stop being an idiot, just memorize the days, and move on.
+2. Set a recurring alarm on my phone for the right days.
 
 Because, neither seems very reasonable, and because I am always looking
-for a insightful side project to be inspired by. I opted to come up
-with a much more complicated approach. I wanted a project to learn and
+for a insightful engineering side project to be inspired by. I opted to come up
+with a much more complicated approach.
+
+I wanted a project to learn and
 apply a embedded systems project. Furthermore, I wanted to be more
-comfortable with Rust programming as well.
+comfortable with Rust ("blazingly fast") programming as well.
 
 My initial goal was to create a button that when pressed, sends a
 text message to my phone and monitors text message responses.
 This allows me to snooze or silence the reminder to take out the trash.
 
-I know, not very thought out, but I guess reason enough to
-create some thing!
+I know, not very big or thought out, but I guess reason enough to
+get going and create some thing! So in short, and very basically,
+we are building and programming a **BIG glorified push BUTTON**.
+
+
+### Project Goal
+
+Now obviously, you do not need to use this device for trash day reminders
+or anything close to that. However, going through this blog series should
+enable you to reuse methods, code, or imporvise to
+develop your own ideas.
+
+It is my hope that after working through this
+project you yourself will be able to solve some problem that requires
+embedded systems and Rust programming.
+
+<img
+   src="/src/assets/images/button/intro/button-cartoon.jpg"
+   alt="cool relevant image"
+   class="w-2/3 mx-auto border border-2 border-accentColor"
+/>
 
 The project that we will be developing will be a large red button. This
 button assembly will have a variety of features:
@@ -86,18 +115,6 @@ button assembly will have a variety of features:
 - Sound buzzer for audio signal feedback
 - System On/Off toggle switch
 - Internet access/interconetcitivy via REST API
-
-So in short, and very basically, we are building and programming a big
-glorified push button.
-
-### Project Goal
-
-Now obviously, you do not need to use this device for trash day reminders
-or anything close to that. However, going through this blog series should
-enable you to reuse this code and/or imporvise with these concepts in order to
-develop your own idea. It is my hope that after working through this
-project you yourself will be able to solve some problem that requires
-embedded systems.
 
 ### Project Outline (Subject to Change)
 
@@ -117,44 +134,18 @@ the following:
 ## Semi-Prerquisite Resources
 
 Over the course of this project outline. I will try my very best to describe
-and point out all the little weird gotchas I had to struggle with when
-developing this project. However, before jumping into this project series,
-I must say that you would be **far** better off to review or scan throught the
-following resources. To the very least, click on each resource, understand
-what it is and what its purpose is. If in doubt, you can always ask AI to
-quickly summerize.
+and point out all the tools and little weird gotchas I had to struggle with when
+developing this project. However, before jumping into this project it would not
+be the worst idea to overview the follwowing topics. 
 
-### 3D Design with Fustion 360
+- Fusion 360 3D CAD Software
+- Ender 3 3D Printer
+- Basic Electrical Circuits
+- Rust Programming
+- Embedded Systems Programming
+- GitHub Actions (is there some way to auto update?)
 
-- TODO
+With each blog post, there will be a **"Resources"** section for further
+reading and review.
 
-### 3D Printing
-
-- TODO
-
-### Basic Electrical Circuits
-
-- TODO
-
-### Rust Programming
-
-- TODO
-
-### General Embedded Systems Info
-
-- TODO
-
-### Embedded System Programming in Rust
-
-- TODO
-
-## Rust Example
-
-```rust
-use embassy_rp::gpio::Output;
-use embassy_time::Timer;
-
-pub struct Led {
-   pub item_info: [(u8, Output<'static>); 8],
-}
-```
+**Alright let's get to it!**

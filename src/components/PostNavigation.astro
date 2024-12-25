@@ -1,0 +1,70 @@
+---
+const { nextPost, previousPost } = Astro.props
+---
+
+<!-- Previous / Next navigation for post -->{
+  (nextPost || previousPost) && (
+    <nav
+      class="
+        border-lightModeBorder
+        dark:border-darkModeBorder
+        dark:hover:border:border-accentColor
+        mt-8
+        flex
+        flex-col
+        gap-4
+        border-t
+        pt-8
+        no-underline
+        sm:flex-row
+        sm:justify-between"
+    >
+      {previousPost && (
+        <a
+          href={`/techblog/${previousPost.slug}`}
+          class="group
+            flex
+            flex-col
+            border
+            border-accentColor
+            p-5
+            no-underline
+            transition-colors
+            hover:bg-green-100
+            dark:border-gray-500
+            dark:hover:bg-gray-800"
+        >
+          <span class="text-lightModeTextLight dark:text-darkModeTextLight text-sm no-underline">
+            Previous Post
+          </span>
+          <span class="text-accentColor no-underline">
+            {previousPost.title}
+          </span>
+        </a>
+      )}
+
+      {nextPost && (
+        <a
+          href={`/techblog/${nextPost.slug}`}
+          class="group
+            flex
+            flex-col
+            border
+            border-accentColor
+            p-5
+            no-underline
+            transition-colors
+            hover:bg-green-100
+            dark:border-gray-500
+            dark:hover:bg-gray-800
+            sm:text-right"
+        >
+          <span class="text-lightModeTextLight dark:text-darkModeTextLight text-sm no-underline">
+            Next Post
+          </span>
+          <span class="text-accentColor no-underline">{nextPost.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}

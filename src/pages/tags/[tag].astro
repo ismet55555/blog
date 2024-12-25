@@ -43,6 +43,7 @@ const { posts }: { posts: Post[] } = Astro.props
           title={post.data.title}
           description={post.data.description}
           pubDate={post.data.pubDate}
+          minutesRead={'-'}
         />
       ))
     }

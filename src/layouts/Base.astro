@@ -18,6 +18,21 @@ const {
 
 <html lang={config.lang}>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8GD59W4Y3T"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-8GD59W4Y3T')
+    </script>
+
     <BaseHead title={title} description={description} />
     <ViewTransitions />
   </head>
@@ -34,6 +49,7 @@ const {
   >
     <Nav />
     <main
+      transition:animate="slide"
       class="min-h-[calc(100dvh-90px-70px)] py-10 w500:min-h-[calc(100dvh-110px-70px)]"
     >
       <slot />

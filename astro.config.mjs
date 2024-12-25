@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import remarkToc from 'remark-toc'
 import tailwind from '@astrojs/tailwind'
+import partytown from '@astrojs/partytown'
 import { defineConfig } from 'astro/config'
 import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
 
@@ -26,7 +27,12 @@ export default defineConfig({
     }),
     mdx(),
     react(),
-    icon()
+    icon(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push']
+      }
+    })
   ],
   markdown: {
     remarkPlugins: [
@@ -35,14 +41,7 @@ export default defineConfig({
         {
           heading: 'Table of Contents',
           tight: true,
-          maxDepth: 2,
-          tocClass: 'blah-blah',
-          cssClasses: {
-            // Classes to be referenced in CSS
-            toc: 'toc-class',
-            link: 'toc-link',
-            listItem: 'toc-list-item'
-          }
+          maxDepth: 2
         }
       ],
       remarkReadingTime

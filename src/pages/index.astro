@@ -24,6 +24,10 @@ const sortedPosts = await Promise.all(
 ---
 
 <Base meta={{ title: config.title }}>
+  <div class="mb-5 p-5 text-lg">
+    Welcome to my blog about mostly technical topics. I hope you can find
+    something interesting or useful here.
+  </div>
   {
     sortedPosts.map((post) => (
       <PostPreview

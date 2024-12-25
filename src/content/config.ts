@@ -6,7 +6,19 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.string(),
-    tags: z.array(z.string())
+    tags: z.array(z.string()),
+    nextPost: z
+      .object({
+        slug: z.string(),
+        title: z.string()
+      })
+      .optional(),
+    previousPost: z
+      .object({
+        slug: z.string(),
+        title: z.string()
+      })
+      .optional()
   })
 })
 
