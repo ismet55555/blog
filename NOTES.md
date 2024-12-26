@@ -21,7 +21,6 @@
 ### Nice to Have
 
 - RSS Feed link
-- Increase font on mobile
 - Remove underline from ToC links
 - Mermaid graphs
 
