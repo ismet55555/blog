@@ -150,22 +150,82 @@ features and clamps, a good display, and a kick stand. Maybe something like
 
 ### Other Tools
 
-- Screw driver
-- Sander
-- Hot glue gun
-- Sand papar - Different grits
+- **Small Screwdriver Set** - Working with smaller electronics or enclosures you are guarenteed
+  to use smaller screw drivers. I prefer interchangable tips one. ([Recommendation](https://a.co/d/iezxoev)).
+
+- **Hand-held Electric Sander** - We will be sanding down 3D prints to make prints looks less like 
+  a 3D print. While you can try to use sand paper, an electric sander wil save you much time
+  and hassle. My recommendation is to use a sander that you can use with regular sand paper 
+  and not proprietry stick-on or odd shapes. ([Recommendation](https://a.co/d/1kmXrED)).
+
+- **Sand Paper** - For using wdith the electric sander and for finer hand sanding, make sure
+  you have a the following [sandpaper grits/coarseness](https://www.familyhandyman.com/article/sandpaper-grit-chart/): 
+
+    - 120 - Fine *(Getting rougher surface imperfections out)*
+    - 220 - Very-fine
+    - 400 - Super-fine
+    - 800 - Ultra-fine *(Polish the surface)*
 
 ## Components
 
 ### Raspberry Pi Pico W
 
-- Get with header pins (or solder)
+The [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) (RPi Pico W) 
+microcontroller will be our central brain for this project. All logic will live on this microcontroller.
+
+<a href="https://a.co/d/6yqiaka" target="_blank">
+ <img
+   src="images/button/hardware_overview/rpi-pico-w.png"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+This Raspberry Pi is powered by a [RP2040](TODO) chip ([RP2350](TODO) for RPi Pico 2),
+while having other [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
+such as wireless controller (the "W" in the name), a bluetooth chip, temperature sensor and more.
+
+See the official [Raspberry Pi Pico docummentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
+for more information. 
+
+
+<Aside variant="tip">
+  You will have to connect a debug module (see next section) to the RPi. The debug module connects
+  to the RPi Pico via 3 debug pins. I would recommend buying the
+  [RPi pico with pins already pre-soldered](https://a.co/d/6ulNrik).
+</Aside>
+
 
 ### Raspberry Pi Pico Debug Probe
 
-- https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html
-- Why debug probe is needed
-- There is a two-pico debug way, why not that
+When programming and developing on a microcontroller, it is crutial that you know what is
+happening on the microcontroller when it is running. That is, when connecting your computer
+to the microcontroller you are able to actively view code deployment logs, runtime logging
+messages, error messages, and other connection-related messages.
+
+Typically microcontollers provide a debug probe that accomplishes just that. The debug
+probe will connect via [UART serial](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
+port via the **3 pins** *(TX, GND, RX)* specially designated to it on the Raspberry Pi Pico and located
+next to the large wireless module.
+
+<a href="https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html" target="_blank">
+ <img
+   src="images/button/hardware_overview/rpi-debug-probe.webp"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+See the official [Raspberry Pi Debug Probe docummentation](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
+for more information. 
+
+<Aside variant="note">
+  There is a way to achieve the same thing but without a Raspberry Pi debug probe, except
+  it involves a second Raspberry Pi Pico connected to your main one. Here is [more information](https://www.youtube.com/watch?v=0i2gLeBal9Y)
+  about it. However, to gain simplicity by sacrificing cost we are sticking to the offical
+  debug probe.
+</Aside>
+
 
 ### Raspberry Pi Pico Breakout Boards
 
@@ -205,7 +265,9 @@ features and clamps, a good display, and a kick stand. Maybe something like
 - Fillers
 
 
+## Summary
 
+Add list of table
 
 {/*
 

@@ -39,6 +39,8 @@
 ## Code
 
 ```html
+<span class="text-accentColor font-bold">My accented and bolded text</span>
+
 <Aside variant="warning">
   Use this to tell people not to do something.
 </Aside>
