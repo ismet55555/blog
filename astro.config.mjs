@@ -41,7 +41,7 @@ export default defineConfig({
         {
           heading: 'Table of Contents',
           tight: true,
-          maxDepth: 2
+          maxDepth: 3
         }
       ],
       remarkReadingTime

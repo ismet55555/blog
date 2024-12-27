@@ -1,8 +1,8 @@
 ---
-title: 'Big Button - Part 2 - Hardware Overview (WIP)'
-description: 'Hardware outline for the big button project'
+title: 'Big Button - Part 2 - Tools and Components'
+description: 'Tools and components outline for the big button project'
 pubDate: 'Dec 26 2024'
-tags: ['big-button', 'embedded', 'hardware']
+tags: ['big-button', 'embedded', 'hardware', 'electrical']
 previousPost:
   slug: "button_1_intro"
   title: "Introduction"
@@ -22,62 +22,194 @@ note that as with any personal engineering project of this kind:
 - You might get away with not having some of the tools or different/better tools
 - You can do things a different way or your own way
 
-**As always, there usually many and various ways to solve the same problem.**
+Remember, this list is targeted for the casual hobbiest and maker. While I try my
+best to share everything you will need, this list may not be 100% comprehensive.
 
-<img
+**And as always, there are usually many and various ways to solve the same problem.**
+
+<Aside variant="note">
+  If you are the maker type of person who already has most or all of this stuff
+  in your personal workshop, feel free to glance over this post. This post 
+  attempts to get as many people with the largest skill level range onto
+  the same page for this project.
+</Aside>
+
+<Aside variant="tip">
+  If you are unfamiliar with any of these tools or components, a quick google search or a 
+  AI chat prompt on any of these soldering tools will get you going on how to fundementally
+  use them.
+</Aside>
+
+
+<a href="https://www.youtube.com/watch?v=iGuuOdD6iY4" target="_blank">
+ <img
    src="images/button/hardware_overview/engineer-checklist.webp"
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
-/>
+ />
+</a>
+
 
 ## Tools
 
-TODO
+### 3D Printer
+
+Many embedded/IoT/wearable prototypes start with a an idea or rough sketch
+that is then turned into three dimensional objects with using 3D printing.
+The flexibility, customization, and quick iteration of a 3D printer make it
+ivaluable.
+
+Here I am using the most popular hobbiest 3D printer ever made:
+[Enter 3 by Creality](https://www.creality.com/products/ender-3-3d-printer).
+
+<a href="https://www.creality.com/products/ender-3-3d-printer" target="_blank">
+ <img
+   src="images/button/hardware_overview/ender-3.jpg"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+While there are better [PLA-based](https://www.hatchbox3d.com/collections/pla-1-75mm)
+3D printers out there ([some list here](https://www.pcmag.com/picks/the-best-3d-printers)) with amazing abilities and support, the Ender 3 offers a great value
+and has a ton of available online resources such as a huge [subreddit](https://www.reddit.com/r/ender3/),
+videos, manuals, tips, tricks, [upgrades](https://store.creality.com/blog/ender-3-upgrades), and more.
+
+Note that a self-assembled 3D printer will always need calibration, [bed leveling](https://all3dp.com/2/ender-3-bed-leveling-all-you-need-to-know/),
+and [testing](https://all3dp.com/2/ender-3-test-print-the-best-models-to-challenge-your-ender-3/)
+before actually printing something good.
+
+You will obviously need [PLA fillement](https://www.hatchbox3d.com/collections/pla-1-75mm) of
+some color. The color of the fillament will not matter for this project since we are going to
+sand and paint our 3D prints.
+
+### Soldering Station
+
+This project will require some soldering of various components such as wires and termials.
+There are a lot of various soldering tools with a variety of quality and use-case.
+
+{/*
+Picking one can be overwhelming and can depend on many factors. For instance, if you are a hobbiest
+tinkerer/maker who only solders once in a while, you certainly do not need the top brand
+soldering tools.
+*/}
+
+The soldering station that I am working with and that I recommend for beginners is a
+all-in-one soldering station kit shown below and [available on Amazon here](https://a.co/d/g1hfNg9).
+
+<a href="https://a.co/d/fjoGu2d" target="_blank">
+ <img
+   src="images/button/hardware_overview/solder-station.jpg"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+Here we have everything from [helping hands](https://www.youtube.com/watch?v=xh5FcqtlWWA)
+to solder to [solder sucker](https://www.youtube.com/watch?v=gGSeSk8QWsE) for desoldering and cleanup.
+
+### Wire Tools
+
+Building anything electrical will require work with wires. Specifically, for our low current 
+and low voltage applications we will be using small [wire gauges](https://en.wikipedia.org/wiki/American_wire_gauge#Tables_of_AWG_wire_sizes). .
+
+Wire cutters are often the same tool as wire cutters. Again, as a casual hobbiest, I would
+not recommend the top tools, here a [regular wire cutter/stripper](https://a.co/d/fjoGu2d) is just fine.
+
+<a href="https://a.co/d/2Z5Z7AV" target="_blank">
+ <img
+   src="images/button/hardware_overview/wire-cutter-stripper.jpg"
+   alt="cool relevant image"
+   class="w-1/4 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+### Multimeter
+
+Often times we will need to test if two things are soldered correctly, connected right, or
+give us some voltage at some time. In these types of situations and many more,
+a [multimeter](https://en.wikipedia.org/wiki/Multimeter) comes in handy. 
+
+A multimeter measures multiple electrical properties: voltage, resistance, and current.
+It is one of the most basic and most useful electical tools you can get familiar with.
+
+Luckily, for the vast majority of hobbiest use-cases, a regular grade multimeter is
+not very expensive and highly available.
+
+I recommend selecting a multimeter that includes conveninet one with a good set of probe
+features and clamps, a good display, and a kick stand. Maybe something like
+[this one](https://a.co/d/6yqiaka).
+
+<a href="https://a.co/d/6yqiaka" target="_blank">
+ <img
+   src="images/button/hardware_overview/multimeter.jpg"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+### Other Tools
+
+- Screw driver
+- Sander
+- Hot glue gun
+- Sand papar - Different grits
 
 ## Components
 
-TODO
+### Raspberry Pi Pico W
 
-### Electrical
+- Get with header pins (or solder)
 
-TODO
+### Raspberry Pi Pico Debug Probe
 
-### Mechanical
+- https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html
+- Why debug probe is needed
+- There is a two-pico debug way, why not that
 
-TODO
+### Raspberry Pi Pico Breakout Boards
+
+- For dev - why
+- For actual project - why different
+
+### Wire
+
+- Wire assortment
+- Small guage 
+
+### Battery
+
+- Some rough calculations
 
 
-***
+### Battery Charging Module (rename)
 
-- Tools
-  - 3D Printer
-  - 3D Printer fillament
-  - Soldering Iron Station
-  - Screw driver
-  - Sander
-  - Wire strippers
-  - Wire cutters
-  - Hot glue gun
+- Why do we need this
 
-- Components
-  - Electronics
-    - Raspberry Pi Pico W
-      - Get with header pins (or solder)
-      - Debug Module with cables
-    - Raspberry Pi Pico breakout board
-    - Wire
-    - Big Push Button
-    - Toggle switch
-    - USB C mini port
-    - LEDs
-    - Battery
-    - Charging/Boosting module
-    - Buzzer
-  - Mechanical
-    - LED thingies they sit in
-    - Thingies that are pressed into 3D print
-    - Screws
-    - Spray paints
-    - Fillers
-    - Sand papar - Different grits
 
+### Electrical Components
+
+- List with 1-2 paragarphs
+- Light Emitting Diodes (LEDs)
+- Big Cool Push Button
+- Toggle switch
+- USB C mini port
+- Buzzer
+
+### Other Components
+
+- LED thingies they sit in
+- Thingies that are pressed into 3D print
+- Screws
+- Spray paints
+- Fillers
+
+
+
+
+{/*
+
+Often times to protect a sensitive places like solder points between a wire and a terminal,
+or a wire and another wire we heat shrink rubber tubing. 
+
+*/}
