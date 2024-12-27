@@ -216,6 +216,10 @@ next to the large wireless module.
  />
 </a>
 
+{/*
+TODO: Use custom image of connected debug probe
+*/}
+
 See the official [Raspberry Pi Debug Probe docummentation](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
 for more information. 
 
@@ -226,11 +230,39 @@ for more information.
   debug probe.
 </Aside>
 
-
 ### Raspberry Pi Pico Breakout Boards
 
-- For dev - why
-- For actual project - why different
+For development and for actual final implementation, we will use a breakout board for
+our Raspberry Pi Pico W. A [breakout board](https://soldered.com/learn/breakout-boards-what-are-they-and-why-you-should-use-them/) will take these pins and “break them out”
+onto a separate circuit board. That is, it maps the inputs and outputs of our
+Raspberry Pi Pico W onto easily accessible connectors.
+
+We will use two breakout boards:
+
+- **For Development and Testing** - During programming and troubleshooting we will utilze a more
+  complete breakout board. This breakout board includes build in LEDs for pin inputs and outputs,
+  more ground connectors, clear labels, and more. We will use this breakout board during
+  initial programming, testing, and iterations. ([Online Link](https://a.co/d/6anFgCV))
+
+<a href="https://a.co/d/6anFgCV" target="_blank">
+ <img
+   src="images/button/hardware_overview/breakout-board-dev.jpg"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
+
+- **For Final Implmentation Into Project** - When we are ready to integrate/mount the 
+  Raspberry Pi Pico W into the our assembled project, we will use use a more minimal breakout
+  board. ([Online Link](https://a.co/d/e6cDFwv))
+
+<a href="https://a.co/d/e6cDFwv" target="_blank">
+ <img
+   src="images/button/hardware_overview/breakout-board-prod.jpg"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
 
 ### Wire
 
@@ -241,20 +273,21 @@ for more information.
 
 - Some rough calculations
 
-
 ### Battery Charging Module (rename)
 
 - Why do we need this
 
-
 ### Electrical Components
 
-- List with 1-2 paragarphs
 - Light Emitting Diodes (LEDs)
 - Big Cool Push Button
 - Toggle switch
 - USB C mini port
 - Buzzer
+
+{/*
+List with 1-2 paragarphs
+*/}
 
 ### Other Components
 
@@ -264,14 +297,11 @@ for more information.
 - Spray paints
 - Fillers
 
-
 ## Summary
 
-Add list of table
+*Add list or a table of the above items*
 
 {/*
-
 Often times to protect a sensitive places like solder points between a wire and a terminal,
 or a wire and another wire we heat shrink rubber tubing. 
-
 */}
