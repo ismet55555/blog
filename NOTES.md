@@ -26,6 +26,7 @@
 - Post comments
 - Remove underline from ToC links
 - Mermaid graphs
+- Reading progress bar on bottom
 
 ## Other
 
