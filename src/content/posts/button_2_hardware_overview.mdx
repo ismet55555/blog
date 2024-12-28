@@ -25,7 +25,11 @@ note that as with any personal engineering project of this kind:
 Remember, this list is targeted for the casual hobbiest and maker. While I try my
 best to share everything you will need, this list may not be 100% comprehensive.
 
+I completly understand this seems like a lot, however this is a detailed outline to reference
+back to if needed.
+
 **And as always, there are usually many and various ways to solve the same problem.**
+
 
 <Aside variant="note">
   If you are the maker type of person who already has most or all of this stuff
@@ -36,7 +40,7 @@ best to share everything you will need, this list may not be 100% comprehensive.
 
 <Aside variant="tip">
   If you are unfamiliar with any of these tools or components, a quick google search or a 
-  AI chat prompt on any of these soldering tools will get you going on how to fundementally
+  AI chat prompt on any of these soldering tools will get you going on how to fundamentally
   use them.
 </Aside>
 
@@ -57,7 +61,7 @@ best to share everything you will need, this list may not be 100% comprehensive.
 Many embedded/IoT/wearable prototypes start with a an idea or rough sketch
 that is then turned into three dimensional objects with using 3D printing.
 The flexibility, customization, and quick iteration of a 3D printer make it
-ivaluable.
+invaluable.
 
 Here I am using the most popular hobbiest 3D printer ever made:
 [Enter 3 by Creality](https://www.creality.com/products/ender-3-3d-printer).
@@ -79,13 +83,13 @@ Note that a self-assembled 3D printer will always need calibration, [bed levelin
 and [testing](https://all3dp.com/2/ender-3-test-print-the-best-models-to-challenge-your-ender-3/)
 before actually printing something good.
 
-You will obviously need [PLA fillement](https://www.hatchbox3d.com/collections/pla-1-75mm) of
-some color. The color of the fillament will not matter for this project since we are going to
+You will obviously need [PLA filament](https://www.hatchbox3d.com/collections/pla-1-75mm) of
+some color. The color of the filament will not matter for this project since we are going to
 sand and paint our 3D prints.
 
 ### Soldering Station
 
-This project will require some soldering of various components such as wires and termials.
+This project will require some soldering of various components such as wires and terminals.
 There are a lot of various soldering tools with a variety of quality and use-case.
 
 {/*
@@ -106,7 +110,7 @@ all-in-one soldering station kit shown below and [available on Amazon here](http
 </a>
 
 Here we have everything from [helping hands](https://www.youtube.com/watch?v=xh5FcqtlWWA)
-to solder to [solder sucker](https://www.youtube.com/watch?v=gGSeSk8QWsE) for desoldering and cleanup.
+to solder to [solder sucker](https://www.youtube.com/watch?v=gGSeSk8QWsE) for de-soldering and cleanup.
 
 ### Wire Tools
 
@@ -131,12 +135,12 @@ give us some voltage at some time. In these types of situations and many more,
 a [multimeter](https://en.wikipedia.org/wiki/Multimeter) comes in handy. 
 
 A multimeter measures multiple electrical properties: voltage, resistance, and current.
-It is one of the most basic and most useful electical tools you can get familiar with.
+It is one of the most basic and most useful electrical tools you can get familiar with.
 
 Luckily, for the vast majority of hobbiest use-cases, a regular grade multimeter is
 not very expensive and highly available.
 
-I recommend selecting a multimeter that includes conveninet one with a good set of probe
+I recommend selecting a multimeter that includes convenient one with a good set of probe
 features and clamps, a good display, and a kick stand. Maybe something like
 [this one](https://a.co/d/6yqiaka).
 
@@ -150,15 +154,15 @@ features and clamps, a good display, and a kick stand. Maybe something like
 
 ### Other Tools
 
-- **Small Screwdriver Set** - Working with smaller electronics or enclosures you are guarenteed
-  to use smaller screw drivers. I prefer interchangable tips one. ([Recommendation](https://a.co/d/iezxoev)).
+- **Small Screwdriver Set** - Working with smaller electronics or enclosures you are guaranteed
+  to use smaller screw drivers. I prefer interchangeable tips one. ([Recommendation](https://a.co/d/iezxoev)).
 
 - **Hand-held Electric Sander** - We will be sanding down 3D prints to make prints looks less like 
   a 3D print. While you can try to use sand paper, an electric sander wil save you much time
   and hassle. My recommendation is to use a sander that you can use with regular sand paper 
-  and not proprietry stick-on or odd shapes. ([Recommendation](https://a.co/d/1kmXrED)).
+  and not proprietary stick-on or odd shapes. ([Recommendation](https://a.co/d/1kmXrED)).
 
-- **Sand Paper** - For using wdith the electric sander and for finer hand sanding, make sure
+- **Sand Paper** - For using width the electric sander and for finer hand sanding, make sure
   you have a the following [sandpaper grits/coarseness](https://www.familyhandyman.com/article/sandpaper-grit-chart/): 
 
     - 120 - Fine *(Getting rougher surface imperfections out)*
@@ -185,7 +189,7 @@ This Raspberry Pi is powered by a [RP2040](TODO) chip ([RP2350](TODO) for RPi Pi
 while having other [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
 such as wireless controller (the "W" in the name), a bluetooth chip, temperature sensor and more.
 
-See the official [Raspberry Pi Pico docummentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
+See the official [Raspberry Pi Pico documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
 for more information. 
 
 
@@ -195,10 +199,15 @@ for more information.
   [RPi pico with pins already pre-soldered](https://a.co/d/6ulNrik).
 </Aside>
 
+The Raspberry Pi Pico W is obviously not the only popular microcontroller of its kind.
+You could select a different microcontroller that fits a specific need or skill set.
+For example, the [Freenove ESP32-WROOM Board](https://store.freenove.com/products/fnk0090)
+is also not a bad choice, however in scope of our project we will stick to the Raspberry Pi.
+
 
 ### Raspberry Pi Pico Debug Probe
 
-When programming and developing on a microcontroller, it is crutial that you know what is
+When programming and developing on a microcontroller, it is crucial that you know what is
 happening on the microcontroller when it is running. That is, when connecting your computer
 to the microcontroller you are able to actively view code deployment logs, runtime logging
 messages, error messages, and other connection-related messages.
@@ -220,13 +229,13 @@ next to the large wireless module.
 TODO: Use custom image of connected debug probe
 */}
 
-See the official [Raspberry Pi Debug Probe docummentation](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
+See the official [Raspberry Pi Debug Probe documentation](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
 for more information. 
 
 <Aside variant="note">
   There is a way to achieve the same thing but without a Raspberry Pi debug probe, except
   it involves a second Raspberry Pi Pico connected to your main one. Here is [more information](https://www.youtube.com/watch?v=0i2gLeBal9Y)
-  about it. However, to gain simplicity by sacrificing cost we are sticking to the offical
+  about it. However, to gain simplicity by sacrificing cost we are sticking to the official
   debug probe.
 </Aside>
 
@@ -239,7 +248,7 @@ Raspberry Pi Pico W onto easily accessible connectors.
 
 We will use two breakout boards:
 
-- **For Development and Testing** - During programming and troubleshooting we will utilze a more
+- **For Development and Testing** - During programming and troubleshooting we will utilize a more
   complete breakout board. This breakout board includes build in LEDs for pin inputs and outputs,
   more ground connectors, clear labels, and more. We will use this breakout board during
   initial programming, testing, and iterations. ([Online Link](https://a.co/d/6anFgCV))
@@ -252,7 +261,7 @@ We will use two breakout boards:
  />
 </a>
 
-- **For Final Implmentation Into Project** - When we are ready to integrate/mount the 
+- **For Final Implementation Into Project** - When we are ready to integrate/mount the 
   Raspberry Pi Pico W into the our assembled project, we will use use a more minimal breakout
   board. ([Online Link](https://a.co/d/e6cDFwv))
 
@@ -264,42 +273,81 @@ We will use two breakout boards:
  />
 </a>
 
-### Wire
+### DC-DC Boost Converter (Battery Charging Module)
 
-- Wire assortment
-- Small guage 
+Our goal is to build a device that is powered by an onboard battery pack. When this
+battery runs out of power, we want to be able to seamlessly recharge the battery
+without disconnecting power to the running system.
+This is were our [boost converter](https://en.wikipedia.org/wiki/Boost_converter) comes into play.
 
-### Battery
+In essence, we the boost converter is connected to the battery *(3.7V)*, to a USB A plug *(5V)*, and to
+to the Raspberry Pi Pico W microcontroller *(5V)*.
 
-- Some rough calculations
+We will be using the [PowerBoost 500 from Adafruit](https://www.adafruit.com/product/5035)
+that can run from 1.8 VDC batteries or higher. It converts this to a 5.2 VDC voltage for our 
+microcontroller.
 
-### Battery Charging Module (rename)
+<a href="https://www.adafruit.com/product/1903" target="_blank">
+ <img
+   src="images/button/hardware_overview/boost-converter.jpg"
+   alt="cool relevant image"
+   class="w-1/2 mx-auto border border-2 border-accentColor"
+ />
+</a>
 
-- Why do we need this
+{/*
+TODO: Diagram here with boost converter
+*/}
+
 
 ### Electrical Components
 
-- Light Emitting Diodes (LEDs)
-- Big Cool Push Button
-- Toggle switch
-- USB C mini port
-- Buzzer
+The following are a series of electrical components needed for this project.
+
+- **Big Cool Push Button** - This will be our amazing front and center push button for this
+  project. It includes a nice panel mount and a included LED which lights up the push button. 
+  [Online Link](https://a.co/d/gUhGwOv)
+- **Light Emitting Diodes (LEDs) (8mm)** - We will have a set of controlled LEDs all around
+  our device. LEDs will be able to light up specific patterns. [Online Link](https://a.co/d/6LiMbeh)
+- **Toggle Switch** - This will be our main power switch of the device, turning it on and off. [Online Link](https://a.co/d/0lwa7hN)
+- **Micro USB B to USB A Plug** - With this component we will be able to charge our device. [Online Link](https://www.adafruit.com/product/4213)
+- **Buzzer** - The big button device will be able to send audio feedback via a small buzzer that
+  will be mounted inside of the enclosure. [Online Link](https://a.co/d/8HOhxGi)
+- **Battery Pack** - Our device will be battery operated with a long barry life. This big
+  battery will ensure that our button device will operate for a long time. [Online Link](https://www.adafruit.com/product/5035)
+- **Wire Assortment** - Any electrical project of this type will need wire. In our case, this
+  assortment provides us with a small gauge wire in different colors. [Online Link](https://a.co/d/jcNjgDM)
 
 {/*
-List with 1-2 paragarphs
+TODO: Make accent color and bold
 */}
 
 ### Other Components
 
-- LED thingies they sit in
-- Thingies that are pressed into 3D print
-- Screws
-- Spray paints
-- Fillers
+- **LED Holder Bezel Mount** - To cleanly and firmly place LEDs onto the exterior of the device
+  enclosure, we will be using LED holders that snap into a pre-fabricated hole. This way
+  the LEDs are easily removable if needed, while also looking very nice from the outside. [Online Link](https://a.co/d/9wcF20p)
+- **Threaded Inserts** - There are a variety of ways of joining 3D printed part components. 
+  You can snap them together, glue them, weld them, etc. However, we are going to use threaded
+  brass inserts. That is, these threaded inserts are heated into the 3D print so that we 
+  can use regular screws to join the parts. [Online Link](https://a.co/d/efibCTj)
+- **Screws** - Here we are primary concerted about screwing down 3D parts and components.
+  The two sizes that we will be using are *#2-56x5/32 (x5)* and *#4-40x3/8 (x6)*. For these
+  screws you are probably better off getting them as a small pack online or at a local
+  hardware store.
+- **3D Print Filler Putty** - 3D prints can sometimes leave relatively large imperfections that
+  are hard to sand smoothly. In those cases, we can fill the imperfection or hole with
+  putty material and in turn sand it down. [Online Link](https://a.co/d/2mu3jvd)
+- **Spray Filler, Paint, and Clear Coat** - I understand that this may be a lot, however
+  in order to make a 3D print look nice and like it was injected molded, it takes a little bit of
+  work. Typically, when possible it is advised to stick to the same brand.
+  - *Sandable Filler* - For finer imperfection we spray the 3D print with a filler before sanding it
+    down finely. [Online Link](https://a.co/d/2OqPcEJ)
+  - *Paint* - This can be any color you want the device to have. I selected a darker chalk gray color.
+  - *Clear Coat (Matte Finish)* - For the final step we seal the surface and add a surface finish.
+    Here I selected a clear matte finish. [Online Link](https://a.co/d/4nTvp4r)
 
-## Summary
-
-*Add list or a table of the above items*
+<span class="text-accentColor font-bold">Alright! Now that we have that out of the way, let's move forward!</span>
 
 {/*
 Often times to protect a sensitive places like solder points between a wire and a terminal,

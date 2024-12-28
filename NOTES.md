@@ -21,6 +21,8 @@
 ### Nice to Have
 
 - RSS Feed link
+- Blog subscription
+- Post comments
 - Remove underline from ToC links
 - Mermaid graphs
 

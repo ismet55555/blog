@@ -35,11 +35,3 @@ prose p {
 /*   } */
 /* } */
 /* ------------------------------------- */
-
-.toc-link {
-  text-decoration: none; /* Removes the underline */
-}
-
-.toc-link:hover {
-  text-decoration: underline; /* Optional: Adds underline on hover for accessibility */
-}
