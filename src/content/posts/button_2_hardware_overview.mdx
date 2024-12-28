@@ -22,26 +22,26 @@ note that as with any personal engineering project of this kind:
 - You might get away with not having some of the tools or different/better tools
 - You can do things a different way or your own way
 
-Remember, this list is targeted for the casual hobbiest and maker. While I try my
-best to share everything you will need, this list may not be 100% comprehensive.
+Remember, this list is targeted for the casual hobbiest and maker. While I try 
+to share everything you will need, this list may not be 100% comprehensive.
 
-I completly understand this seems like a lot, however this is a detailed outline to reference
-back to if needed.
+I completly understand the following seems like a lot, however this is a
+detailed outline to reference back during other phases of the project if needed.
 
 **And as always, there are usually many and various ways to solve the same problem.**
 
 
 <Aside variant="note">
   If you are the maker type of person who already has most or all of this stuff
-  in your personal workshop, feel free to glance over this post. This post 
+  in your personal workshop, feel free to glance over the majority of this post. This post 
   attempts to get as many people with the largest skill level range onto
   the same page for this project.
 </Aside>
 
 <Aside variant="tip">
   If you are unfamiliar with any of these tools or components, a quick google search or a 
-  AI chat prompt on any of these soldering tools will get you going on how to fundamentally
-  use them.
+  AI chat prompt on any of these tools and components will get you going on how to
+  fundamentally use them.
 </Aside>
 
 
@@ -115,10 +115,10 @@ to solder to [solder sucker](https://www.youtube.com/watch?v=gGSeSk8QWsE) for de
 ### Wire Tools
 
 Building anything electrical will require work with wires. Specifically, for our low current 
-and low voltage applications we will be using small [wire gauges](https://en.wikipedia.org/wiki/American_wire_gauge#Tables_of_AWG_wire_sizes). .
+and low voltage applications we will be using small [wire gauges](https://en.wikipedia.org/wiki/American_wire_gauge#Tables_of_AWG_wire_sizes).
 
 Wire cutters are often the same tool as wire cutters. Again, as a casual hobbiest, I would
-not recommend the top tools, here a [regular wire cutter/stripper](https://a.co/d/fjoGu2d) is just fine.
+not necessarily recommend the top shelf tools, here a [regular wire cutter/stripper](https://a.co/d/fjoGu2d) is just fine.
 
 <a href="https://a.co/d/2Z5Z7AV" target="_blank">
  <img
@@ -131,16 +131,18 @@ not recommend the top tools, here a [regular wire cutter/stripper](https://a.co/
 ### Multimeter
 
 Often times we will need to test if two things are soldered correctly, connected right, or
-give us some voltage at some time. In these types of situations and many more,
-a [multimeter](https://en.wikipedia.org/wiki/Multimeter) comes in handy. 
+give us some voltage at some point and time. In these types of situations (and more),
+a [multimeter](https://en.wikipedia.org/wiki/Multimeter) comes in very handy. 
 
 A multimeter measures multiple electrical properties: voltage, resistance, and current.
 It is one of the most basic and most useful electrical tools you can get familiar with.
+Here is a [quick overview video](https://www.youtube.com/watch?v=bF3OyQ3HwfU) on how
+to use a multimeter.
 
 Luckily, for the vast majority of hobbiest use-cases, a regular grade multimeter is
-not very expensive and highly available.
+just fine, not very expensive, and highly available.
 
-I recommend selecting a multimeter that includes convenient one with a good set of probe
+I recommend selecting a multimeter with a good set of probe
 features and clamps, a good display, and a kick stand. Maybe something like
 [this one](https://a.co/d/6yqiaka).
 
@@ -158,17 +160,17 @@ features and clamps, a good display, and a kick stand. Maybe something like
   to use smaller screw drivers. I prefer interchangeable tips one. ([Recommendation](https://a.co/d/iezxoev)).
 
 - **Hand-held Electric Sander** - We will be sanding down 3D prints to make prints looks less like 
-  a 3D print. While you can try to use sand paper, an electric sander wil save you much time
-  and hassle. My recommendation is to use a sander that you can use with regular sand paper 
-  and not proprietary stick-on or odd shapes. ([Recommendation](https://a.co/d/1kmXrED)).
+  a 3D print. While you can try to use sand paper, an electric sander will save you much time
+  and hassle. My recommendation is to use an electric sander that you can use with regular sand paper 
+  and not proprietary stick-on or odd shape sand paper. ([Recommendation](https://a.co/d/1kmXrED)).
 
-- **Sand Paper** - For using width the electric sander and for finer hand sanding, make sure
+- **Sand Paper** - For using width the electric sander and for finer manual hand sanding, make sure
   you have a the following [sandpaper grits/coarseness](https://www.familyhandyman.com/article/sandpaper-grit-chart/): 
 
-    - 120 - Fine *(Getting rougher surface imperfections out)*
-    - 220 - Very-fine
-    - 400 - Super-fine
-    - 800 - Ultra-fine *(Polish the surface)*
+    - 120 Grit - Fine *(Getting rougher surface imperfections out)*
+    - 220 Grit - Very-fine
+    - 400 Grit - Super-fine
+    - 800 Grit - Ultra-fine *(Polish the surface)*
 
 ## Components
 
@@ -177,7 +179,7 @@ features and clamps, a good display, and a kick stand. Maybe something like
 The [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) (RPi Pico W) 
 microcontroller will be our central brain for this project. All logic will live on this microcontroller.
 
-<a href="https://a.co/d/6yqiaka" target="_blank">
+<a href="https://a.co/d/bqi2hE3" target="_blank">
  <img
    src="images/button/hardware_overview/rpi-pico-w.png"
    alt="cool relevant image"
@@ -185,9 +187,10 @@ microcontroller will be our central brain for this project. All logic will live 
  />
 </a>
 
-This Raspberry Pi is powered by a [RP2040](TODO) chip ([RP2350](TODO) for RPi Pico 2),
-while having other [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
-such as wireless controller (the "W" in the name), a bluetooth chip, temperature sensor and more.
+This Raspberry Pi is powered by an [arm-based](https://developer.arm.com/Processors/Cortex-M0-Plus)
+[RP2040](https://www.raspberrypi.com/products/rp2040/specifications/) chip ([RP2350](https://www.raspberrypi.com/products/rp2350/)
+for RPi Pico 2), while having other on-board [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
+such as a wireless module *(the `W` in the name)*, a bluetooth chip, temperature sensor, and more.
 
 See the official [Raspberry Pi Pico documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
 for more information. 
@@ -212,10 +215,10 @@ happening on the microcontroller when it is running. That is, when connecting yo
 to the microcontroller you are able to actively view code deployment logs, runtime logging
 messages, error messages, and other connection-related messages.
 
-Typically microcontollers provide a debug probe that accomplishes just that. The debug
+Typically microcontollers provide a debug probe/module that accomplishes just that. Our debug
 probe will connect via [UART serial](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
-port via the **3 pins** *(TX, GND, RX)* specially designated to it on the Raspberry Pi Pico and located
-next to the large wireless module.
+port via the [**3 pins** *(TX, GND, RX)*](https://datasheets.raspberrypi.com/debug/debug-connector-specification.pdf)
+specially designated to it on the Raspberry Pi Pico and located next to the large wireless module.
 
 <a href="https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html" target="_blank">
  <img
@@ -233,23 +236,23 @@ See the official [Raspberry Pi Debug Probe documentation](https://www.raspberryp
 for more information. 
 
 <Aside variant="note">
-  There is a way to achieve the same thing but without a Raspberry Pi debug probe, except
-  it involves a second Raspberry Pi Pico connected to your main one. Here is [more information](https://www.youtube.com/watch?v=0i2gLeBal9Y)
+  There is a way to achieve this same function but without a Raspberry Pi debug probe. This
+  involves a *second* Raspberry Pi Pico connected to your main one. Here is [more information](https://www.youtube.com/watch?v=0i2gLeBal9Y)
   about it. However, to gain simplicity by sacrificing cost we are sticking to the official
-  debug probe.
+  debug probe provided for the Raspberry Pi.
 </Aside>
 
 ### Raspberry Pi Pico Breakout Boards
 
-For development and for actual final implementation, we will use a breakout board for
-our Raspberry Pi Pico W. A [breakout board](https://soldered.com/learn/breakout-boards-what-are-they-and-why-you-should-use-them/) will take these pins and “break them out”
+For development and for actual final implementation of our Raspberry Pi Pico W, we will use breakout boards.
+A [breakout board](https://soldered.com/learn/breakout-boards-what-are-they-and-why-you-should-use-them/) will take these pins and “break them out”
 onto a separate circuit board. That is, it maps the inputs and outputs of our
 Raspberry Pi Pico W onto easily accessible connectors.
 
 We will use two breakout boards:
 
 - **For Development and Testing** - During programming and troubleshooting we will utilize a more
-  complete breakout board. This breakout board includes build in LEDs for pin inputs and outputs,
+  complete breakout board. This breakout board includes LEDs for pin inputs and outputs,
   more ground connectors, clear labels, and more. We will use this breakout board during
   initial programming, testing, and iterations. ([Online Link](https://a.co/d/6anFgCV))
 
@@ -280,11 +283,15 @@ battery runs out of power, we want to be able to seamlessly recharge the battery
 without disconnecting power to the running system.
 This is were our [boost converter](https://en.wikipedia.org/wiki/Boost_converter) comes into play.
 
-In essence, we the boost converter is connected to the battery *(3.7V)*, to a USB A plug *(5V)*, and to
-to the Raspberry Pi Pico W microcontroller *(5V)*.
+In essence, the boost converter is connected to the battery source *(3.7V)*, to a USB A plug source *(5V)*,
+and to the Raspberry Pi Pico W microcontroller input *(5V)*.
+
+{/*
+TODO: Diagram here with boost converter
+*/}
 
 We will be using the [PowerBoost 500 from Adafruit](https://www.adafruit.com/product/5035)
-that can run from 1.8 VDC batteries or higher. It converts this to a 5.2 VDC voltage for our 
+that can run from 1.8V DC batteries or higher. It converts this to a 5.2V DC voltage for our 
 microcontroller.
 
 <a href="https://www.adafruit.com/product/1903" target="_blank">
@@ -294,11 +301,6 @@ microcontroller.
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />
 </a>
-
-{/*
-TODO: Diagram here with boost converter
-*/}
-
 
 ### Electrical Components
 
@@ -347,9 +349,43 @@ TODO: Make accent color and bold
   - *Clear Coat (Matte Finish)* - For the final step we seal the surface and add a surface finish.
     Here I selected a clear matte finish. [Online Link](https://a.co/d/4nTvp4r)
 
-<span class="text-accentColor font-bold">Alright! Now that we have that out of the way, let's move forward!</span>
 
-{/*
-Often times to protect a sensitive places like solder points between a wire and a terminal,
-or a wire and another wire we heat shrink rubber tubing. 
-*/}
+## Summary
+
+#### Tools
+
+| Name | Purpose | Online Link |
+|------|---------|-------------|
+| 3D Printer | For creating custom enclosures and mounts | [Link](https://www.creality.com/products/ender-3-3d-printer) |  
+| Soldering Station | For soldering wires and components | [Link](https://a.co/d/g1hfNg9) |
+| Wire Cutter/Stripper | For cutting and stripping small gauge wire | [Link](https://a.co/d/2Z5Z7AV) |
+| Multimeter | For measuring voltage, current, and resistance | [Link](https://a.co/d/6yqiaka) | 
+| Small Screwdriver Set | For working with small screws and components | [Link](https://a.co/d/iezxoev) |
+| Electric Sander | For sanding down 3D prints | [Link](https://a.co/d/1kmXrED) |
+
+#### Components
+
+| Name | Purpose | Online Link |
+|------|---------|-------------|
+| Raspberry Pi Pico W | Main microcontroller for the project | [Link](https://a.co/d/bqi2hE3) |
+| Pico Debug Probe | For connecting to Pico for debugging | [Link](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) |
+| Pico Breakout Board (Dev) | For easy access to Pico pins during development | [Link](https://a.co/d/6anFgCV) |
+| Pico Breakout Board (Prod) | Minimal breakout for final implementation | [Link](https://a.co/d/e6cDFwv) |
+| DC-DC Boost Converter | For converting battery voltage to 5V | [Link](https://www.adafruit.com/product/5035) |
+| Big Push Button | Main interactive push button | [Link](https://a.co/d/gUhGwOv)
+| LEDs 8mm | For light effects around the device | [Link](https://a.co/d/6LiMbeh) |
+| Toggle Switch | Main power switch | [Link](https://a.co/d/0lwa7hN) |
+| Micro USB Plug | For charging the device | [Link](https://www.adafruit.com/product/4213) |
+| Buzzer | For audio feedback | [Link](https://a.co/d/8HOhxGi) |  
+| Battery Pack | Main power source | [Link](https://www.adafruit.com/product/5035) |
+| Wire Assortment | For wiring components | [Link](https://a.co/d/jcNjgDM) |
+| LED Holder | For mounting LEDs to the enclosure | [Link](https://a.co/d/9wcF20p) | 
+| Threaded Inserts | For joining 3D printed parts | [Link](https://a.co/d/efibCTj) |
+| Screws *#2-56x5/32 (x5)* and *#4-40x3/8 (x6)*| For joining 3D printed parts | *You Pick* |
+| Filler Putty | For filling print imperfections | [Link](https://a.co/d/2mu3jvd) |
+| Spray: Filler Primer | For priming 3D prints before painting | [Link](https://a.co/d/2OqPcEJ) |
+| Spray: Paint | For painting and finishing the enclosure | *You Pick* |
+| Spray: Clear Coat | For painting and finishing the enclosure | [Link](https://a.co/d/4nTvp4r) |
+
+
+<span class="text-accentColor font-bold">Alright! ... Now that we have that out of the way, let's move forward!</span>

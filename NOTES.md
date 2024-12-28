@@ -17,6 +17,7 @@
 - Fix tags link - DONE
 - Remove intro title when blog post is showing (Welcome ....) - DONE
 - Next and previous button at bottom of post series - DONE
+- Move images into `src`
 
 ### Nice to Have
 
