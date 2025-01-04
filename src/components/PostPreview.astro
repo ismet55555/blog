@@ -1,5 +1,12 @@
 ---
 const { url, title, description, pubDate, minutesRead } = Astro.props
+
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  weekday: 'short',
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric'
+})
 ---
 
 <!-- Preview on the list of blog posts -->
@@ -38,7 +45,7 @@ const { url, title, description, pubDate, minutesRead } = Astro.props
         transform="translate(-61 -152)"></path>
     </svg>
     <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">
-      {pubDate}
+      {formattedDate}
     </p>
     <span class="mx-2 text-gray-600">|</span>
     <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">
