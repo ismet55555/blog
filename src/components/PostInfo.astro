@@ -1,5 +1,12 @@
 ---
 const { title, date, tags, minutesRead } = Astro.props
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  weekday: 'short',
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric'
+})
 ---
 
 <!-- Top part of the blog post page -->
@@ -21,7 +28,7 @@ const { title, date, tags, minutesRead } = Astro.props
           transform="translate(-61 -152)"></path>
       </svg>
       <p class="text-sm leading-5 tracking-wide text-gray-600">
-        {date}
+        {formattedDate}
       </p>
       <span class="mx-2 text-gray-600">|</span>
       <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">

@@ -10,6 +10,17 @@ previousPost:
 #   slug: "button_3_software_setup"
 #   title: "Software Setup"
 ---
+import { Image } from 'astro:assets';
+import engineerChecklist from '../../images/button/hardware_overview/engineer-checklist.webp';
+import ender3 from '../../images/button/hardware_overview/ender-3.webp';
+import solderStation from '../../images/button/hardware_overview/solder-station.webp';
+import wireCutter from '../../images/button/hardware_overview/wire-cutter-stripper.webp';
+import multimeter from '../../images/button/hardware_overview/multimeter.webp';
+import rpiPico from '../../images/button/hardware_overview/rpi-pico-w.webp';
+import debugProbe from '../../images/button/hardware_overview/rpi-debug-probe.webp';
+import breakoutBoardDev from '../../images/button/hardware_overview/breakout-board-dev.webp';
+import breakoutBoardProd from '../../images/button/hardware_overview/breakout-board-prod.webp';
+import boostConverter from '../../images/button/hardware_overview/boost-converter.webp';
 
 ## Table of Contents
 
@@ -46,11 +57,11 @@ detailed outline to reference back during other phases of the project if needed.
 
 
 <a href="https://www.youtube.com/watch?v=iGuuOdD6iY4" target="_blank">
- <img
-   src="images/button/hardware_overview/engineer-checklist.webp"
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
+  <Image
+    src={engineerChecklist}
+    alt="cool relevant image"
+    class="w-1/2 mx-auto border border-2 border-accentColor"
+  />
 </a>
 
 
@@ -67,11 +78,11 @@ Here I am using the most popular hobbiest 3D printer ever made:
 [Enter 3 by Creality](https://www.creality.com/products/ender-3-3d-printer).
 
 <a href="https://www.creality.com/products/ender-3-3d-printer" target="_blank">
- <img
-   src="images/button/hardware_overview/ender-3.webp"
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
+  <Image
+    src={ender3}
+    alt="cool relevant image"
+    class="w-1/2 mx-auto border border-2 border-accentColor"
+  />
 </a>
 
 While there are better [PLA-based](https://www.hatchbox3d.com/collections/pla-1-75mm)
@@ -102,11 +113,11 @@ The soldering station that I am working with and that I recommend for beginners 
 all-in-one soldering station kit shown below and [available on Amazon here](https://a.co/d/g1hfNg9).
 
 <a href="https://a.co/d/fjoGu2d" target="_blank">
- <img
-   src="images/button/hardware_overview/solder-station.webp"
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
+  <Image
+    src={solderStation}
+    alt="cool relevant image"
+    class="w-1/2 mx-auto border border-2 border-accentColor"
+  />
 </a>
 
 Here we have everything from [helping hands](https://www.youtube.com/watch?v=xh5FcqtlWWA)
@@ -121,8 +132,8 @@ Wire cutters are often the same tool as wire cutters. Again, as a casual hobbies
 not necessarily recommend the top shelf tools, here a [regular wire cutter/stripper](https://a.co/d/fjoGu2d) is just fine.
 
 <a href="https://a.co/d/2Z5Z7AV" target="_blank">
- <img
-   src="images/button/hardware_overview/wire-cutter-stripper.webp"
+ <Image
+    src={wireCutter}
    alt="cool relevant image"
    class="w-1/4 mx-auto border border-2 border-accentColor"
  />
@@ -147,8 +158,8 @@ features and clamps, a good display, and a kick stand. Maybe something like
 [this one](https://a.co/d/6yqiaka).
 
 <a href="https://a.co/d/6yqiaka" target="_blank">
- <img
-   src="images/button/hardware_overview/multimeter.webp"
+ <Image
+    src={multimeter}
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />
@@ -180,8 +191,8 @@ The [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico
 microcontroller will be our central brain for this project. All logic will live on this microcontroller.
 
 <a href="https://a.co/d/bqi2hE3" target="_blank">
- <img
-   src="images/button/hardware_overview/rpi-pico-w.webp"
+ <Image
+    src={rpiPico}
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />
@@ -221,8 +232,8 @@ port via the [**3 pins** *(TX, GND, RX)*](https://datasheets.raspberrypi.com/deb
 specially designated to it on the Raspberry Pi Pico and located next to the large wireless module.
 
 <a href="https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html" target="_blank">
- <img
-   src="images/button/hardware_overview/rpi-debug-probe.webp"
+ <Image
+    src={debugProbe}
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />
@@ -257,8 +268,8 @@ We will use two breakout boards:
   initial programming, testing, and iterations. ([Online Link](https://a.co/d/6anFgCV))
 
 <a href="https://a.co/d/6anFgCV" target="_blank">
- <img
-   src="images/button/hardware_overview/breakout-board-dev.webp"
+ <Image
+    src={breakoutBoardDev}
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />
@@ -269,8 +280,8 @@ We will use two breakout boards:
   board. ([Online Link](https://a.co/d/e6cDFwv))
 
 <a href="https://a.co/d/e6cDFwv" target="_blank">
- <img
-   src="images/button/hardware_overview/breakout-board-prod.webp"
+ <Image
+    src={breakoutBoardProd}
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />
@@ -295,8 +306,8 @@ that can run from 1.8V DC batteries or higher. It converts this to a 5.2V DC vol
 microcontroller.
 
 <a href="https://www.adafruit.com/product/1903" target="_blank">
- <img
-   src="images/button/hardware_overview/boost-converter.webp"
+ <Image
+    src={boostConverter}
    alt="cool relevant image"
    class="w-1/2 mx-auto border border-2 border-accentColor"
  />

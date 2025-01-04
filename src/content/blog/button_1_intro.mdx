@@ -10,6 +10,10 @@ nextPost:
   slug: "button_2_hardware_overview"
   title: "Tools and Components"
 ---
+import { Image } from 'astro:assets';
+import friendsTalking from '../../images/button/intro/friends-talking-2.webp';
+import trashPickup from '../../images/button/intro/trash-pickup.webp';
+import redButton from '../../images/button/intro/red-button-dramatic.webp';
 
 ## Table of Contents
 
@@ -21,11 +25,11 @@ carefully ask you for an opinion on an idea he/she has. At this point you alread
 know what is going to happen next.
 
 <a href="https://youtu.be/n4AUY-v1nsE?si=WDsR5LdRPsaF5Pkm" target="_blank">
- <img
-   src="images/button/intro/friends-talking-2.webp"
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
+  <Image 
+    src={friendsTalking} 
+    alt="cool relevant image" 
+    class="w-1/2 mx-auto border border-2 border-accentColor" 
+  />
 </a>
 
 As a IT professional, you have experienced
@@ -58,11 +62,11 @@ Where I live, trash pick up is Tuesdays and Fridays. Or is it Mondays and
 Thursdays? Well, maybe one of those days is Wednesday...?
 
 <a href="https://www.youtube.com/watch?v=fysFwSfdQzc" target="_blank">
- <img
-   src="images/button/intro/trash-pickup.webp"
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
+  <Image 
+    src={trashPickup} 
+    alt="cool relevant image" 
+    class="w-1/2 mx-auto border border-2 border-accentColor" 
+  />
 </a>
 
 After 10 years living in the same residence, I still question myself and still can
@@ -102,11 +106,11 @@ project you yourself will be able to solve some problem that requires
 embedded systems and Rust programming.
 
 <a href="https://www.youtube.com/watch?v=VCLxJd1d84s" target="_blank">
- <img
-   src="images/button/intro/red-button-dramatic.webp"
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
+  <Image 
+    src={redButton} 
+    alt="cool relevant image" 
+    class="w-1/2 mx-auto border border-2 border-accentColor" 
+  />
 </a>
 
 The project that we will be developing will be a large red button. This
