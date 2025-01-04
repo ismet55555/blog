@@ -12,32 +12,33 @@ const allPosts = await getCollection('blog')
 // All posts sorted by publishing datetime
 // Also render the post
 const sortedPosts = await Promise.all(
-	allPosts
-		.sort(
-			(a, b) =>
-				new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-		)
-		.map(async (post) => {
-			const { remarkPluginFrontmatter } = await render(post)
-			return { ...post, remarkPluginFrontmatter }
-		})
+  allPosts
+    .sort(
+      (a, b) =>
+        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    )
+    .reverse()
+    .map(async (post) => {
+      const { remarkPluginFrontmatter } = await render(post)
+      return { ...post, remarkPluginFrontmatter }
+    })
 )
 ---
 
 <Base meta={{ title: config.title }}>
-	<div class="mb-5 p-5 text-lg">
-		Welcome to my blog about mostly technical topics. I hope you can find
-		something interesting or useful here.
-	</div>
-	{
-		sortedPosts.map((post) => (
-			<PostPreview
-				url={post.id}
-				title={post.data.title}
-				description={post.data.description}
-				pubDate={post.data.pubDate}
-				minutesRead={post.remarkPluginFrontmatter?.minutesRead || '0 min read'}
-			/>
-		))
-	}
+  <div class="mb-5 p-5 text-lg">
+    Welcome to my blog about mostly technical topics. I hope you can find
+    something interesting or useful here.
+  </div>
+  {
+    sortedPosts.map((post) => (
+      <PostPreview
+        url={post.id}
+        title={post.data.title}
+        description={post.data.description}
+        pubDate={post.data.pubDate}
+        minutesRead={post.remarkPluginFrontmatter?.minutesRead || '0 min read'}
+      />
+    ))
+  }
 </Base>
