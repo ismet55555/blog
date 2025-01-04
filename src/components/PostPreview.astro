@@ -4,18 +4,8 @@ const { url, title, description, pubDate, minutesRead } = Astro.props
 
 <!-- Preview on the list of blog posts -->
 <a
-  href={`/techblog/${url}`}
-  class="dark:hover:border:border-accentColor
-  mb-[30px]
-  block
-  border
-  border-accentColor
-  p-6
-  transition-colors
-  last:mb-0
-  hover:bg-green-100
-  dark:border-gray-500
-  dark:hover:bg-gray-800"
+  href={`/blog/${url}`}
+  class="dark:hover:border:border-accentColor mb-[30px] block border border-accentColor p-6 transition-colors last:mb-0 hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
 >
   <div class="w-full">
     <!-- <a class="group text-accentColor duration-200" href={url}> -->

@@ -28,14 +28,14 @@ const { title, date, tags, minutesRead } = Astro.props
         {minutesRead}
       </p>
     </div>
-    <div class="flex items-center">
-      {
-        tags.map((tag: string) => (
-          <a class="ml-5 text-sm first:ml-0" href={`/tags/${tag}`}>
-            #{tag}
-          </a>
-        ))
-      }
-    </div>
+    <!-- <div class="flex items-center"> -->
+    <!--   { -->
+    <!--     tags.map((tag: string) => ( -->
+    <!--       <a class="ml-5 text-sm first:ml-0" href={`/tags/${tag}`}> -->
+    <!--         #{tag} -->
+    <!--       </a> -->
+    <!--     )) -->
+    <!--   } -->
+    <!-- </div> -->
   </div>
 </div>

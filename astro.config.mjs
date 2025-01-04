@@ -1,3 +1,6 @@
+// @ts-check
+import { defineConfig } from 'astro/config'
+import sitemap from '@astrojs/sitemap'
 import expressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
 import mdx from '@astrojs/mdx'
@@ -7,6 +10,12 @@ import tailwind from '@astrojs/tailwind'
 import partytown from '@astrojs/partytown'
 import { defineConfig } from 'astro/config'
 import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
+
+// // https://astro.build/config
+// export default defineConfig({
+// 	site: 'https://example.com',
+// 	integrations: [mdx(), sitemap()],
+// });
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,5 +58,5 @@ export default defineConfig({
   },
 
   site: 'https://ismet55555.github.io',
-  base: '/techblog'
+  base: '/blog'
 })
