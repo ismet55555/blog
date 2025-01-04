@@ -1,0 +1,53 @@
+---
+
+---
+
+<div
+  id="progress-bar"
+  class="fixed bottom-0 left-0 h-[3px] w-0 origin-left bg-accentColor transition-[width] duration-100"
+>
+</div>
+
+<style>
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .slide-out-animation {
+    animation: slide-out 0.7s ease forwards;
+  }
+</style>
+
+<script>
+  let hasAnimated = false
+
+  function updateProgressBar() {
+    const progressBar = document.getElementById('progress-bar')
+    if (!progressBar) return
+
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight
+    const scrollTop = window.scrollY || document.documentElement.scrollTop
+
+    const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100
+    progressBar.style.width = `${scrollPercent}%`
+
+    // Add slide-out animation when reaching 100% for the first time
+    if (scrollPercent >= 99.9 && !hasAnimated) {
+      progressBar.classList.add('slide-out-animation')
+      hasAnimated = true
+    } else if (scrollPercent < 99.9) {
+      // Reset animation when scrolling up
+      hasAnimated = false
+      progressBar.classList.remove('slide-out-animation')
+    }
+  }
+
+  window.addEventListener('scroll', updateProgressBar)
+  updateProgressBar()
+</script>

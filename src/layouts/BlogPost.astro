@@ -7,6 +7,7 @@
 import Base from '@/layouts/Base.astro'
 import PostInfo from '@/components/PostInfo.astro'
 import PostNavigation from '@/components/PostNavigation.astro'
+import ScrollProgressBar from '@/components/ScrollProgressBar.astro'
 
 import type { CollectionEntry } from 'astro:content'
 type Props = CollectionEntry<'blog'>['data']
@@ -23,6 +24,7 @@ const {
 ---
 
 <Base meta={{ title: frontmatter.title }}>
+  <ScrollProgressBar />
   <div
     id="markdown"
     class="prose prose-lightMode w-full min-w-full text-lg leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:font-medium prose-headings:text-accentColor prose-a:text-lightModeText prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-ol:text-lightModeText prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText dark:text-darkModeText dark:prose-a:dark:text-darkModeText dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText w500:text-lg w500:leading-[2.2] w500:prose-h1:text-3xl w500:prose-h2:text-2xl w500:prose-h3:text-lg w500:prose-h4:text-lg w500:prose-h5:text-lg w500:prose-h6:text-lg w400:text-base w400:leading-[2.2]"

@@ -4,21 +4,16 @@
 
 ### Critical
 
-- Fix image loading problem
-  - Move images into `src`
 - Combine to tutorial series
   - Navigation steps on the side?
 
 ### Nice to Have
 
-- Upgrade to Astro 5 - DONE
-- Tutorial series
 - RSS Feed link
 - Blog subscription
 - Post comments
 - Remove underline from ToC links
 - Mermaid graphs
-- Reading progress bar on bottom
 
 ## Other
 
