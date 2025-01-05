@@ -10,7 +10,6 @@ import tailwind from '@astrojs/tailwind'
 import partytown from '@astrojs/partytown'
 import { defineConfig } from 'astro/config'
 import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
-import { rehypeTargetBlank } from './src/plugins/rehypeTargetBlank.ts'
 import { externalAnchorPlugin } from './src/plugins/externalAnchorPlugin.ts'
 
 // More Info: https://astro.build/config
@@ -31,7 +30,18 @@ export default defineConfig({
       }
     }),
     mdx({
-      remarkPlugins: [externalAnchorPlugin]
+      remarkPlugins: [
+        [
+          remarkToc,
+          {
+            heading: 'Table of Contents',
+            tight: true,
+            maxDepth: 3
+          }
+        ],
+        externalAnchorPlugin,
+        remarkReadingTime
+      ]
     }),
     react(),
     icon(),

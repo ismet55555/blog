@@ -1,0 +1,90 @@
+---
+title: 'Big Button - Part 4 - Programming Setup and Test'
+description: 'Programming software setup for big button embedded project'
+pubDate: 'Jan 06 2025'
+tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico', 'debug-prob', 'rust']
+draft: true
+previousPost:
+  slug: "button_3_program_hardware_connect"
+  title: "Connecting Programming Hardware"
+# nextPost: 
+#   slug: "button_3_software_setup"
+#   title: "Software Setup"
+---
+import Figure from '../../components/Figure.astro'
+import tba from '../../images/tba.png';
+
+## Table of Contents
+
+## Introduction
+
+Here we are going to install all software needed to start interacting with our Raspberry Pi Pico W
+microcontroller. We will install all software for a simple [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
+verifying everything is ready to go for further programming and subsequent steps.
+
+## TODO
+
+- Install all needed software
+
+  - rust
+  - probe-rs
+    - just outline general steps and link to things
+    - https://probe.rs/docs/getting-started/installation/
+    - Linux - udev rules
+  - Gotchas for Windows
+
+- Run little command line test with probe-rs
+
+- Remember `cargo` will eventually run `probe-rs` to run and debug our project running
+  on the Raspberry Pi Pico W.
+
+**probe-rs**
+
+- Install `probe-rs`: [Installation Guide](https://probe.rs/docs/getting-started/installation/)
+
+- For Linux: Copy udev rules to system:
+
+  - ```sh
+    sudo cp assets/69-probe-rs.rules /etc/udev/rules.d
+    ```
+
+- Load the new rules
+
+  - ```sh
+    sudo udevadm control --reload
+    ```
+
+- Ensure the new rules are applied to already connected devices
+
+  - ```sh
+    sudo udevadm trigger
+    ```
+
+- Ensure debug probe is connected and recognized
+
+  - ```sh
+    probe-rs list
+    ```
+
+`thumbv6m-none-eabi` is a target triple specifying a particular processor architecture and Application Binary Interface (ABI) for embedded development. Let's break it down:
+- `thumbv6m`: This refers to the Arm Thumb instruction set version 6 for Cortex-M series processors. Thumb is a compressed 16-bit instruction set for Arm processors that allows for higher code density and reduced memory usage compared to the full 32-bit Arm instruction set.
+- `none`: This means there is no underlying operating system or runtime environment on the target. The software runs directly on the "bare metal" of the processor.
+- `eabi`: This stands for Embedded Application Binary Interface, a standard that defines how compiled code interacts with the processor's registers, memory and stack at a low level. 
+
+So `thumbv6m-none-eabi` collectively specifies that the target processor uses the Thumb v6m instruction set, has no operating system, and follows the Embedded ABI calling conventions. This allows a compiler toolchain to generate the correct machine code for that specific type of processor.
+
+The Raspberry Pi Pico's RP2040 processor is a Cortex-M0+ core, which implements the Arm Thumb v6 instruction set. So when developing embedded software for the Pico, you would use a compiler toolchain and libraries that target `thumbv6m-none-eabi` to ensure compatibility.
+
+## References
+
+- [Installing Rust](https://www.rust-lang.org/tools/install)
+- [Notes on `thumbv6m-none-eabi` Target](https://doc.rust-lang.org/rustc/platform-support/thumbv6m-none-eabi.html)
+- [Raspberry Pi Pico W Cortex-M0+ Processor](https://developer.arm.com/Processors/Cortex-M0+)
+- [probe-rs CLI tool](https://probe.rs/docs/overview/about-probe-rs/)
+- [Overview to udev Rules for Linux](https://opensource.com/article/18/11/udev)
+- [Getting Started with Embedded Rust, Embassy, and the Raspberry Pi Pico](https://archive.hannobraun.com/embedded-rust/getting-started/)
+
+<span class="text-accentColor font-bold">
+  Cool. Next we will setup our programming environment ...
+</span>
+

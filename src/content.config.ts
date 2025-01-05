@@ -8,6 +8,7 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    draft: z.boolean().optional().default(false),
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
@@ -15,13 +16,16 @@ const blog = defineCollection({
     nextPost: z
       .object({
         slug: z.string(),
-        title: z.string()
+        title: z.string(),
+        draft?: boolean
       })
       .optional(),
     previousPost: z
       .object({
         slug: z.string(),
-        title: z.string()
+        title: z.string(),
+        draft?: boolean
+      })
       })
       .optional()
   })
