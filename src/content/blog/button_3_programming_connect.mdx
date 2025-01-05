@@ -112,6 +112,12 @@ The pins are connected as follows:
   class="w-1/2 mx-auto border border-2 border-accentColor"
 />
 
+<Aside variant="note">
+  On the debug probe, we are only connecting the DAP (Debug Adapter Protocol) (*marked as `D`*)
+  connection and not the Serial UART connection (*marked as `U`*). We will be not be
+  using the serial wire to upload anything to the Pico.
+</Aside>
+
 Next, connect the debug probe and also the Raspberry Pi Pico W to your computer's USB port.
 Note that you will obviously need two open USB A ports on your computer. However, you
 may want to use [some kind of USB hub](https://a.co/d/8otCfPq) in order to combine these into
