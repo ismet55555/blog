@@ -27,7 +27,7 @@ const {
   <ScrollProgressBar />
   <div
     id="markdown"
-    class="prose prose-lightMode w-full min-w-full text-lg leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:font-medium prose-headings:text-accentColor prose-a:text-lightModeText prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-ol:text-lightModeText prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText dark:text-darkModeText dark:prose-a:dark:text-darkModeText dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText w500:text-lg w500:leading-[2.2] w500:prose-h1:text-3xl w500:prose-h2:text-2xl w500:prose-h3:text-lg w500:prose-h4:text-lg w500:prose-h5:text-lg w500:prose-h6:text-lg w400:text-base w400:leading-[2.2]"
+    class="prose prose-lightMode w-full min-w-full text-lg leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:font-medium prose-headings:text-accentColor prose-a:text-blue-600 prose-a:no-underline prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-ol:text-lightModeText prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText hover:prose-a:text-blue-800 dark:text-darkModeText dark:prose-a:text-blue-400 dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText dark:hover:prose-a:text-blue-300 w500:text-lg w500:leading-[2.2] w500:prose-h1:text-3xl w500:prose-h2:text-2xl w500:prose-h3:text-lg w500:prose-h4:text-lg w500:prose-h5:text-lg w500:prose-h6:text-lg w400:text-base w400:leading-[2.2]"
   >
     <PostInfo
       title={frontmatter.title}
@@ -36,27 +36,27 @@ const {
       minutesRead={minutesRead || '0 min read'}
     />
     <slot />
-
-    <PostNavigation
-      nextPost={frontmatter.nextPost}
-      previousPost={frontmatter.previousPost}
-    />
   </div>
+
+  <PostNavigation
+    nextPost={frontmatter.nextPost}
+    previousPost={frontmatter.previousPost}
+  />
+
+  <style is:global>
+    #markdown code:not(pre)::before,
+    #markdown code:not(pre)::after {
+      content: '';
+    }
+
+    html.dark #markdown code:not(pre code) {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    html #markdown code:not(pre code) {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+  </style>
 </Base>
-
-<style is:global>
-  #markdown code:not(pre)::before,
-  #markdown code:not(pre)::after {
-    content: '';
-  }
-
-  html.dark #markdown code:not(pre code) {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  html #markdown code:not(pre code) {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 2px 6px;
-    border-radius: 10px;
-  }
-</style>
