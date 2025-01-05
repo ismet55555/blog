@@ -10,7 +10,7 @@ nextPost:
   slug: "button_2_hardware_overview"
   title: "Tools and Components"
 ---
-import { Image } from 'astro:assets';
+import Figure from '../../components/Figure.astro'
 import friendsTalking from '../../images/button/intro/friends-talking-3.webp';
 import trashPickup from '../../images/button/intro/trash-pickup-2.webp';
 import redButton from '../../images/button/intro/button-cartoon-2.webp';
@@ -24,13 +24,11 @@ friend. After some informal conversation he/she switches their tone and prepares
 carefully ask you for an opinion on an idea he/she has. At this point you already
 know what is going to happen next.
 
-<a href="https://youtu.be/n4AUY-v1nsE?si=WDsR5LdRPsaF5Pkm" target="_blank">
-  <Image 
-    src={friendsTalking} 
-    alt="cool relevant image" 
-    class="w-1/2 mx-auto border border-2 border-accentColor" 
-  />
-</a>
+<Figure
+  src={friendsTalking} 
+  caption="Your enthusiastic buddy talking to you"
+  url="https://youtu.be/n4AUY-v1nsE?si=WDsR5LdRPsaF5Pkm"
+/>
 
 As a IT professional, you have experienced
 this many times. A friend or relative corners you at some event and
@@ -61,13 +59,10 @@ Let me explain how this entire blog series came about.
 Where I live, trash pick up is Tuesdays and Fridays. Or is it Mondays and
 Thursdays? Well, maybe one of those days is Wednesday...?
 
-<a href="https://www.youtube.com/watch?v=fysFwSfdQzc" target="_blank">
-  <Image 
-    src={trashPickup} 
-    alt="cool relevant image" 
-    class="w-1/2 mx-auto border border-2 border-accentColor" 
-  />
-</a>
+<Figure
+  src={trashPickup} 
+  url="https://www.youtube.com/watch?v=fysFwSfdQzc"
+/>
 
 After 10 years living in the same residence, I still question myself and still can
 miss trash day. This can leave trash inside for too long or leave
@@ -105,13 +100,10 @@ It is my hope that after working through this
 project you yourself will be able to solve some problem that requires
 embedded systems and Rust programming.
 
-<a href="https://www.youtube.com/watch?v=VCLxJd1d84s" target="_blank">
-  <Image 
-    src={redButton} 
-    alt="cool relevant image" 
-    class="w-1/2 mx-auto border border-2 border-accentColor" 
-  />
-</a>
+<Figure
+  src={redButton} 
+  url="https://www.youtube.com/watch?v=VCLxJd1d84s"
+/>
 
 The project that we will be developing will be a large red button. This
 button assembly will have a variety of features:

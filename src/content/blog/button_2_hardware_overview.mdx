@@ -7,10 +7,10 @@ previousPost:
   slug: "button_1_intro"
   title: "Introduction"
 nextPost: 
-  slug: "button_3_programming_connect"
+  slug: "button_3_program_hardware_connect"
   title: "Connecting Programming Hardware"
 ---
-import { Image } from 'astro:assets';
+import Figure from '../../components/Figure.astro'
 import engineerChecklist from '../../images/button/hardware_overview/engineer-checklist-2.webp';
 import ender3 from '../../images/button/hardware_overview/ender-3.webp';
 import solderStation from '../../images/button/hardware_overview/solder-station.webp';
@@ -55,14 +55,11 @@ detailed outline to reference back during other phases of the project if needed.
   fundamentally use them.
 </Aside>
 
-
-<a href="https://www.youtube.com/watch?v=iGuuOdD6iY4" target="_blank">
-  <Image
-    src={engineerChecklist}
-    alt="cool relevant image"
-    class="w-1/2 mx-auto border border-2 border-accentColor"
-  />
-</a>
+<Figure
+  src={engineerChecklist}
+  caption="You with a clipboard going through all needed items"
+  url="https://www.youtube.com/watch?v=iGuuOdD6iY4"
+/>
 
 
 ## Tools
@@ -77,13 +74,10 @@ invaluable.
 Here I am using the most popular hobbiest 3D printer ever made:
 [Enter 3 by Creality](https://www.creality.com/products/ender-3-3d-printer).
 
-<a href="https://www.creality.com/products/ender-3-3d-printer" target="_blank">
-  <Image
-    src={ender3}
-    alt="cool relevant image"
-    class="w-1/2 mx-auto border border-2 border-accentColor"
-  />
-</a>
+<Figure
+  src={ender3}
+  url="https://www.creality.com/products/ender-3-3d-printer"
+/>
 
 While there are better [PLA-based](https://www.hatchbox3d.com/collections/pla-1-75mm)
 3D printers out there ([some list here](https://www.pcmag.com/picks/the-best-3d-printers)) with amazing abilities and support, the Ender 3 offers a great value
@@ -112,13 +106,10 @@ soldering tools.
 The soldering station that I am working with and that I recommend for beginners is a
 all-in-one soldering station kit shown below and [available on Amazon here](https://a.co/d/g1hfNg9).
 
-<a href="https://a.co/d/fjoGu2d" target="_blank">
-  <Image
-    src={solderStation}
-    alt="cool relevant image"
-    class="w-1/2 mx-auto border border-2 border-accentColor"
-  />
-</a>
+<Figure
+  src={solderStation}
+  url="https://a.co/d/fjoGu2d"
+/>
 
 Here we have everything from [helping hands](https://www.youtube.com/watch?v=xh5FcqtlWWA)
 to solder to [solder sucker](https://www.youtube.com/watch?v=gGSeSk8QWsE) for de-soldering and cleanup.
@@ -131,13 +122,10 @@ and low voltage applications we will be using small [wire gauges](https://en.wik
 Wire cutters are often the same tool as wire cutters. Again, as a casual hobbiest, I would
 not necessarily recommend the top shelf tools, here a [regular wire cutter/stripper](https://a.co/d/fjoGu2d) is just fine.
 
-<a href="https://a.co/d/2Z5Z7AV" target="_blank">
- <Image
-    src={wireCutter}
-   alt="cool relevant image"
-   class="w-1/4 mx-auto border border-2 border-accentColor"
- />
-</a>
+<Figure
+  src={wireCutter}
+  url="https://a.co/d/2Z5Z7AV"
+/>
 
 ### Multimeter
 
@@ -157,13 +145,10 @@ I recommend selecting a multimeter with a good set of probe
 features and clamps, a good display, and a kick stand. Maybe something like
 [this one](https://a.co/d/6yqiaka).
 
-<a href="https://a.co/d/6yqiaka" target="_blank">
- <Image
-    src={multimeter}
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
-</a>
+<Figure
+  src={multimeter}
+  url="https://a.co/d/6yqiaka"
+/>
 
 ### Other Tools
 
@@ -190,13 +175,10 @@ features and clamps, a good display, and a kick stand. Maybe something like
 The [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) (RPi Pico W) 
 microcontroller will be our central brain for this project. All logic will live on this microcontroller.
 
-<a href="https://a.co/d/bqi2hE3" target="_blank">
- <Image
-    src={rpiPico}
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
-</a>
+<Figure
+  src={rpiPico}
+  url="https://a.co/d/bqi2hE3"
+/>
 
 This Raspberry Pi is powered by an [arm-based](https://developer.arm.com/Processors/Cortex-M0-Plus)
 [RP2040](https://www.raspberrypi.com/products/rp2040/specifications/) chip ([RP2350](https://www.raspberrypi.com/products/rp2350/)
@@ -231,17 +213,10 @@ probe will connect via [UART serial](https://en.wikipedia.org/wiki/Universal_asy
 port via the [**3 pins** *(TX, GND, RX)*](https://datasheets.raspberrypi.com/debug/debug-connector-specification.pdf)
 specially designated to it on the Raspberry Pi Pico and located next to the large wireless module.
 
-<a href="https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html" target="_blank">
- <Image
-    src={debugProbe}
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
-</a>
-
-{/*
-TODO: Use custom image of connected debug probe
-*/}
+<Figure
+  src={debugProbe}
+  url="https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html"
+/>
 
 See the official [Raspberry Pi Debug Probe documentation](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
 for more information.
@@ -267,25 +242,19 @@ We will use two breakout boards:
   more ground connectors, clear labels, and more. We will use this breakout board during
   initial programming, testing, and iterations. ([Online Link](https://a.co/d/6anFgCV))
 
-<a href="https://a.co/d/6anFgCV" target="_blank">
- <Image
-    src={breakoutBoardDev}
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
-</a>
+<Figure
+  src={breakoutBoardDev}
+  url="https://a.co/d/6anFgCV"
+/>
 
 - **For Final Implementation Into Project** - When we are ready to integrate/mount the 
   Raspberry Pi Pico W into the our assembled project, we will use use a more minimal breakout
   board. ([Online Link](https://a.co/d/e6cDFwv))
 
-<a href="https://a.co/d/e6cDFwv" target="_blank">
- <Image
-    src={breakoutBoardProd}
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
-</a>
+<Figure
+  src={breakoutBoardProd}
+  url="https://a.co/d/e6cDFwv"
+/>
 
 ### DC-DC Boost Converter (Battery Charging Module)
 
@@ -305,13 +274,10 @@ We will be using the [PowerBoost 500 from Adafruit](https://www.adafruit.com/pro
 that can run from 1.8V DC batteries or higher. It converts this to a 5.2V DC voltage for our 
 microcontroller.
 
-<a href="https://www.adafruit.com/product/1903" target="_blank">
- <Image
-    src={boostConverter}
-   alt="cool relevant image"
-   class="w-1/2 mx-auto border border-2 border-accentColor"
- />
-</a>
+<Figure
+  src={boostConverter}
+  url="https://www.adafruit.com/product/1903"
+/>
 
 ### Electrical Components
 

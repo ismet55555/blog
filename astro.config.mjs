@@ -10,14 +10,10 @@ import tailwind from '@astrojs/tailwind'
 import partytown from '@astrojs/partytown'
 import { defineConfig } from 'astro/config'
 import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
+import { rehypeTargetBlank } from './src/plugins/rehypeTargetBlank.ts'
+import { externalAnchorPlugin } from './src/plugins/externalAnchorPlugin.ts'
 
-// // https://astro.build/config
-// export default defineConfig({
-// 	site: 'https://example.com',
-// 	integrations: [mdx(), sitemap()],
-// });
-
-// https://astro.build/config
+// More Info: https://astro.build/config
 export default defineConfig({
   integrations: [
     tailwind(),
@@ -34,7 +30,9 @@ export default defineConfig({
         borderColor: '#80808080'
       }
     }),
-    mdx(),
+    mdx({
+      remarkPlugins: [externalAnchorPlugin]
+    }),
     react(),
     icon(),
     partytown({
@@ -53,7 +51,8 @@ export default defineConfig({
           maxDepth: 3
         }
       ],
-      remarkReadingTime
+      remarkReadingTime,
+      externalAnchorPlugin
     ]
   },
 

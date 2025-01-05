@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+  src: ImageMetadata
+  caption?: string
+  url?: string
+  class?: string
+}
+
+const {
+  src,
+  caption,
+  url,
+  class: className = 'w-1/2 mx-auto border border-3 border-accentColor'
+} = Astro.props
+---
+
+<figure>
+  {
+    url ? (
+      <a href={url} target="_blank">
+        <Image src={src} alt="cool relevant image" class={className} />
+      </a>
+    ) : (
+      <Image src={src} alt="cool relevant image" class={className} />
+    )
+  }
+  {
+    caption && (
+      <figcaption class="mt-2 text-center italic">
+        <strong>Figure:</strong> <i>{caption}</i>
+      </figcaption>
+    )
+  }
+</figure>
