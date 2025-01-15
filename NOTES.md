@@ -4,11 +4,16 @@
 
 ### Critical
 
+- Google analytics - Needs more setup!
 - Combine to tutorial series
   - Navigation steps on the side?
 
 ### Nice to Have
 
+- Adjust spacing on TOC
+- Figure out how to present References (smaller font?)
+- Emoji plugin
+- ASCII Heading
 - RSS Feed link
 - Blog subscription
 - Post comments
@@ -17,7 +22,6 @@
 
 ## Other
 
-- Google analytics - DONE
 - Post: Sleep experiment
 - Post: Fasting group
 

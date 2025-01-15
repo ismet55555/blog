@@ -13,59 +13,216 @@ previousPost:
 ---
 import Figure from '../../components/Figure.astro'
 import tba from '../../images/tba.png';
+import crabOnPi from '../../images/button/program_setup_test/crab-on-pi.webp';
 
 ## Table of Contents
 
 ## Introduction
 
-Here we are going to install all software needed to start interacting with our Raspberry Pi Pico W
-microcontroller. We will install all software for a simple [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
-verifying everything is ready to go for further programming and subsequent steps.
+<span class="text-accentColor font-bold">Here we are finally doing some computer software stuff!</span>
 
-## TODO
+We are going to install all software needed to start interacting with our Raspberry Pi Pico W
+microcontroller. We will setup everything for a simple [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
+verifying things are ready to go for further programming and subsequent steps.
 
-- Install all needed software
+That is, we are explaining and setting up:
 
-  - rust
-  - probe-rs
-    - just outline general steps and link to things
-    - https://probe.rs/docs/getting-started/installation/
-    - Linux - udev rules
-  - Gotchas for Windows
+- Rust and Rust programming tools
+- Debugging and Target Interaction Toolkit
 
-- Run little command line test with probe-rs
+{/*
+1. Basic microcontroller interaction software
+2. Setup embassy project
+3. Simple embassy code and run
+*/}
 
-- Remember `cargo` will eventually run `probe-rs` to run and debug our project running
-  on the Raspberry Pi Pico W.
+## Rust
 
-**probe-rs**
+This is the part where we get all tools needed to start developing in
+the [Rust programming language](https://www.rust-lang.org/).
 
-- Install `probe-rs`: [Installation Guide](https://probe.rs/docs/getting-started/installation/)
+<Figure
+  src={crabOnPi}
+  caption="The Rust programming crab mascot sitting on a Raspberry Pi"
+  url="https://docs.rust-embedded.org/book/"
+/>
 
-- For Linux: Copy udev rules to system:
+### About Rust
 
-  - ```sh
-    sudo cp assets/69-probe-rs.rules /etc/udev/rules.d
-    ```
+Rust is a systems programming language that emphasizes safety, concurrency, and memory efficiency.
+It achieves these goals through a unique ownership system, a rich type system, and fearless
+concurrency primitives. Basically, it is very good for
+[low level programming](https://en.wikipedia.org/wiki/Low-level_programming_language).
 
-- Load the new rules
+In terms of programming embedded devices, Rust is great because of the following.
 
-  - ```sh
-    sudo udevadm control --reload
-    ```
+- **Rust provides low-level control:** Efficiently manage memory and hardware without an OS or runtime.
+- **Memory safety:** Eliminate entire classes of bugs like null pointer dereferences and data races.
+- **Zero-cost abstraction:** Write clean high-level interfaces that compile to optimized machine code.
+- **Fast growing ecosystem:** Take advantage of a rapidly expanding set of libraries, tools, and frameworks for embedded Rust.
+- **Rust is fast!**
 
-- Ensure the new rules are applied to already connected devices
+More information on Rust and embedded programming [found here](https://www.rust-lang.org/what/embedded).
 
-  - ```sh
-    sudo udevadm trigger
-    ```
+### Installing Rust
 
-- Ensure debug probe is connected and recognized
+Once Rust is installed we will have a few Rust [command line tools (CLI)](https://en.wikipedia.org/wiki/Command-line_interface)
+available. Before installing anything, let's review what each installed Rust tool is used for.
 
-  - ```sh
-    probe-rs list
-    ```
+- `rustup`: Manages Rust versions and associated tools. It is used to install, update, and switch between Rust toolchains.
+Here is [way more information](https://rust-lang.github.io/rustup/index.html) about this tool.
+Note that a **Rust toolchain** is a single installation of the Rust compiler and associated tools.
+You can have multiple toolchains depending on the environment or project.
 
+- `cargo`: Handles dependencies, runs tests, generates documentation, and more.
+This is the de facto way to manage Rust projects. This is the most used Rust CLI tool.
+
+- `rustc`: The Rust [compiler](https://en.wikipedia.org/wiki/Compiler) that transforms your written
+code into an [executable/binary](https://en.wikipedia.org/wiki/Executable). This command
+is typically invoked via `cargo` rather than directly. You will often not use this exclusively by itself.
+
+To check if rust is already installed. Open up your computer terminal and enter the following
+command. If you do not get a version number, you do not have Rust installed and will
+have to install it.
+
+```sh
+rustc --version
+```
+
+The official Rust installation instructions are very good. The installation instructions can be
+[found there](https://www.rust-lang.org/tools/install).
+
+<Aside variant="note">
+  For MacOS and Linux, this should be one single and simple command. However, if you are on
+  a Windows computer, please visit [rustup.rs](https://rustup.rs/) and download and
+  run the `rustup-init.exe`.
+</Aside>
+
+## Debugging and Target Interaction Toolkit
+
+### About
+
+When writing code for embedded devices like the Raspberry Pi Pico, you will need to
+load code/program/instructions onto the target processor, control its execution,
+examine and modify memory contents, and receive debugging information.
+
+A Debugging and Target Interaction Toolkit are programs that provide a set of standardized interfaces and
+protocols to facilitate this low-level interaction between the development host computer
+and the target embedded system.
+
+This includes:
+
+- Flashing microcontroller firmware
+- Reading and writing memory, running, halting, setting and reading breakpoints
+- Getting logs from the microcontroller
+
+### `probe-rs`
+
+`probe-rs` is a embedded debugging and target interaction toolkit. It enables its user to
+program and debug microcontrollers via a debug probe device. 
+
+Essentially, the interiaction between your program/code and the microcontroller looks like this:
+
+1. Your super cool program/code
+2. `probe-rs` software
+3. USB protocol for hardware (ie. [CMSIS-DAP](https://os.mbed.com/handbook/CMSIS-DAP), [ST-Link](https://wiki.st.com/stm32mpu/wiki/ST-LINK), [J-Link](https://www.segger.com/products/debug-probes/j-link/), [FTDI](https://ftdichip.com/document/technical-notes/))
+4. Debug probe hardware
+5. Raspberry Pi Pico W Microcontroller
+
+{/*
+TODO: Mermaid chart of above
+*/}
+
+See more information about the [`probe-rs` tool here](https://probe.rs/docs/overview/about-probe-rs/).
+
+<Aside variant="note">
+  Note that `probe-rs` is not the only tool for debugging and flashing. Other tools
+  include [OpenOCD](https://openocd.org/) and [PyOCD](https://pyocd.io/).
+</Aside>
+
+### `probo-rs` Install and Setup
+
+The following are install methods and scripts that are found in the official `probe-rs` documentation.
+If you are interested in more details or other ways to install this tool
+[consult the official website](https://probe.rs/docs/getting-started/installation/).
+
+#### MacOS
+
+Using [Homebrew](https://brew.sh/) package manager:
+
+```sh
+brew tap probe-rs/probe-rs
+brew install probe-rs
+```
+
+... or using the official installer script:
+
+```sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
+```
+
+#### Windows
+
+- Using the installer script for Windows pre-installed [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal
+with the [`irm` (`Invoke-RestMethod`)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.4)
+and [`iex` (`Invoke-Expression`)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression?view=powershell-7.4)
+
+```sh 
+irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex
+```
+
+#### Linux
+
+Using the official installer script:
+
+```sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
+```
+
+For Linux you will have to set up [Userspace Device Management (udev)](https://en.wikipedia.org/wiki/Udev)
+rules seperately. udev rules are instructions that tell Linux what to do when specific devices
+(like USB drives or debug probes) are plugged into your computer.
+These rules control things like who can access the device, what name it gets,
+and what automatic actions should happen when the device is connected
+
+```sh
+# Download the udev rule into /tmp/
+curl -o /tmp/69-probe-rs.rules https://probe.rs/files/69-probe-rs.rules
+
+# Move the udev rule file to its system directory
+sudo cp /tmp/69-probe-rs.rules /etc/udev/rules.d/
+
+# Reload and apply all udev rules to connected devices
+sudo udevadm control --reload
+sudo udevadm trigger
+```
+
+### Verify Debug Probe
+
+Let's very our setup worked by connecting our debug probe device
+to our computers USB port. For now, don't worry about the Raspberry
+Pi Pico W, we are just checking if we can talk to the debug probe.
+
+After connecting the debug probe, run the following command.
+
+```sh
+probe-rs list
+```
+
+You should see something like the following.
+
+```txt
+TODO
+```
+
+If you see that, great! You are done with this section. 
+If you do not see that, try some of the follwoing steps.
+
+- Verify all hardware is connected and powered (usb port, debug probe)
+- Verify the USB port is properly working
+- All of the listed commands executed successfully
+
+{/*
 `thumbv6m-none-eabi` is a target triple specifying a particular processor architecture and Application Binary Interface (ABI) for embedded development. Let's break it down:
 - `thumbv6m`: This refers to the Arm Thumb instruction set version 6 for Cortex-M series processors. Thumb is a compressed 16-bit instruction set for Arm processors that allows for higher code density and reduced memory usage compared to the full 32-bit Arm instruction set.
 - `none`: This means there is no underlying operating system or runtime environment on the target. The software runs directly on the "bare metal" of the processor.
@@ -75,11 +232,15 @@ So `thumbv6m-none-eabi` collectively specifies that the target processor uses th
 
 The Raspberry Pi Pico's RP2040 processor is a Cortex-M0+ core, which implements the Arm Thumb v6 instruction set. So when developing embedded software for the Pico, you would use a compiler toolchain and libraries that target `thumbv6m-none-eabi` to ensure compatibility.
 
-## References
-
-- [Installing Rust](https://www.rust-lang.org/tools/install)
 - [Notes on `thumbv6m-none-eabi` Target](https://doc.rust-lang.org/rustc/platform-support/thumbv6m-none-eabi.html)
 - [Raspberry Pi Pico W Cortex-M0+ Processor](https://developer.arm.com/Processors/Cortex-M0+)
+*/}
+
+## References
+
+- [Rust Programming Language](https://www.rust-lang.org/)
+- [Rust Embedded Device Programming Info](https://docs.rust-embedded.org/book/)
+- [Installing Rust](https://www.rust-lang.org/tools/install)
 - [probe-rs CLI tool](https://probe.rs/docs/overview/about-probe-rs/)
 - [Overview to udev Rules for Linux](https://opensource.com/article/18/11/udev)
 - [Getting Started with Embedded Rust, Embassy, and the Raspberry Pi Pico](https://archive.hannobraun.com/embedded-rust/getting-started/)
