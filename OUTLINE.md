@@ -26,6 +26,7 @@ Chapters:
 - Hardware- Fabrication and Assembly
   - 3D Setup, Materials, Software, Printing, Finishing/Painting
   - Connecting stuff and troubleshooting
+- Software - Rust review and learning resources
 - Software: Set up microcontroller and workflow
 - Software: A simple program in Embassy
 - Software: Outline, architecture

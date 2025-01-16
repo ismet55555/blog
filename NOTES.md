@@ -10,6 +10,7 @@
 
 ### Nice to Have
 
+- Mermaid graphs
 - Adjust spacing on TOC
 - Figure out how to present References (smaller font?)
 - Emoji plugin
@@ -18,7 +19,7 @@
 - Blog subscription
 - Post comments
 - Remove underline from ToC links
-- Mermaid graphs
+- A very small section on every post, claiming what AI was used for
 
 ## Other
 

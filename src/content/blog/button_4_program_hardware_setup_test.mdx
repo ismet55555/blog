@@ -1,9 +1,9 @@
 ---
-title: 'Big Button - Part 4 - Programming Setup and Test'
-description: 'Programming software setup for big button embedded project'
+title: 'Big Button - Part 4 - Programming Hardware Setup and Test'
+description: 'Programming hardware tools setup for big button embedded project'
 pubDate: 'Jan 06 2025'
-tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico', 'debug-prob', 'rust']
-draft: true
+tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico', 'debug-probe', 'rust']
+draft: false
 previousPost:
   slug: "button_3_program_hardware_connect"
   title: "Connecting Programming Hardware"
@@ -12,7 +12,6 @@ previousPost:
 #   title: "Software Setup"
 ---
 import Figure from '../../components/Figure.astro'
-import tba from '../../images/tba.png';
 import crabOnPi from '../../images/button/program_setup_test/crab-on-pi.webp';
 
 ## Table of Contents
@@ -22,7 +21,7 @@ import crabOnPi from '../../images/button/program_setup_test/crab-on-pi.webp';
 <span class="text-accentColor font-bold">Here we are finally doing some computer software stuff!</span>
 
 We are going to install all software needed to start interacting with our Raspberry Pi Pico W
-microcontroller. We will setup everything for a simple [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
+microcontroller. We will setup everything for a simple connection [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
 verifying things are ready to go for further programming and subsequent steps.
 
 That is, we are explaining and setting up:
@@ -31,9 +30,7 @@ That is, we are explaining and setting up:
 - Debugging and Target Interaction Toolkit
 
 {/*
-1. Basic microcontroller interaction software
-2. Setup embassy project
-3. Simple embassy code and run
+TODO: Run it by cloude for feedback
 */}
 
 ## Rust
@@ -66,7 +63,7 @@ More information on Rust and embedded programming [found here](https://www.rust-
 
 ### Installing Rust
 
-Once Rust is installed we will have a few Rust [command line tools (CLI)](https://en.wikipedia.org/wiki/Command-line_interface)
+Once Rust is installed, we will have a few Rust [command line interface (CLI)](https://en.wikipedia.org/wiki/Command-line_interface) tools
 available. Before installing anything, let's review what each installed Rust tool is used for.
 
 - `rustup`: Manages Rust versions and associated tools. It is used to install, update, and switch between Rust toolchains.
@@ -81,8 +78,8 @@ This is the de facto way to manage Rust projects. This is the most used Rust CLI
 code into an [executable/binary](https://en.wikipedia.org/wiki/Executable). This command
 is typically invoked via `cargo` rather than directly. You will often not use this exclusively by itself.
 
-To check if rust is already installed. Open up your computer terminal and enter the following
-command. If you do not get a version number, you do not have Rust installed and will
+To check if rust is already installed. Open up your computer [terminal](TODO) and enter the following
+command. If you do not get a version number, you do **not** have Rust installed and will
 have to install it.
 
 ```sh
@@ -148,7 +145,7 @@ If you are interested in more details or other ways to install this tool
 
 #### MacOS
 
-Using [Homebrew](https://brew.sh/) package manager:
+Install using [Homebrew](https://brew.sh/) package manager:
 
 ```sh
 brew tap probe-rs/probe-rs
@@ -163,7 +160,7 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/relea
 
 #### Windows
 
-- Using the installer script for Windows pre-installed [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal
+Install using the installer script for Windows pre-installed [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal
 with the [`irm` (`Invoke-RestMethod`)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.4)
 and [`iex` (`Invoke-Expression`)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression?view=powershell-7.4)
 
@@ -173,17 +170,19 @@ irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools
 
 #### Linux
 
-Using the official installer script:
+Install using the official installer script:
 
 ```sh
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
 ```
 
 For Linux you will have to set up [Userspace Device Management (udev)](https://en.wikipedia.org/wiki/Udev)
-rules seperately. udev rules are instructions that tell Linux what to do when specific devices
+rules for our debug probe seperately. **udev rules** are instructions that tell Linux what to do when specific devices
 (like USB drives or debug probes) are plugged into your computer.
-These rules control things like who can access the device, what name it gets,
+These rules files control things like who can access the device, what name it gets,
 and what automatic actions should happen when the device is connected
+
+Execute the following commands in your terminal:
 
 ```sh
 # Download the udev rule into /tmp/
@@ -199,8 +198,8 @@ sudo udevadm trigger
 
 ### Verify Debug Probe
 
-Let's very our setup worked by connecting our debug probe device
-to our computers USB port. For now, don't worry about the Raspberry
+Let's verify that our setup worked by connecting our debug probe device
+to the computers USB port. For now, don't worry about the Raspberry
 Pi Pico W, we are just checking if we can talk to the debug probe.
 
 After connecting the debug probe, run the following command.
@@ -212,10 +211,10 @@ probe-rs list
 You should see something like the following.
 
 ```txt
-TODO
+TODO TODO TODO
 ```
 
-If you see that, great! You are done with this section. 
+If you see such and output, *great!* You are done with this section. 
 If you do not see that, try some of the follwoing steps.
 
 - Verify all hardware is connected and powered (usb port, debug probe)
@@ -246,6 +245,6 @@ The Raspberry Pi Pico's RP2040 processor is a Cortex-M0+ core, which implements 
 - [Getting Started with Embedded Rust, Embassy, and the Raspberry Pi Pico](https://archive.hannobraun.com/embedded-rust/getting-started/)
 
 <span class="text-accentColor font-bold">
-  Cool. Next we will setup our programming environment ...
+  Cool. Next we will setup and test our programming environment ...
 </span>
 
