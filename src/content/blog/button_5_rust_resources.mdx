@@ -1,18 +1,19 @@
 ---
 title: 'Big Button - Part 5 - Rust Programming Resources'
 description: 'A bunch of information about learning and refreshing your knowledge on Rust'
-pubDate: 'Jan 15 2025'
+pubDate: 'Jan 17 2025'
 tags: ['big-button', 'embedded', 'rust']
-draft: true
-# previousPost:
-#   slug: "button_3_program_hardware_connect"
-#   title: "Connecting Programming Hardware"
+draft: false
+previousPost:
+  slug: "button_4_program_hardware_setup_test"
+  title: "Programming Hardware Setup and Test"
 # nextPost: 
 #   slug: "button_3_software_setup"
 #   title: "Software Setup"
 ---
 import Figure from '../../components/Figure.astro'
-import tba from '../../images/tba.png';
+import detour from '../../images/button/rust_resources/detour.webp';
+import firehose from '../../images/button/rust_resources/firehose.webp';
 
 ## Table of Contents
 
@@ -21,20 +22,101 @@ import tba from '../../images/tba.png';
 Here we are going to take a quick but valuable detour on our journey for
 the big button project. Don't worry we will be back on our path in the next post.
 
+Our aim here is to give you a wide range of information about Rust resources that
+may be relevant to our project. This will be a firehouse of information, but
+don't worry, most is given for awareness and reference.
+
 <Figure
-  src={tba}
+  src={detour}
   caption="Taking a quick detour"
-  url="TODO"
+  url="https://www.safetysign.com/detour-signs"
 />
 
-{/*
-TODO
-*/}
+It is no secret that lots of the ideas, methods, and materials in the following
+resources were used for this project, hence be at least familiar with what they are.
 
-## TODO
+## How to Use This Information
+
+It's not expected that you to read all of these or go over each
+tutorial, however do the following.
+
+- Be aware of the contents of these resources. Click on each link, get the general gist,
+  think about how it applies to something practical.
+- Digest the material that you think relates to our project or fills in missing
+  knowledge in Rust programming.
+- Add these resources to your bookmarks, or come back to this post for later
+  reference.
+
+<Aside variant="tip">
+  Don't get sucked into the Rust information black hole or tutorial hell. Keep
+  moving and apply!
+</Aside>
+
+<Figure
+  src={firehose}
+  caption="Firehose of information"
+  url="https://www.youtube.com/watch?v=ldSYDmcjtWo"
+/>
+
+## The 411
+
+### Core Learning Resources
+
+| Title | Description | Link |
+|-------|-------------|------|
+| The Rust Book | The official, comprehensive guide that serves as the foundation for learning Rust, complete with interactive quizzes. | [Link](https://doc.rust-lang.org/book/) |
+| Rust by Examples | A hands-on guide that teaches Rust through annotated example programs, perfect for practical learners. | [Link](https://doc.rust-lang.org/rust-by-example/) |
+| Official Rust Website | The central hub for all things Rust, including documentation, tools, and community resources. | [Link](https://www.rust-lang.org/) |
+| How to NOT Learn Rust | A list of common mistakes to avoid when learning rust. | [Link](https://dystroy.org/blog/how-not-to-learn-rust/) |
+
+### Advanced Topics
+
+| Title | Description | Link |
+|-------|-------------|------|
+| Rust Design Patterns | A collection of idiomatic design patterns and abstractions for writing clean, maintainable Rust code. | [Link](https://rust-unofficial.github.io/patterns/intro.html) |
+| The Little Book of Rust Macros | An in-depth guide to understanding and implementing Rust's powerful macro system. | [Link](https://danielkeep.github.io/tlborm/book/README.html) |
+
+### Embedded Development
+
+| Title | Description | Link |
+|-------|-------------|------|
+| Awesome Rust Embedded | A comprehensive collection of tools, frameworks, and resources specifically curated for embedded development. | [Link](https://github.com/rust-embedded/awesome-embedded-rust) |
+| Embassy Framework | A modern async-first framework for embedded systems development in Rust. | [Link](https://embassy.dev/) |
+| Embedded Rust Tutorial | A beginner-friendly, hands-on guide to embedded programming using the *micro:bit* platform. | [Link](https://docs.rust-embedded.org/discovery/microbit/index.html) |
+| Abstraction Layers Article | An insightful exploration of different abstraction levels in embedded Rust programming. | [Link](https://pramode.in/2018/02/20/programming-a-microcontroller-in-rust-at-four-levels-of-abstraction/) |
+
+### Interactive Learning
+
+| Title | Description | Link |
+|-------|-------------|------|
+| Rustlings | An interactive command-line course that guides you through learning Rust syntax and concepts. | [Link](https://rustlings.cool/) |
+| Comprehensive Rust | Google's detailed Rust course covering everything from basics to advanced topics. | [Link](https://google.github.io/comprehensive-rust/) |
+
+### Community and Reference
+
+| Title | Description | Link |
+|-------|-------------|------|
+| Awesome Rust | A community-maintained list of quality Rust code and resources for various domains. | [Link](https://github.com/rust-unofficial/awesome-rust) |
+| Rust in Production Podcast | Real-world insights and experiences from companies using Rust in production environments. | [Link](https://corrode.dev/podcast/) |
+
+### Fun Projects
+
+| Title | Description | Link |
+|-------|-------------|------|
+| Advent of Rust | A seasonal collection of Rust programming challenges inspired by Advent of Code. | [Link](https://www.rustfinity.com/advent-of-rust) |
+| OORT Programming Game | A space-themed game that teaches Rust programming through engaging challenges. | [Link](https://oort.rs/) |
 
 
 <span class="text-accentColor font-bold">
-  Cool. Next we will setup and test our programming environment ...
+  Cool. Remember and reference back to these resources.
+  Next we will setup and test our programming environment ...
 </span>
 
+
+{/* AI:
+  - 8-bit style images - Dali
+  - Verify facts
+  - Spelling and grammar suggestions
+  - General post-hoc review
+  - Generating of table from existing text
+*/}
