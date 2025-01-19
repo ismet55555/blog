@@ -19,6 +19,7 @@
     "@astrojs/tailwind": "^5.1.4",
     "@fontsource/inconsolata": "^5.1.1",
     "@fontsource/sora": "^5.1.1",
+    "@giscus/react": "^3.1.0",
     "@types/hast": "^3.0.4",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",

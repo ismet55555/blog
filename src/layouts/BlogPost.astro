@@ -8,6 +8,8 @@ import Base from '@/layouts/Base.astro'
 import PostInfo from '@/components/PostInfo.astro'
 import PostNavigation from '@/components/PostNavigation.astro'
 import ScrollProgressBar from '@/components/ScrollProgressBar.astro'
+import Comments from '@/components/Comments'
+import AIHelp from '@/components/AIHelp.tsx'
 
 import type { CollectionEntry } from 'astro:content'
 type Props = CollectionEntry<'blog'>['data']
@@ -21,9 +23,13 @@ const {
   frontmatter,
   minutesRead
 } = Astro.props
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <Base meta={{ title: frontmatter.title }}>
+  <head>
+    <meta name="giscus:backlink" content={canonicalURL.href} />
+  </head>
   <ScrollProgressBar />
   <div
     id="markdown"
@@ -42,6 +48,9 @@ const {
     nextPost={frontmatter.nextPost}
     previousPost={frontmatter.previousPost}
   />
+
+  <Comments client:load />
+  <AIHelp client:load items={frontmatter.aiHelp || []} />
 
   <style is:global>
     #markdown code:not(pre)::before,

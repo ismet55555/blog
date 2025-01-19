@@ -41,6 +41,9 @@ const blog = defineCollection({
     // Optional hero image
     heroImage: z.string().optional(),
 
+    // AI Help items
+    aiHelp: z.array(z.string()).optional(),
+
     // Navigation links to other posts
     nextPost: z
       .object({
