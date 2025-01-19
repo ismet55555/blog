@@ -23,13 +23,13 @@ const {
   frontmatter,
   minutesRead
 } = Astro.props
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <Base meta={{ title: frontmatter.title }}>
-  <head>
-    <meta name="giscus:backlink" content={canonicalURL.href} />
-  </head>
+  <!-- <head> -->
+  <!--   <meta name="giscus:backlink" content={canonicalURL.href} /> -->
+  <!-- </head> -->
   <ScrollProgressBar />
   <div
     id="markdown"
