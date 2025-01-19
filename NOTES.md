@@ -10,16 +10,18 @@
 
 ### Nice to Have
 
+- Emoji plugin
+- Post comments and reactions
+- Blog subscription
+  - RSS Feed
+  - Email service
 - Mermaid graphs
 - Adjust spacing on TOC
 - Figure out how to present References (smaller font?)
-- Emoji plugin
 - ASCII Heading
-- RSS Feed link
-- Blog subscription
-- Post comments
 - Remove underline from ToC links
 - A very small section on every post, claiming what AI was used for
+- Sticky headings?
 
 ## Other
 
