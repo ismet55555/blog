@@ -73,12 +73,13 @@ Once Rust is installed, we will have a few Rust [command line interface (CLI)](h
 available. Before installing anything, let's review what each installed Rust tool is used for.
 
 - `rustup`: Manages Rust versions and associated tools. It is used to install, update, and switch between Rust toolchains.
-Here is [way more information](https://rust-lang.github.io/rustup/index.html) about this tool.
+Here is way more information about this tool within [the `rustup` book](https://rust-lang.github.io/rustup/index.html).
 Note that a **Rust toolchain** is a single installation of the Rust compiler and associated tools.
 You can have multiple toolchains depending on the environment or project.
 
 - `cargo`: Handles dependencies, runs tests, generates documentation, and more.
 This is the de facto way to manage Rust projects. This is the most used Rust CLI tool.
+There is lots more information on this tool found in [the `cargo` book](https://doc.rust-lang.org/cargo/index.html)
 
 - `rustc`: The Rust [compiler](https://en.wikipedia.org/wiki/Compiler) that transforms your written
 code into an [executable/binary](https://en.wikipedia.org/wiki/Executable). This command
@@ -94,6 +95,12 @@ rustc --version
 
 The official Rust installation instructions are very good. The installation instructions can be
 [found there](https://www.rust-lang.org/tools/install).
+
+*If you do have Rust installed*, feel free to go ahead and update all your local Rust toolchains
+
+```sh
+rustup update
+```
 
 <Aside variant="note">
   For MacOS and Linux, this should be one single and simple command. However, if you are on

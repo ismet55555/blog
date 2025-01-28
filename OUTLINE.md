@@ -20,15 +20,12 @@ Chapters:
   - What are we using and why
   - Controller
   - Electrical components
-- Hardware: 3D Design
-  - Fusion 360
-  - 3D Design
-- Hardware- Fabrication and Assembly
-  - 3D Setup, Materials, Software, Printing, Finishing/Painting
-  - Connecting stuff and troubleshooting
-- Software - Rust review and learning resources
-- Software: Set up microcontroller and workflow
+- Software - Rust review and learning resources - DONE
+- Software: Set up microcontroller and workflow - DONE
+
+- Software: Setting up project and programming environment
 - Software: A simple program in Embassy
+
 - Software: Outline, architecture
 - Software: implementation: LEDs
 - Software: implementation: Button
@@ -37,6 +34,12 @@ Chapters:
 - Software: implementation: State machine
 - Software: implementation: Unit Testing
 - Automation: DevOps and Maintenance
+- Hardware: 3D Design
+  - Fusion 360
+  - 3D Design
+- Hardware- Fabrication and Assembly
+  - 3D Setup, Materials, Software, Printing, Finishing/Painting
+  - Connecting stuff and troubleshooting
 
 ## Notes
 

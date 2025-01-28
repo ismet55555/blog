@@ -1,0 +1,205 @@
+---
+title: 'Big Button - Part 6 - Rust Project Setup'
+description: 'Finally getting to set up a Rust project for the Big Button'
+pubDate: 'Jan 24 2025'
+tags: ['big-button', 'embedded', 'rust', 'cargo', 'github']
+aiHelp: [
+  '8-bit style images - Dall-e',
+  'Really explain specific file content - Claude',
+  'Spelling and grammar suggestions - Claude',
+  'General post-hoc review - Claude'
+]
+draft: false
+previousPost:
+  slug: "button_5_rust_resources"
+  title: "Rust Programming Resources"
+nextPost: 
+  slug: "button_7_rust_project_configuration"
+  title: "Rust Project Configuration"
+---
+import Figure from '../../components/Figure.astro'
+import rocket_rust from '../../images/button/rust_project_setup/rocket_rust.webp';
+import github_octocat from '../../images/button/rust_project_setup/github_octocat.webp';
+import tba from '../../images/tba.png';
+
+## Table of Contents
+
+## Introduction
+
+Here we will be creating a new and general Rust project using the `cargo`
+command tool. After that, we will ensure that our project is backed up
+and version controlled within a new and remote GitHub repository.
+
+<Figure
+  src={rocket_rust}
+  caption="Let's get this Rust thing going!"
+  url="https://youtu.be/dao2to00mro?si=GQxGcaUS-SbW55-s"
+/>
+
+## Terminal and IDE
+
+Let's make two assumptions going forward. You know and are able to use a:
+
+1. [Terminal emulator](https://en.wikipedia.org/wiki/Terminal_emulator) - A program that provides
+   a text-based interface for interacting with a computer's operating system, similar to a
+   command prompt or terminal window.
+
+    - iTerm for MacOS
+    - PowerShell for Windows
+    - Terminal for Linux
+
+2. [Integrated Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) - 
+   a software application that provides comprehensive facilities to computer programmers for
+   software development, including a source code editor, build automation tools, and a debugger,
+   all in one graphical user interface.
+
+    - Visual Studio Code
+    - JetBrains RustRover
+    - NeoVim
+
+If you do not, please take a detour and check out how to access, set up,
+or use the terminal or an IDE on your computer.
+
+{/*
+<Figure
+  src={detour}
+  url="https://www.safetysign.com/detour-signs"
+/>
+*/}
+
+## Base Project Creation
+
+Let's open a local terminal on your computer and change directory into where you want this project to
+be on your computer. This will probably be somewhere in your
+[home directory](https://en.wikipedia.org/wiki/Home_directory).
+
+<Aside variant="tip">
+  Let's stay organized and let's create a `projects` directory in your home directory.
+</Aside>
+
+```sh
+# Create a projects directory
+# Note that the OS will know that $HOME is the home directory location
+mkdir -p $HOME/projects/
+
+# Change current directory to the project directory
+cd $HOME/projects/
+```
+
+Next, *the magic happens*. We will generate a new, simple, general, and ready Rust project
+using `cargo`.
+
+```sh
+# Create a general Rust project
+cargo new big-button
+
+# Change current directory into created project directory
+cd big-button
+```
+
+Cool! This is the file and directory outline of what we just did.
+
+```sh
+.
+├── Cargo.toml    # Rust dependency manifest
+├── .git          # git directory
+├── .gitignore    # Items ignored by git
+└── src
+    └── main.rs   # Simple hello world program
+```
+
+Note that the templated project we just created includes version control using
+[`git`](https://git-scm.com/), while automatically adding a `.gitignore` file,
+telling `git` which files and directories to not version control.
+
+<Aside variant="note">
+  That this little `cargo` command can be used for any other Rust project you want to
+  start from scratch.
+</Aside>
+
+
+## Push the New Project to GitHub
+
+Having your project stored locally is perfectly fine, however in most cases you
+want to have your project safely stored somewhere externally on the internet. While there
+are many different public and self-hosted services available to do this,
+we will choose to store and version-control our project in [GitHub](https://github.com/).
+
+<Figure
+  src={github_octocat}
+  caption="GitHub.com Source Control Mascot: Octocat"
+  url="https://github.com/"
+/>
+
+1. Ensure you are [logged into GitHub.com](https://github.com/login)
+2. Create a new repository by visiting [this link](https://github.com/new)
+3. Add the new repository details:
+    - *Repository Name:* big-button
+    - *Description:* This embedded project from this one random online tutorial
+    - ... Everything else leave as is.
+4. Select *"Create repository"*
+
+Now we have a brand-spanking-new GitHub repository for our project! Next we will
+have to connect our local Rust project to this remote repository.
+
+<Aside variant="tip">
+  If you are not familiar or comfortable with `git` and version control, please
+  take some time and learn it. Here are two good resources for a start: 
+    
+  - [How Git Works: Explained in 4 Minutes](https://youtu.be/e9lnsKot_SQ?si=mXqyK2ph1aDsT2F3) YouTube Video
+  - [Getting Git right](https://www.atlassian.com/git) by Atlassian
+</Aside>
+
+The following commands are executed within your project's directory. This is the
+directory your files like `Cargo.toml` are.
+
+```sh
+# Add the remote GitHub repository address as a connection
+# Remember to change the "GITHUB_USERNAME" part
+git remote add origin git@github.com:GITHUB_USERNAME/big-button.git
+
+# Rename the current branch to "main" (some people prefer this)
+git branch -M main
+
+# Git stage (aka. add) all newly created files and directories
+git add .
+
+# Git commit the staged (aka. added) files and directories to the git branch
+git commit -m "my initial commit"
+
+# Send this current and local branch to the remote GitHub repository
+git push -u origin main
+```
+
+After this, if you go to your new remote repository on GitHub.com, you should see your
+rust project files there!
+
+Awesome! After this we are free to push and save any changes to this remotely hosted
+GitHub repository.
+
+## A Quick Test Ride
+
+Let's run the following terminal command within our local project's root directory.
+
+```sh
+# Compile and then run our Rust program, optimizing for release
+cargo run --release
+```
+
+And hopefully after compiling the project and running it,
+our output looks like the following.
+
+```log
+> cargo run --release
+   Compiling big-button v0.1.0 (/home/you/projects/big-button)
+    Finished `release` profile [optimized] target(s) in 0.09s
+     Running `target/release/big-button`
+Hello, world!
+```
+
+Note right now our Rust project has nothing to do with our embedded
+device. This is a very general starter setup.
+
+<span class="text-accentColor font-bold">
+  OK! Easy enough. Let's move on and configure this project for our embedded project.
+</span>

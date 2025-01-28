@@ -12,8 +12,8 @@ export default {
         sans: ['Inconsolata', ...defaultTheme.fontFamily.sans]
       },
       colors: {
-        lightModeBg: '#E6E6E6',
-        darkModeBg: '#1A1A1A',
+        lightModeBg: '#DCDCDC',
+        darkModeBg: '#1E1E1E',
         accentColor: '#519639',
         lightModeText: 'black',
         darkModeText: 'white'

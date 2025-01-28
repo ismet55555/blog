@@ -75,5 +75,23 @@ const {
       colorMode()
       document.addEventListener('astro:after-swap', colorMode)
     </script>
-  </body>
+  </body><script>
+    if (!window.consoleMessageShown) {
+      console.log(`\n\n`)
+      console.log(`****************`)
+      console.log(`*** HEY YOU! ***`)
+      console.log(`****************`)
+      console.log(`\n\n`)
+      console.log(`Welcome! I hope you like the website!\n\n`)
+      console.log(
+        `I see you there looking at the console output for this blog.`
+      )
+      console.log(
+        `That is pretty cool that you are a technical type of person.`
+      )
+      console.log(`Keep it up!\n\n`)
+      console.log(`\n\n`)
+      window.consoleMessageShown = true
+    }
+  </script>
 </html>

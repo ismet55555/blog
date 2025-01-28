@@ -1,0 +1,66 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="relative inline-block">
+  <button
+    class="flex items-center text-gray-600 hover:text-gray-800 focus:outline-none dark:hover:text-gray-400"
+    aria-label="Copy Page Link!"
+  >
+    <Icon name="tabler/share-2" class="h-4 w-4" aria-hidden="true" />
+  </button>
+  <div
+    class="tooltip invisible absolute bottom-full left-1/2 mb-2 -translate-x-1/2 transform rounded bg-accentColor px-2 py-1 text-xs text-black opacity-0 transition-opacity dark:text-black"
+  >
+    Copied Link!
+  </div>
+</div>
+
+<style>
+  @keyframes jump {
+    0% {
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(-50%) translateY(-5px);
+      opacity: 1;
+    }
+    75% {
+      transform: translateX(-50%) translateY(-2px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) translateY(-4px);
+      opacity: 1;
+    }
+  }
+  .tooltip.animate {
+    animation: jump 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation-fill-mode: forwards;
+  }
+</style>
+
+<script>
+  function initializeCopyButton() {
+    const button = document.querySelector('button')
+    const tooltip = document.querySelector('.tooltip')
+
+    button?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        tooltip?.classList.remove('invisible', 'opacity-0')
+        tooltip?.classList.add('animate')
+        setTimeout(() => {
+          tooltip?.classList.add('invisible', 'opacity-0')
+          tooltip?.classList.remove('animate')
+        }, 2000)
+      } catch (err) {
+        console.error('Failed to copy URL:', err)
+      }
+    })
+  }
+
+  initializeCopyButton()
+  document.addEventListener('astro:page-load', initializeCopyButton)
+</script>
