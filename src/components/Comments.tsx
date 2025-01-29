@@ -32,9 +32,7 @@ export default function Comments() {
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full border-b border-accentColor py-3 text-center transition-colors hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
         >
-          <span className="italic text-accentColor">
-            Comment - Ask - Discuss
-          </span>
+          <span className="text-accentColor">Comment - Ask - Discuss</span>
         </button>
 
         <div
