@@ -35,14 +35,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
-import expressiveCode from 'astro-expressive-code'
+import astroExpressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import remarkToc from 'remark-toc'
 import tailwind from '@astrojs/tailwind'
 import partytown from '@astrojs/partytown'
-import { defineConfig } from 'astro/config'
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+
 import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
 import { externalAnchorPlugin } from './src/plugins/externalAnchorPlugin.ts'
 
@@ -57,8 +59,22 @@ export default defineConfig({
   integrations: [
     // Styling and UI integrations
     tailwind(),
-    expressiveCode({
+
+    // Expressive Code Blocks
+    astroExpressiveCode({
       themes: ['github-dark', 'github-light'],
+      plugins: [pluginLineNumbers(), pluginCollapsibleSections()],
+      defaultProps: {
+        // Line Numbers: https://expressive-code.com/plugins/line-numbers/
+        showLineNumbers: false,
+        overridesByLang: {
+          // To enable line numbers for specific languages:
+          // 'rust,cpp': { showLineNumbers: true }
+        },
+        // Collapse: https://expressive-code.com/plugins/collapsible-sections/
+        collapseStyle: 'github',
+        closedTextColor: 'var(--accent-color)'
+      },
       styleOverrides: {
         frames: {
           editorActiveTabIndicatorTopColor: 'transparent',
@@ -67,7 +83,10 @@ export default defineConfig({
           tooltipSuccessBackground: 'black'
         },
         uiFontFamily: 'inherit',
-        borderColor: '#80808080'
+        borderColor: '#80808080',
+        collapsibleSections: {
+          closedTextColor: '#519639' // Bright blue
+        }
       }
     }),
 
