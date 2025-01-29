@@ -10,6 +10,7 @@ import PostNavigation from '@/components/PostNavigation.astro'
 import ScrollProgressBar from '@/components/ScrollProgressBar.astro'
 import Comments from '@/components/Comments'
 import AIHelp from '@/components/AIHelp.tsx'
+import ScrollButtons from '../components/ScrollButtons.astro'
 
 import type { CollectionEntry } from 'astro:content'
 type Props = CollectionEntry<'blog'>['data']
@@ -51,6 +52,7 @@ const {
 
   <Comments client:load />
   <AIHelp client:load items={frontmatter.aiHelp || []} />
+  <ScrollButtons />
 
   <style is:global>
     #markdown code:not(pre)::before,

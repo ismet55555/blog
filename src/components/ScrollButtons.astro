@@ -1,0 +1,97 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+  <button
+    id="scrollTopButton"
+    class="scroll-button scroll-top-button invisible flex h-12 w-12 items-center justify-center rounded-lg bg-accentColor bg-opacity-20 opacity-0 transition-all duration-300 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+    aria-label="Scroll to top"
+  >
+    <Icon
+      name="tabler/arrow-up"
+      class="h-6 w-6 text-white"
+      aria-hidden="true"
+    />
+  </button>
+
+  <button
+    id="scrollBottomButton"
+    class="scroll-button scroll-bottom-button flex h-12 w-12 items-center justify-center rounded-lg bg-accentColor bg-opacity-20 transition-all duration-300 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+    aria-label="Scroll to bottom"
+  >
+    <Icon
+      name="tabler/arrow-down"
+      class="h-6 w-6 text-white"
+      aria-hidden="true"
+    />
+  </button>
+</div>
+
+<style>
+  .scroll-button {
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
+
+  .scroll-button.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+</style>
+
+<script>
+  function initializeScrollButtons() {
+    const topButton = document.querySelector('#scrollTopButton')
+    const bottomButton = document.querySelector('#scrollBottomButton')
+
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      const scrollHeight = document.documentElement.scrollHeight
+      const clientHeight = document.documentElement.clientHeight
+
+      // Show top button when scrolled down, hide when at top
+      if (scrollTop > 100) {
+        topButton?.classList.remove('invisible', 'opacity-0')
+      } else {
+        topButton?.classList.add('invisible', 'opacity-0')
+      }
+
+      // Show bottom button when not at bottom, hide when at bottom
+      if (Math.ceil(scrollTop + clientHeight) >= scrollHeight - 100) {
+        bottomButton?.classList.add('invisible', 'opacity-0')
+      } else {
+        bottomButton?.classList.remove('invisible', 'opacity-0')
+      }
+    }
+
+    // Add click handlers
+    topButton?.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    })
+
+    bottomButton?.addEventListener('click', () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      })
+    })
+
+    // Add scroll listener and initial check
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Important: Check initial state
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }
+
+  // Initialize on page load and after Astro page transitions
+  initializeScrollButtons()
+  document.addEventListener('astro:page-load', initializeScrollButtons)
+</script>

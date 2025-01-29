@@ -11,3 +11,17 @@ mark {
 prose p {
   margin-bottom: 2em;
 }
+
+html {
+  color: hsl(
+    var(--colour-text-hue) var(--colour-text-saturation)
+      var(--colour-text-luminance)
+  );
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
