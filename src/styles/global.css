@@ -25,3 +25,14 @@ html {
     scroll-behavior: auto;
   }
 }
+
+::-moz-selection {
+  /* Firefox support */
+  color: rgb(0, 0, 0);
+  background: rgb(81, 150, 57); /* This is your #519639 in RGB format */
+}
+
+::selection {
+  color: rgb(0, 0, 0);
+  background: rgb(81, 150, 57);
+}
