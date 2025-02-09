@@ -17,11 +17,24 @@ pnpm-debug.log*
 .env
 .env.production
 
-# macOS-specific files
-.DS_Store
+# Snap packages
+**/*.snap
 
-# jetbrains setting folder
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.env
+*.bak
+
+# IDE
 .idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
 
 # No shared
 dev_stuff/
