@@ -2,6 +2,8 @@
 
 - Post: Sleep experiment
 - Post: Fasting group
+- Post: Move Dual Boot from Medium
+- Post: Move yojenkins from Medium
 
 ## Post: Why I ditched the Smart Watch
 
@@ -79,7 +81,17 @@
 - Had to jump on due to this website and ability to get it out there
 - Consuming: Super simple step by step
 
-## NOTES.md and TODO.md
+## Post: NOTES.md and TODO.md
 
 - Short post about having developer notes within your project's root
 - gitignored
+
+## Post: `rsync` parallel copy
+
+- <https://gist.github.com/ismet55555/a7cab677645ee3645331e7221cfc4fef>
+
+## Post: SSH Key Auto Distribute
+
+- <https://gist.github.com/ismet55555/1fb1a18ad35fd20d2d0f5cdda8014248>
+- Go over code
+- Test on AWS EC2 instances

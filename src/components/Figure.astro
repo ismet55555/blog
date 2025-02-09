@@ -6,24 +6,29 @@ interface Props {
   caption?: string
   url?: string
   class?: string
+  width?: string
 }
 
 const {
   src,
   caption,
   url,
+  width = '1/2',
   class: className = 'w-1/2 mx-auto border border-3 border-accentColor'
 } = Astro.props
+
+const fullClassName =
+  `w-${width} mx-auto border border-3 border-accentColor ${className}`.trim()
 ---
 
 <figure>
   {
     url ? (
       <a href={url} target="_blank">
-        <Image src={src} alt="cool relevant image" class={className} />
+        <Image src={src} alt="cool relevant image" class={fullClassName} />
       </a>
     ) : (
-      <Image src={src} alt="cool relevant image" class={className} />
+      <Image src={src} alt="cool relevant image" class={fullClassName} />
     )
   }
   {

@@ -8,6 +8,7 @@ aiHelp: [
   'Spelling and grammar suggestions - Claude',
   'General post-hoc review - Claude'
 ]
+draft: false
 # previousPost:
 #   slug: "..."
 #   title: "..."
@@ -16,11 +17,16 @@ nextPost:
   title: "Tools and Components"
 ---
 import Figure from '../../components/Figure.astro'
+import Tag from '../../components/Tag.astro'
+import TutorialFlow from '../../components/TutorialFLow'
 import friendsTalking from '../../images/button/intro/friends-talking-3.webp';
 import trashPickup from '../../images/button/intro/trash-pickup-2.webp';
 import redButton from '../../images/button/intro/button-cartoon-2.webp';
+import muscle from '../../images/button/intro/muscle.webp';
+import lets_get_going from '../../images/button/welcome/lets_get_going.webp';
 
 ## Table of Contents
+
 
 ## The Embedded Fantasy
 
@@ -56,11 +62,9 @@ find this random online blog series!
 Alright, maybe this intro story to [embedded system](https://en.wikipedia.org/wiki/Embedded_system)
 is a little too dramatic and too specific, but I do hope I got your attention to read further!
 
-## About This Blog Series
+## Project Backstory
 
-### Project Backstory
-
-Let me explain how this entire blog series came about.
+Let me explain how this entire blog/tutorial series came about.
 Where I live, trash pick up is Tuesdays and Fridays. Or is it Mondays and
 Thursdays? Well, maybe one of those days is Wednesday...?
 
@@ -69,16 +73,15 @@ Thursdays? Well, maybe one of those days is Wednesday...?
   url="https://www.youtube.com/watch?v=fysFwSfdQzc"
 />
 
-After 10 years living in the same residence, I still question myself and still can
-miss trash day. This can leave trash inside for too long or leave
-trash outside for too long, depending on timing.
+I still question myself and still can
+miss trash day.
 
 Now, I could do two very easy things to solve this issue.
 
 1. Stop being an idiot, just memorize the days, and move on.
 2. Set a recurring alarm on my phone for the right days.
 
-Because, neither seems very reasonable, and because I am always looking
+Because I am always looking
 for a insightful and rewarding engineering side project to be inspired by.
 I opted to come up with a much more complicated approach.
 
@@ -86,20 +89,22 @@ I wanted a project to learn and
 apply an embedded systems project. Furthermore, I wanted to be more
 comfortable with Rust ("blazingly fast") programming as well.
 
-My initial goal was to create a button that when pressed, sends a
+My goal was to create a button that when pressed, sends a
 text message to my phone and monitors text message responses.
 This allows me to snooze or silence the reminder to take out the trash.
 
 I know, not very big or thought out, but I guess reason enough to
-get going and create some thing! So in short, and very basically,
+get going and create some thing!
+
+So in short, and very basically,
 we are building and programming a <span class="text-red-500 font-bold">BIG glorified push BUTTON</span>.
 
 
-### Project Goal
+## Project Goal
 
-Now obviously, you do not need to use this device for trash day reminders
-or anything close to that. However, going through this blog series should
-enable you to reuse methods, code, or improvise to develop your own ideas.
+Now, obviously you do not need to use this device for trash day reminders
+or anything close to that. However, going through this blog series
+**should enable you to reuse methods, code, or improvise to develop your own ideas.**
 
 It is my hope that after working through this
 project you yourself will be able to solve some problem that requires
@@ -116,7 +121,7 @@ embedded systems and Rust programming.
   url="https://www.youtube.com/watch?v=VCLxJd1d84s"
 />
 
-The project that we will be developing will be a large red button. This
+The project that we will be developing will be a large red button assembly. This
 button assembly will have a variety of features:
 
 - Super large red glowing button
@@ -129,12 +134,133 @@ button assembly will have a variety of features:
 At the time of writing this project introduction, I am not fully able to summarize
 the specifics of the project, I am still working through details. 
 
+
+## How to Use This Tutorial Series?
+
+I completly understand that some of you do not have access to
+lots of the maker/hardware tools outlined in some of the following
+tutorial steps.
+
+Some may only be interested in either the physical maker methods, while
+others may only be interested in the microcontroller/software part.
+
+That is perfectly ok!
+
+The following steps and lessons will be laid out
+such that you will be able to complete only the software part with
+a microcontroller, the hardware/manufacturing part, or both.
+
+Each tutorial section will be labeled as one or both tag labels:
+
+| Tag | Description | Components |
+|-------|-------------|------------|
+| <Tag color="green" txt="💻 HACKER" /> | Microcontroller setup and programming | microcontroller, Input/output components, programming tools and code |
+| <Tag color="blue" txt="⚒️  MAKER" /> | Physical manufacturing | Making, wiring, mounting. complete physical setup. For [maker space/culture](https://en.wikipedia.org/wiki/Maker_culture) enthusiasts |
+
+So for example, if you only intend to set up and program your
+microcontroller, only read sections tagged as <Tag color="green" txt="💻 HACKER" />,
+and skip anything labeled <Tag color="blue" txt="⚒️  MAKER" />.
+
+Over the course of these tutorials we will clearly label what is
+needed for each label/path.
+
+
+## Is This For You?
+
+Ok. You might be wondering if this whole thing is for you. 
+Well, in this seciton I will try my best to roughly and objectively
+map out the skillset, experience, and knowledge range for 
+this project.
+
+Remember, this is not an exact science, just an estimate.
+So bear with me here.
+
+### Software Development (<Tag color="green" txt="💻 HACKER" />)
+
+TODO
+
+{/*
+TODO: Linear diagrams of skills (Mermaid?)
+*/}
+
+### DYI Hardware Tinkering (<Tag color="blue" txt="⚒️  MAKER" />)
+
+TODO
+
+{/*
+TODO: Linear diagrams of skills (Mermaid?)
+*/}
+
+{/*
+TODO
+
+- What is the skillset and knowledge range (range image)
+  - Is this for me?
+  - From never coded to 5 years of Rust Programming
+  - From never build anything to maker god
+  - Note that interest and passion can trump experience here?
+
+- Specific Skillset
+  - Terminal - Know what it is. Have used it.
+  - IDE - Know what it is. Have used it.
+  - Programming - Know what it is. Have done it.
+
+Bar chart with all of these??
+Radial chart?
+
+A quiz of some sort????
+  - Spits out likelihood this tutorial is for you
+  - Each option brings about some number of points
+
+Divide into software and hardware
+
+------------------------------
+
+Prior knowledge
+Required skill/experience
+
+Tools and skills?
+  - Writing computer code - 0 to 10 years - hobby vs professional
+  - Build and assembled something - 0 - 10 years - hobby vs professional
+  - 3D printing
+  - Terminal
+    - Running commands
+  - IDE
+  - Flashing a program onto any kind of chip or microcontroller
+  - C++
+  - Rust
+
+Prior practical experience?
+  - Writing some code (how much and what kind?)
+    - Variables, functions, etc
+  - Debugging code
+
+Insterest level in specific topics?
+*/}
+
+<Aside variant="tip">
+  Do not underestimate your abilities! Especially when you are very interested
+  in a project or topic. Lots of times interest and passion can trump
+  large skill discreptencies. Give it try. Let's see what happens. :muscle:
+
+
+  <Figure
+    src={muscle} 
+    url="https://www.youtube.com/watch?v=btPJPFnesV4"
+    caption="This mouse is probably going to try this tutorial ..."
+  />
+</Aside>
+
+
+{/*
 ## Semi-Prerequisite Resources
 
 Over the course of this project outline. I will try my very best to describe
 and point out all the tools and little weird gotchas I had to struggle with when
-developing this project. However, before jumping into this project it would not
-be the worst idea to review the following items. 
+developing this project.
+
+Before jumping into this project it would not be the worst idea to overview
+the following items. 
 
 - [Fusion 360 3D CAD Software](https://www.autodesk.com/products/fusion-360/overview?term=1-YEAR&tab=subscription)
 - [Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer)
@@ -145,6 +271,18 @@ be the worst idea to review the following items.
 
 With each blog post, there will be a **"Resources"** section for further
 reading, learning, and review.
+*/}
+
+{/* 
+<Figure
+  src={lets_get_going} 
+  url="https://www.youtube.com/watch?v=mW1dbiD_zDk"
+  caption="Let's go!"
+/>
+*/}
+
+<TutorialFlow nodeId="1" client:load />
+
 
 <span class="text-accentColor font-bold">
   Alright! let's get to it!

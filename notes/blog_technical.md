@@ -13,8 +13,13 @@
 
 ### Nice to Have
 
-- Ability to control image relative size
-- Emoji plugin
+- Mermaid graphs
+  - <https://github.com/remcohaszing/rehype-mermaid>
+  - <https://github.com/withastro/starlight/discussions/1259#discussioncomment-9300105>
+  - <https://code.juliancataldo.com/component/astro-diagram/#doc>
+- Charts
+  - ChartJS (popular)
+  - Rechart (React-based) - THIS!
 - Site map
   - <https://docs.astro.build/en/guides/integrations-guide/sitemap/>
   - I HAVE THIS???
@@ -35,7 +40,6 @@
   - Email service
     - <https://buttondown.com/>
     - Mailchimp
-- Mermaid graphs
 - Adjust spacing on TOC
 - Figure out how to present References (smaller font?)
 - ASCII Heading?
@@ -51,5 +55,15 @@
   - <https://astro-embed.netlify.app/getting-started/>
 
 - Icons
+
   - <https://www.astroicon.dev/getting-started/>
   - <https://tabler.io/icons>
+
+- Emojis
+
+  - `remark-emoji` converts shortcodes (:heart_eyes:) to actual emoji characters (😍)
+  - `rehypeAccessibleEmojis` then wraps those emoji characters with accessible spans
+  - `emoji-blast` astro plugin
+    - Explosion of emojis at a certain point of website
+    - <https://www.emojiblast.dev/demos/basic>
+  - List of Emojis: <https://gist.github.com/rxaviers/7360908>

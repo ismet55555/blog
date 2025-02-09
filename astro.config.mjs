@@ -33,20 +33,21 @@
  */
 
 // @ts-check
-import { defineConfig } from 'astro/config'
-import sitemap from '@astrojs/sitemap'
 import astroExpressiveCode from 'astro-expressive-code'
 import icon from 'astro-icon'
 import mdx from '@astrojs/mdx'
-import react from '@astrojs/react'
-import remarkToc from 'remark-toc'
-import tailwind from '@astrojs/tailwind'
 import partytown from '@astrojs/partytown'
-import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
-import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
-
-import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
+import react from '@astrojs/react'
+import remarkEmoji from 'remark-emoji'
+import remarkToc from 'remark-toc'
+import sitemap from '@astrojs/sitemap'
+import tailwind from '@astrojs/tailwind'
+import { defineConfig } from 'astro/config'
 import { externalAnchorPlugin } from './src/plugins/externalAnchorPlugin.ts'
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
+import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
 
 // Configuration object for remark Table of Contents
 const tocConfig = {
@@ -95,8 +96,10 @@ export default defineConfig({
       remarkPlugins: [
         [remarkToc, tocConfig],
         externalAnchorPlugin,
-        remarkReadingTime
-      ]
+        remarkReadingTime,
+        remarkEmoji
+      ],
+      rehypePlugins: [rehypeAccessibleEmojis]
     }),
 
     // Additional functionality integrations
@@ -114,8 +117,10 @@ export default defineConfig({
     remarkPlugins: [
       [remarkToc, tocConfig],
       remarkReadingTime,
-      externalAnchorPlugin
-    ]
+      externalAnchorPlugin,
+      remarkEmoji
+    ],
+    rehypePlugins: [rehypeAccessibleEmojis]
   },
 
   // Deployment configuration
