@@ -11,28 +11,13 @@
 
 ## TODO
 
-- Think about framing this project
+- Tutorial structure
+  - Single post on front
+  - For tutorial have side panel with all posts
 
 - GitHub Repo branch for tutorial
   - Each branch and code goes with a part
   - Add to post 6 and 7
-
-- A very initial overview and introduction post
-  - What is the skillset and knowledge range (range image)
-    - Is this for me?
-    - From never coded to 5 years of Rust Programming
-    - From never build anything to maker god
-    - Note that interest and passion can trump experience here?
-  - Specific Skillset
-    - Terminal, IDE
-    - Programmed before
-  - What are we making
-  - How to use this tutorial series
-  - Is there a way to only deal with the microcontroller (minimum)
-
-- Tools and Components
-  - Restructure for only what is needed for rust development part
-    - Controller, debug probe, breakout board, buzzer, small wires or button
 
 - IDE setup?
   - VS Code - Plugins
@@ -51,8 +36,6 @@
 - Rust Project Configuration
 
 ### Incomplete
-
-- Initial Overview
 
 - Active Programming Workflow
   - clippy or bacon

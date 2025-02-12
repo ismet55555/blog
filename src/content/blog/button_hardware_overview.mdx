@@ -1,5 +1,5 @@
 ---
-title: 'Big Button - Part 2 - Tools and Components'
+title: 'Big Button - Part 3 - Tools and Components'
 description: 'Tools and components outline for the big button project'
 pubDate: 'Dec 26 2024'
 tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico']
@@ -10,13 +10,14 @@ aiHelp: [
   'General post-hoc review - Claude'
 ]
 previousPost:
-  slug: "button_1_intro"
+  slug: "button_about_tutorial"
   title: "Introduction"
 nextPost: 
-  slug: "button_3_program_hardware_connect"
+  slug: "button_program_hardware_connect"
   title: "Connecting Programming Hardware"
 ---
 import Figure from '../../components/Figure.astro'
+import Tag from '../../components/Tag.astro'
 import engineerChecklist from '../../images/button/hardware_overview/engineer-checklist-2.webp';
 import ender3 from '../../images/button/hardware_overview/ender-3.webp';
 import solderStation from '../../images/button/hardware_overview/solder-station.webp';
@@ -33,8 +34,13 @@ import boostConverter from '../../images/button/hardware_overview/boost-converte
 ## Introduction
 
 In this post we will go over the general tools, hardware, and components needed
-for this project. I will try my best to cover all the critical parts, however
-note that as with any personal engineering project of this kind:
+for this project.
+
+I will try my best to cover all the critical parts, while dividing everything
+into things you will need for each, the <Tag color="green" txt="💻 HACKER" />
+and <Tag color="blue" txt="⚒️  MAKER" /> steps.
+
+Note that as with any personal engineering project of this kind:
 
 - You might get away with not having some of the tools or different/better tools
 - You can do things a different way or your own way
@@ -46,14 +52,6 @@ I completly understand the following seems like a lot, however this is a
 detailed outline to reference back during other phases of the project if needed.
 
 **And as always, there are usually many and various ways to solve the same problem.**
-
-
-<Aside variant="note">
-  If you are the maker type of person who already has most or all of this stuff
-  in your personal workshop, feel free to glance over the majority of this post. This post 
-  attempts to get as many people with the largest skill level range onto
-  the same page for this project.
-</Aside>
 
 <Aside variant="tip">
   If you are unfamiliar with any of these tools or components, a quick google search or a 
@@ -67,6 +65,45 @@ detailed outline to reference back during other phases of the project if needed.
   url="https://www.youtube.com/watch?v=iGuuOdD6iY4"
 />
 
+## Overview
+
+#### Tools
+
+The following is a overview of all the things needed. Further down in this post, read about
+the details for each item.
+
+| Name | Purpose | Online Link | Label |
+|------|---------|-------------|-------|
+| 3D Printer | For creating custom enclosures and mounts | [Link](https://www.creality.com/products/ender-3-3d-printer) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Soldering Station | For soldering wires and components | [Link](https://a.co/d/g1hfNg9) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Wire Cutter/Stripper | For cutting and stripping small gauge wire | [Link](https://a.co/d/2Z5Z7AV) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Multimeter | For measuring voltage, current, and resistance | [Link](https://a.co/d/6yqiaka) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Small Screwdriver Set | For working with small screws and components | [Link](https://a.co/d/iezxoev) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Electric Sander | For sanding down 3D prints | [Link](https://a.co/d/1kmXrED) | <Tag color="blue" txt="⚒️  MAKER" /> |
+
+#### Components
+
+| Name | Purpose | Online Link | Label |
+|------|---------|-------------|-------|
+| Raspberry Pi Pico W | Main microcontroller for the project | [Link](https://a.co/d/bqi2hE3) | <Tag color="green" txt="💻 HACKER" /> |
+| Pico Debug Probe | For connecting to Pico for debugging | [Link](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) | <Tag color="green" txt="💻 HACKER" /> |
+| Pico Breakout Board (Dev) | For easy access to Pico pins during development | [Link](https://a.co/d/6anFgCV) | <Tag color="green" txt="💻 HACKER" /> |
+| Pico Breakout Board (Prod) | Minimal breakout for final implementation | [Link](https://a.co/d/e6cDFwv) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| DC-DC Boost Converter | For converting battery voltage to 5V | [Link](https://www.adafruit.com/product/5035) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Big Push Button | Main interactive push button | [Link](https://a.co/d/gUhGwOv) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| LEDs 8mm | For light effects around the device | [Link](https://a.co/d/6LiMbeh) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Toggle Switch | Main power switch | [Link](https://a.co/d/0lwa7hN) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Micro USB Plug | For charging the device | [Link](https://www.adafruit.com/product/4213) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Buzzer | For audio feedback | [Link](https://a.co/d/8HOhxGi) | <Tag color="green" txt="💻 HACKER" /> |
+| Battery Pack | Main power source | [Link](https://www.adafruit.com/product/5035) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Wire Assortment | For wiring components | [Link](https://a.co/d/jcNjgDM) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| LED Holder | For mounting LEDs to the enclosure | [Link](https://a.co/d/9wcF20p) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Threaded Inserts | For joining 3D printed parts | [Link](https://a.co/d/efibCTj) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Screws *#2-56x5/32 (x5)* and *#4-40x3/8 (x6)*| For joining 3D printed parts | *You Pick* | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Filler Putty | For filling print imperfections | [Link](https://a.co/d/2mu3jvd) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Spray: Filler Primer | For priming 3D prints before painting | [Link](https://a.co/d/2OqPcEJ) | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Spray: Paint | For painting and finishing the enclosure | *You Pick* | <Tag color="blue" txt="⚒️  MAKER" /> |
+| Spray: Clear Coat | For painting and finishing the enclosure | [Link](https://a.co/d/4nTvp4r) | <Tag color="blue" txt="⚒️  MAKER" /> |
 
 ## Tools
 
@@ -334,42 +371,6 @@ TODO: Make accent color and bold
     Here I selected a clear matte finish. [Online Link](https://a.co/d/4nTvp4r)
 
 
-## Summary
-
-#### Tools
-
-| Name | Purpose | Online Link |
-|------|---------|-------------|
-| 3D Printer | For creating custom enclosures and mounts | [Link](https://www.creality.com/products/ender-3-3d-printer) |  
-| Soldering Station | For soldering wires and components | [Link](https://a.co/d/g1hfNg9) |
-| Wire Cutter/Stripper | For cutting and stripping small gauge wire | [Link](https://a.co/d/2Z5Z7AV) |
-| Multimeter | For measuring voltage, current, and resistance | [Link](https://a.co/d/6yqiaka) | 
-| Small Screwdriver Set | For working with small screws and components | [Link](https://a.co/d/iezxoev) |
-| Electric Sander | For sanding down 3D prints | [Link](https://a.co/d/1kmXrED) |
-
-#### Components
-
-| Name | Purpose | Online Link |
-|------|---------|-------------|
-| Raspberry Pi Pico W | Main microcontroller for the project | [Link](https://a.co/d/bqi2hE3) |
-| Pico Debug Probe | For connecting to Pico for debugging | [Link](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) |
-| Pico Breakout Board (Dev) | For easy access to Pico pins during development | [Link](https://a.co/d/6anFgCV) |
-| Pico Breakout Board (Prod) | Minimal breakout for final implementation | [Link](https://a.co/d/e6cDFwv) |
-| DC-DC Boost Converter | For converting battery voltage to 5V | [Link](https://www.adafruit.com/product/5035) |
-| Big Push Button | Main interactive push button | [Link](https://a.co/d/gUhGwOv)
-| LEDs 8mm | For light effects around the device | [Link](https://a.co/d/6LiMbeh) |
-| Toggle Switch | Main power switch | [Link](https://a.co/d/0lwa7hN) |
-| Micro USB Plug | For charging the device | [Link](https://www.adafruit.com/product/4213) |
-| Buzzer | For audio feedback | [Link](https://a.co/d/8HOhxGi) |  
-| Battery Pack | Main power source | [Link](https://www.adafruit.com/product/5035) |
-| Wire Assortment | For wiring components | [Link](https://a.co/d/jcNjgDM) |
-| LED Holder | For mounting LEDs to the enclosure | [Link](https://a.co/d/9wcF20p) | 
-| Threaded Inserts | For joining 3D printed parts | [Link](https://a.co/d/efibCTj) |
-| Screws *#2-56x5/32 (x5)* and *#4-40x3/8 (x6)*| For joining 3D printed parts | *You Pick* |
-| Filler Putty | For filling print imperfections | [Link](https://a.co/d/2mu3jvd) |
-| Spray: Filler Primer | For priming 3D prints before painting | [Link](https://a.co/d/2OqPcEJ) |
-| Spray: Paint | For painting and finishing the enclosure | *You Pick* |
-| Spray: Clear Coat | For painting and finishing the enclosure | [Link](https://a.co/d/4nTvp4r) |
 
 
 <span class="text-accentColor font-bold">Alright! ... Now that we have that out of the way, let's move forward!</span>

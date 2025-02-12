@@ -1,0 +1,192 @@
+---
+title: 'Big Button - Part 2 - About this Tutorial'
+description: 'Details about this tutorial series.'
+pubDate: 'Dec 25 2024'
+tags: ['big-button', 'embedded', 'rust', 'programming', 'skill']
+aiHelp: [
+  '8-bit style images - Dall-e',
+  'Spelling and grammar suggestions - Claude',
+  'General post-hoc review - Claude',
+  'Making HACKER/MAKER tag - Claude'
+]
+draft: false
+series: {
+  name: "Big Button Tutorial",
+  order: 2
+}
+previousPost:
+  slug: "button_introduction"
+  title: Introduction
+nextPost: 
+  slug: "button_hardware_overview"
+  title: "Tools and Components"
+---
+import Figure from '../../components/Figure.astro'
+import Tag from '../../components/Tag.astro'
+// import TutorialFlow from '../../components/TutorialFLow'
+import friendsTalking from '../../images/button/intro/friends-talking-3.webp';
+import trashPickup from '../../images/button/intro/trash-pickup-2.webp';
+import redButton from '../../images/button/intro/button-cartoon-2.webp';
+import muscle from '../../images/button/intro/muscle.webp';
+import lets_get_going from '../../images/button/welcome/lets_get_going.webp';
+
+## Table of Contents
+
+
+{/* 
+<TutorialFlow nodeId="1" client:load />
+*/}
+
+## How to Use This Tutorial Series?
+
+I completly understand that some of you do not have access to
+lots of the maker/hardware tools outlined in some of the following
+tutorial steps.
+
+Some may only be interested in either the physical maker methods, while
+others may only be interested in the microcontroller/software part.
+
+That is perfectly ok!
+
+The following steps and lessons will be laid out
+such that you will be able to complete only the software part with
+a microcontroller, the hardware/manufacturing part, or both.
+
+Each tutorial section will be labeled as one or both tag labels:
+
+| Tag | Description | Components |
+|-------|-------------|------------|
+| <Tag color="green" txt="💻 HACKER" /> | Microcontroller setup and programming | Microcontroller, input/output components, programming tools and code |
+| <Tag color="blue" txt="⚒️  MAKER" /> | Physical manufacturing | Making, wiring, mounting. complete physical setup. For [maker space/culture](https://en.wikipedia.org/wiki/Maker_culture) enthusiasts |
+
+So for example, if you only intend to set up and program your
+microcontroller with some basic components, only read sections tagged as <Tag color="green" txt="💻 HACKER" />,
+and skip anything labeled <Tag color="blue" txt="⚒️  MAKER" />.
+
+Over the course of these tutorials we will clearly label what is
+needed for each label/path.
+
+<Aside variant="note">
+  Understand what you will get out of this project for each label/path.
+  <br/>
+  You can comfortably only follow the <Tag color="green" txt="💻 HACKER" /> path, however without
+  the <Tag color="blue" txt="⚒️  MAKER" /> steps, you cannot make a whole and complete product,
+  leaving you with raw elecronics.
+  <br/>
+  On the other hand, if you are only wanting to replicate the physical manufacturing
+  process of this project and follow <Tag color="blue" txt="⚒️  MAKER" /> steps, you will
+  end up learning some cool maker things, but without the complete product.
+</Aside>
+
+
+## Is This For You?
+
+Ok. You might be wondering if this whole thing is for you. 
+Well, in this seciton I will try my best to roughly and objectively
+map out the skillset, experience, and knowledge range for 
+this project.
+
+Remember, this is not an exact science, just an estimate.
+So bear with me here and keep an open and optimistic mind.
+
+### Software Development <Tag color="green" txt="💻 HACKER" />
+
+For all the items below, please ensure you check all of the following
+experience for the *software development and embedded programming* parts
+of this tutorial.
+
+  - [ ] Used an actual computer *(> 5 years)*
+  - [ ] Computer terminal or command line
+  - [ ] Integrated Development Environment (IDE) (ie. Code Editor)
+  - [ ] Some general text-based programming *(> 2 years)*
+  - [ ] Programming with the Rust programming language *(> 6 months)*
+  - [ ] Any type of embedded programming *(> 3 months)*
+
+{/*
+TODO:
+- Linear diagrams of skills chart
+- Quiz with point systems - need formula
+  - Textbox - nope!
+  - Sliders - Number of years
+  - Checkboxes - "At least X years" - Easiest! - THIS!
+    - `<CheckItem txt="Something" />`
+  - Radio button - "never used" "somewhat familiar" "very familiar"
+*/}
+
+### DYI Hardware Tinkering <Tag color="blue" txt="⚒️  MAKER" />
+
+For all the items below, please ensure you check all of the following
+experience for the maker and hardware parts of this tutorial.
+
+- [ ] Using general hardware tools (ie. screwdriver, hammer)
+- [ ] Soldering with Soldering Iron
+- [ ] Stripping a wire with a wire stripper
+- [ ] Spray painting something
+- [ ] Sanding something by hand or with a electric sander
+- [ ] Connecting a simple electrical Cricuits (ie. LED, button)
+- [ ] 3D Printing from a pre-existing 3D model
+
+{/*
+TODO:
+- Linear diagrams of skills chart
+- Quiz with point systems
+*/}
+
+{/*
+TODO
+
+- What is the skillset and knowledge range (range image)
+  - Is this for me?
+  - From never coded to 5 years of Rust Programming
+  - From never build anything to maker god
+  - Note that interest and passion can trump experience here?
+
+- Specific Skillset
+  - Terminal - Know what it is. Have used it.
+  - IDE - Know what it is. Have used it.
+  - Programming - Know what it is. Have done it.
+
+Bar chart with all of these??
+Radial chart?
+
+A Quiz for each section!
+  - Spits out likelihood this tutorial is for you
+  - Each option brings about some number of points
+
+------------------------------
+
+Prior knowledge
+Required skill/experience
+
+Tools and skills?
+  - Writing computer code - 0 to 10 years - hobby vs professional
+  - Build and assembled something - 0 - 10 years - hobby vs professional
+  - 3D printing
+  - Terminal
+    - Running commands
+  - IDE
+  - Flashing a program onto any kind of chip or microcontroller
+  - C++
+  - Rust
+
+Prior practical experience?
+  - Writing some code (how much and what kind?)
+    - Variables, functions, etc
+  - Debugging code
+
+Insterest level in specific topics?
+*/}
+
+<Aside variant="tip">
+  Do not underestimate your abilities! Especially when you are very interested
+  in a project or topic. Lots of times interest and passion can trump
+  large skill discreptencies. Give it try. Let's see what happens. :muscle:
+
+
+  <Figure
+    src={muscle} 
+    url="https://www.youtube.com/watch?v=btPJPFnesV4"
+    caption="This mouse is probably going to try this tutorial ..."
+  />
+</Aside>
+

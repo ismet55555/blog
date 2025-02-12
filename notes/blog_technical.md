@@ -4,9 +4,12 @@
 
 ### Critical
 
+- Fix code blogs not showing titles and collapsable code!!!
+- Add HACKER/MAKER Tags somehow
 - Google analytics - Needs more setup!
   - Google Search Console
   - <https://docs.astro.build/en/guides/integrations-guide/partytown/>
+  - Add SiteMap
 - Combine tutorial series
   - Navigation steps on the side within series
   - Or linear progression somehow
@@ -22,9 +25,9 @@
 - Charts
   - ChartJS (popular)
   - Rechart (React-based) - THIS!
-- Site map
+- Site map for Google Searche
   - <https://docs.astro.build/en/guides/integrations-guide/sitemap/>
-  - I HAVE THIS???
+  - Actively creates a XML file to outline entire website
 - CODE!
   - Expressive Code: <https://expressive-code.com/installation/>
   - Keep code in files in another folder?

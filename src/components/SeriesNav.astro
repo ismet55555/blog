@@ -1,0 +1,52 @@
+---
+// src/components/SeriesNav.astro
+import { getCollection } from 'astro:content'
+
+interface Props {
+  currentSlug: string
+  series: {
+    name: string
+    order: number
+  }
+}
+
+const { currentSlug, series } = Astro.props
+
+// Get all blog posts in the series
+const allPosts = await getCollection(
+  'blog',
+  (post) => !post.data.draft && post.data.series?.name === series.name
+)
+
+// Sort posts by series order
+const seriesPosts = allPosts.sort(
+  (a, b) => (a.data.series?.order ?? 0) - (b.data.series?.order ?? 0)
+)
+---
+
+<nav class="sticky top-24 space-y-4">
+  <div class="rounded-lg bg-lightModeBg p-6 dark:bg-darkModeBg">
+    <h3 class="mb-4 text-xl font-medium text-accentColor">{series.name}</h3>
+    <div class="space-y-2">
+      {
+        seriesPosts.map((post) => {
+          const postUrl = `/blog/${post.slug}`
+          const isActive = currentSlug === post.slug
+          const baseClasses = 'block rounded-lg px-4 py-2 transition-colors'
+          const activeClasses = isActive
+            ? 'bg-accentColor text-white'
+            : 'text-lightModeText hover:bg-lightModeHover dark:text-darkModeText dark:hover:bg-darkModeHover'
+
+          return (
+            <a href={postUrl} class={`${baseClasses} ${activeClasses}`}>
+              <div class="text-sm opacity-75">
+                Part {post.data.series?.order}
+              </div>
+              <div class="font-medium">{post.data.title}</div>
+            </a>
+          )
+        })
+      }
+    </div>
+  </div>
+</nav>
