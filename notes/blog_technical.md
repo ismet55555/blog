@@ -4,9 +4,6 @@
 
 ### Critical
 
-- Fix code blogs not showing titles and collapsable code!!!
-  - is it tailwind 6.0 upgrade???? - try old package.json?
-- Add HACKER/MAKER Tags somehow
 - Navigation side pane
   - <https://github.com/surjithctly/astro-navbar#readme>
 - Google analytics - Needs more setup!

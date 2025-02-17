@@ -11,9 +11,8 @@
 
 ## TODO
 
-- Tutorial structure
-  - Single post on front
-  - For tutorial have side panel with all posts
+- Tools and components
+  - Just have the stuff for programming for now, come back for hardware stuff later!
 
 - GitHub Repo branch for tutorial
   - Each branch and code goes with a part
