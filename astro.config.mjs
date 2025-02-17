@@ -46,7 +46,6 @@ import { defineConfig } from 'astro/config'
 import { externalAnchorPlugin } from './src/plugins/externalAnchorPlugin.ts'
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 import { remarkReadingTime } from './src/plugins/remarkReadingTime.mjs'
 
 // Configuration object for remark Table of Contents
@@ -98,8 +97,7 @@ export default defineConfig({
         externalAnchorPlugin,
         remarkReadingTime,
         remarkEmoji
-      ],
-      rehypePlugins: [rehypeAccessibleEmojis]
+      ]
     }),
 
     // Additional functionality integrations
@@ -119,8 +117,7 @@ export default defineConfig({
       remarkReadingTime,
       externalAnchorPlugin,
       remarkEmoji
-    ],
-    rehypePlugins: [rehypeAccessibleEmojis]
+    ]
   },
 
   // Deployment configuration

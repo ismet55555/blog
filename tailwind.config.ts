@@ -10,7 +10,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inconsolata', ...defaultTheme.fontFamily.sans]
-        // sans: ['Montserrat', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         lightModeBg: '#DCDCDC',
