@@ -39,3 +39,8 @@ File trees
 └── src
     └── main.rs
 ```
+
+## Emojis
+
+- <https://gist.github.com/rxaviers/7360908>
+- <https://emojipedia.org/>

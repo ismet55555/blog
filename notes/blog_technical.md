@@ -5,7 +5,10 @@
 ### Critical
 
 - Fix code blogs not showing titles and collapsable code!!!
+  - is it tailwind 6.0 upgrade???? - try old package.json?
 - Add HACKER/MAKER Tags somehow
+- Navigation side pane
+  - <https://github.com/surjithctly/astro-navbar#readme>
 - Google analytics - Needs more setup!
   - Google Search Console
   - <https://docs.astro.build/en/guides/integrations-guide/partytown/>
@@ -21,7 +24,7 @@
   - <https://github.com/withastro/starlight/discussions/1259#discussioncomment-9300105>
   - <https://code.juliancataldo.com/component/astro-diagram/#doc>
   - Example:
-    - https://mermaid.live/edit#pako:eNp1U9uO2yAQ_RVEFOXFm8T4koSHSrn2pZVWXamVaueB2DimscECvN1dy_9eDIm6TbVYQpyZc-ZYw9DBTOQUYjged4wzjUE30SWt6QSDyYkoOvGAC3wnkpFTRZXJdEMuu5ylaHk-MEdFOHwT0Pf9eJzysyRNCb58SzkwK6uIUjtagNKIqAQFqyo8itECkdBTWooLxaMwDBcR8TJRCYl_l0zTO3FN_mqjeUEWpzvtHV-VRNL8KiiKxSqL_xPcJCy7gDVIYal1o_BsRl9I3VR0mol6pjSROoUm-1kALcCTw--lm4-kVLfNe6nDTur2dWLrHcHDwyewSSzj6FIbG9v6ydZcEdjzZyYFrynXR4yxa-U_RJT8EPKiStE4o4Fmm-ZYW9_SdsmBSaXBoxS_aGZruU5dWcixHNpZsPeTdf5MeGbaOfzLvf-VhZLH8lWxjFRg07Iqv_PfO_-D8eeG8oH_3vkfoAdrKmvCcjOc3ZBLoZ3DFGJzzGlB2speQ2-opNXi6ZVnEGvZUg-awTyXN9A2OdF0x4iZyvoWbAj_KYSBBamUwxB38AViFCymQYDCeLmM0CpexR58hTiezlcojpf-HAXLwJx7D77ZAvPpyvej2MiipY98FAUepDnTQn51T8u-sP4PUvQNEw
+    - <https://mermaid.live/edit#pako:eNp1U9uO2yAQ_RVEFOXFm8T4koSHSrn2pZVWXamVaueB2DimscECvN1dy_9eDIm6TbVYQpyZc-ZYw9DBTOQUYjged4wzjUE30SWt6QSDyYkoOvGAC3wnkpFTRZXJdEMuu5ylaHk-MEdFOHwT0Pf9eJzysyRNCb58SzkwK6uIUjtagNKIqAQFqyo8itECkdBTWooLxaMwDBcR8TJRCYl_l0zTO3FN_mqjeUEWpzvtHV-VRNL8KiiKxSqL_xPcJCy7gDVIYal1o_BsRl9I3VR0mol6pjSROoUm-1kALcCTw--lm4-kVLfNe6nDTur2dWLrHcHDwyewSSzj6FIbG9v6ydZcEdjzZyYFrynXR4yxa-U_RJT8EPKiStE4o4Fmm-ZYW9_SdsmBSaXBoxS_aGZruU5dWcixHNpZsPeTdf5MeGbaOfzLvf-VhZLH8lWxjFRg07Iqv_PfO_-D8eeG8oH_3vkfoAdrKmvCcjOc3ZBLoZ3DFGJzzGlB2speQ2-opNXi6ZVnEGvZUg-awTyXN9A2OdF0x4iZyvoWbAj_KYSBBamUwxB38AViFCymQYDCeLmM0CpexR58hTiezlcojpf-HAXLwJx7D77ZAvPpyvej2MiipY98FAUepDnTQn51T8u-sP4PUvQNEw>
 - Charts
   - ChartJS (popular)
   - Rechart (React-based) - THIS!

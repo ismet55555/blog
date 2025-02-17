@@ -1,0 +1,223 @@
+---
+title: 'Big Button - Part 9 - Rust Development Workflow'
+description: 'TODO'
+pubDate: 'Feb 12 2025'
+tags: ['big-button', 'embedded', 'rust', 'cargo', 'clippi', 'bacon']
+aiHelp: [
+  '8-bit style images - Dall-e',
+  'Troubleshoot build errors - Claude',
+  'Spelling and grammar suggestions - Claude',
+  'General post-hoc review - Claude'
+]
+draft: false
+previousPost:
+  slug: "button_rust_project_configuration"
+  title: "Rust Project Configuration"
+# nextPost: 
+#   slug: "button_"
+#   title: "Software Setup"
+---
+import Figure from '../../components/Figure.astro'
+import fixCrabRobot from '../../images/button/rust_dev_workflow/fix_crab_robot.webp'
+import tba from '../../images/tba.png';
+
+## Table of Contents
+
+## Introduction
+
+In the previous steps we simply edited files with pre-defefined code, before
+running some commands in the terminal. This bare workflow may work, however there
+are some tools and methods that we can use to help us develop in Rust.
+
+Here we attempt to outline these tools and methods.
+The goal here is to show how to add, test, and iterate Rust code for this project.
+
+<Aside variant="tip">
+  Remember, a software development workflow can be subjective and ever-evolving, where
+  each developer may have his/her preferences, seetings, and so on. Being relatively new to Rust 
+  embedded development, my advice is to first follow what is outlined here, then try
+  to customize and set your workflow however fits you.
+</Aside>
+
+<Figure
+  src={fixCrabRobot}
+  caption="Getting ready to set our tooling and workflow"
+  url="https://www.youtube.com/watch?v=Vhh_GeBPOhs"
+/>
+
+{/*
+## Prerequisites Revisited
+
+As outlined in previous steps, we are making the assumption that you are know
+how to use:
+
+1. [Terminal emulator](https://en.wikipedia.org/wiki/Terminal_emulator)
+
+    - iTerm for MacOS
+    - PowerShell for Windows
+    - Terminal for Linux
+
+2. [Integrated Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)
+
+    - Visual Studio Code (VS Code)
+    - JetBrains RustRover
+    - NeoVim
+
+Here we will try to touch on each of the above items, however the assumption is that
+you are using some type of a terminal emulator and VS Code.
+*/}
+
+## Tools
+
+Add the following tools to your local toolbelt on your computer. For each tool,
+we will briefly mention the tool, outline some notes, and define its importance
+and usage.
+
+### `rust-analyzer`
+
+This tool is the official [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/)
+server for Rust that provides [code completion](https://en.wikipedia.org/wiki/Code_completion) and
+code navigation capabilities. Aside from the fundamental Rust tools like `cargo`, `rust-analyzer`
+is essential for effective development.
+
+`rust-analyzer` typicall runs in the background and parallel with your IDE, constantly watching
+your keystrokes and code changes. When appropriate, it provides auto-completion
+hints and options, while also enabling you and your IDE to effectively navigate your
+code.
+
+Official documentation for `rust-analyzer` can be found [here](https://rust-analyzer.github.io/book/index.html).
+
+To install `rust-analyzer`, follow these links:
+
+- [Visual Studio Code IDE](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- [Other IDEs](https://rust-analyzer.github.io/book/other_editors.html)
+
+After installation, `rust-analyzer` is enabled and started by default when working on Rust code.
+
+
+### `bacon` 🥓
+
+This tool is a background code checker/linter for Rust that provides real-time error detection and
+warnings with minimal user interaction. `bacon` runs continuously
+in **a separate terminal**, providing immediate feedback as you code. 
+
+It's highly [customizable](https://dystroy.org/bacon/config/#configuration-files) and integrates
+seamlessly with your development workflow. Official documentation for `bacon` can be found [here](https://dystroy.org/bacon/).
+
+To install `bacon`, execute the following:
+
+```sh
+cargo install --locked bacon
+```
+
+After installation, you can run the following command within the project
+root directory (Stop it with pressing `q`):
+
+```sh
+bacon --all-features --job clippy
+```
+
+<Aside variant="tip">
+  [`probe-rs` offers a Visual Studio Code extension](https://probe.rs/docs/tools/debugger/)
+  that can use the `probe-rs` CLI tool with VS Code to offer more advanced debugging and monitoring capabilities.
+  In this tutorial we will not be focused on using this extension, however I encourage
+  you to familiarise yourself with it and see if that is something you are interested in.
+</Aside>
+
+
+### Logging Messages
+
+While logging statments may not be the most powerful
+or most *sexy* debugging tool, they are effective, simple to
+understand and use, and tried and true!
+
+The concept is simple. Any time you need to see some information at a specific
+point in your code, you add a logging statment which will show that
+infromation in the terminal output during the program's run.
+
+Specifically speaking, we will use the following syntax to output logging.
+
+```rust title="example.rs"
+// Import the following on top of the file
+use defmt::*;          // Import all items from defmt 
+use defmt_rtt as _;    // Import defmt_rtt - Real-Time Transfer (RTT) as transport for defmt log
+use panic_probe as _;  // Ensure that panic messages are send through the debug probe
+
+let my_variable = 3;
+
+// Use the various logging functions
+debug!("A debug level logging message");
+info!("This is a simple info level log message");
+error!("This message has a variable: {}", my_variable);
+```
+
+For our configured project, the output for this specific example
+Rust code would look like this:
+
+```log frame="none"
+[DEBUG ] main.rs:22    : A debug level logging message
+[INFO  ] main.rs:25    : This is a simple info level log message
+[ERROR ] main.rs:22    : This message has a variable: 3
+```
+
+
+## The Workflow ♻️
+
+### Setup
+
+1. Open the project's root directory in the IDE.
+
+2. Open up the first terminal for code warnings/error monitoring.
+
+3. Run the following command in this first terminal:
+
+    ```sh
+    bacon --all-features --job clippy
+    ```
+
+4. Open up a second terminal for flashing and running our code.
+
+
+### Add Changes Continuously
+
+1. Using your IDE, make some changes to the code or project configurations.
+
+2. Monitor if those changes raised any warnings or errors in the `bacon` terminal.
+
+3. In second terminal used for flashing and running code, run the following:
+
+    ```sh
+    cargo run --release
+    ```
+
+4. Monitor logs, the controller, and all the things ...
+
+5. Stop this run with pressing `Ctrl-c`
+
+6. Repeat steps until you are done with your task
+
+
+### Commit Changes (Saving Your Work)
+
+1. Use `git` to add/stage your changes..
+
+    ```sh
+    git add .
+    ```
+
+2. Commit changes with a message. Feel free to use
+   [conventional git commit messages](https://www.conventionalcommits.org/en/v1.0.0/).
+
+    ```sh
+    git commit -m "did some fun work"
+    ```
+
+3. Push the changes to GitHub.
+
+    ```sh
+    git push origin main
+    ```
+
+<span class="text-accentColor font-bold">
+  That'll be our workflow. Now let's add more CODE!
+</span>
