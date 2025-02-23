@@ -16,6 +16,8 @@
  * - Draft posts are handled via a boolean flag with a default of false
  * - Dates are coerced from strings to Date objects automatically
  * - Navigation links (nextPost/previousPost) are optional and include their own draft status
+ *
+ *   **IMPORTANT**: Changes to this file require reloading server!
  */
 
 import { glob } from 'astro/loaders'
