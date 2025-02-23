@@ -68,6 +68,10 @@
   - <https://www.astroicon.dev/getting-started/>
   - <https://tabler.io/icons>
 
+- Color
+
+  - Picker: https://htmlcolorcodes.com/color-picker/
+
 - Emojis
 
   - `remark-emoji` converts shortcodes (:heart_eyes:) to actual emoji characters (😍)
