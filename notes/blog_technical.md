@@ -16,6 +16,10 @@
 
 ### Nice to Have
 
+- Fonts
+  - Sono
+  - Calm - Monospaced
+  - <https://fonts.google.com/?preview.text=In%20the%20previous%20steps%20we%20simply%20edited%20files%20with%20pre-defefined%20code,%20before%0Arunning%20some%20commands%20in%20the%20terminal.%20This%20bare%20workflow%20may%20work,%20however%20there%0Aare%20some%20tools%20and%20methods%20that%20we%20can%20use%20to%20help%20us%20develop%20in%20Rust.%0A&preview.size=14&preview.layout=grid&lang=en_Latn&categoryFilters=Appearance:%2FMonospace%2FMonospace;Feeling:%2FExpressive%2FCalm;Sans+Serif:%2FSans%2F>*
 - Mermaid graphs
   - <https://github.com/remcohaszing/rehype-mermaid>
   - <https://github.com/withastro/starlight/discussions/1259#discussioncomment-9300105>
@@ -74,3 +78,9 @@
   - List of Emojis:
     - <https://gist.github.com/rxaviers/7360908>
     - <https://emojipedia.org/>
+
+## Examples
+
+- [Pico Plant](https://github.com/maciekglowka/pico_plant/tree/main)
+- [Rust Robotic Sumo Bot](https://github.com/massimiliano-mantione/rustlab-2023-robotic-sumo/tree/main/bot/src)
+- [Pi Pico Alarmclock](https://github.com/1-rafael-1/pi-pico-alarmclock-rust/tree/main)

@@ -1,0 +1,223 @@
+---
+title: 'Big Button - Part 3 - Programming Hardware Components'
+description: 'Tools and components outline for the big button project programming'
+pubDate: 'Dec 26 2024'
+tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico']
+aiHelp: [
+  '8-bit style images - Dall-e',
+  'Generating of table from existing text - Claude',
+  'Spelling and grammar suggestions - Claude',
+  'General post-hoc review - Claude'
+]
+previousPost:
+  slug: "button_about_tutorial"
+  title: "Introduction"
+nextPost: 
+  slug: "button_program_hardware_connect"
+  title: "Connecting Programming Hardware"
+---
+import Figure from '../../components/Figure.astro'
+import Tag from '../../components/Tag.astro'
+import engineerChecklist from '../../images/button/hardware_overview/engineer-checklist-2.webp';
+import solderStation from '../../images/button/hardware_overview/solder-station.webp';
+import wireCutter from '../../images/button/hardware_overview/wire-cutter-stripper.webp';
+import multimeter from '../../images/button/hardware_overview/multimeter.webp';
+import rpiPico from '../../images/button/hardware_overview/rpi-pico-w.webp';
+import debugProbe from '../../images/button/hardware_overview/rpi-debug-probe.webp';
+import breakoutBoardDev from '../../images/button/hardware_overview/breakout-board-dev.webp';
+
+## Table of Contents
+
+## Introduction
+
+In this post, we will go over the general tools, hardware, and components needed
+for the programming hardware parts for this project. Specifically, we are outlining
+all the components needed for our steps marked as <Tag color="green" txt="💻 HACKER" />.
+
+<Aside variant="tip">
+  If you are unfamiliar with any of these tools or components, a quick google search or a 
+  AI chat prompt on any of these tools and components will get you going on how to
+  fundamentally use them.
+</Aside>
+
+<Figure
+  src={engineerChecklist}
+  caption="You with a clipboard going through all needed items"
+  url="https://www.youtube.com/watch?v=iGuuOdD6iY4"
+/>
+
+## Overview
+
+#### Tools
+
+The following is an overview of all the things needed. Further down in this post, you can read about
+the details for each item.
+
+| Name | Purpose | Online Link |
+|------|---------|-------------|
+| Soldering Station | For soldering wires and components | [Link](https://a.co/d/g1hfNg9) |
+| Wire Cutter/Stripper | For cutting and stripping small gauge wire | [Link](https://a.co/d/2Z5Z7AV) |
+| Multimeter | For measuring voltage, current, and resistance | [Link](https://a.co/d/6yqiaka) |
+
+#### Components
+
+| Name | Purpose | Online Link |
+|------|---------|-------------|
+| Raspberry Pi Pico W | Main microcontroller for the project | [Link](https://a.co/d/bqi2hE3) |
+| Pico Debug Probe | For connecting to Pico for debugging | [Link](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) |
+| Pico Breakout Board (Dev) | For easy access to Pico pins during development | [Link](https://a.co/d/6anFgCV) |
+| Buzzer | For audio feedback | [Link](https://a.co/d/8HOhxGi) |
+| Wire Assortment | For wiring components | [Link](https://a.co/d/jcNjgDM) |
+
+
+## Tools
+
+### Soldering Station
+
+This project will require some soldering of various components such as wires and terminals.
+There are many different soldering tools with a variety of quality and use-case.
+
+The soldering station that I am working with and that I recommend for beginners is an
+all-in-one soldering station kit shown below and [available on Amazon here](https://a.co/d/g1hfNg9).
+
+<Figure
+  src={solderStation}
+  url="https://a.co/d/fjoGu2d"
+/>
+
+Here we have everything from [helping hands](https://www.youtube.com/watch?v=xh5FcqtlWWA)
+to solder to [solder sucker](https://www.youtube.com/watch?v=gGSeSk8QWsE) for de-soldering and cleanup.
+
+### Wire Tools
+
+Building anything electrical will require work with wires. Specifically, for our low current 
+and low voltage applications we will be using small [wire gauges](https://en.wikipedia.org/wiki/American_wire_gauge#Tables_of_AWG_wire_sizes).
+
+Wire strippers are often the same tool as wire cutters. Again, as a casual hobbiest, I would
+not necessarily recommend the top shelf tools, here a [regular wire cutter/stripper](https://a.co/d/fjoGu2d)
+is just fine.
+
+<Figure
+  src={wireCutter}
+  url="https://a.co/d/2Z5Z7AV"
+/>
+
+### Multimeter
+
+Often times we will need to test if two things are soldered correctly, connected right, or
+give us some voltage at some point and time. In these types of situations (and more),
+a [multimeter](https://en.wikipedia.org/wiki/Multimeter) comes in very handy. 
+
+A multimeter measures multiple electrical properties: voltage, resistance, and current.
+It is one of the most basic and most useful electrical tools you can get familiar with.
+Here is a [quick overview video](https://www.youtube.com/watch?v=bF3OyQ3HwfU) on how
+to use a multimeter.
+
+Luckily, for the vast majority of hobbiest use-cases, a regular grade multimeter is
+just fine, not very expensive, and highly available.
+
+I recommend selecting a multimeter with a good set of probe
+features and clamps, a good display, and a kick stand. Maybe something like
+[this one](https://a.co/d/6yqiaka).
+
+<Figure
+  src={multimeter}
+  url="https://a.co/d/6yqiaka"
+/>
+
+
+## Components
+
+### Raspberry Pi Pico W
+
+The [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) (RPi Pico W) 
+[microcontroller](https://docs.rust-embedded.org/discovery/microbit/01-background/index.html)
+will be our central brain for this project. All logic will live on this microcontroller.
+
+<Figure
+  src={rpiPico}
+  url="https://a.co/d/bqi2hE3"
+/>
+
+This Raspberry Pi is powered by an [arm-based](https://developer.arm.com/Processors/Cortex-M0-Plus)
+[RP2040](https://www.raspberrypi.com/products/rp2040/specifications/) chip ([RP2350](https://www.raspberrypi.com/products/rp2350/)
+for RPi Pico 2), while having other on-board [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
+such as a wireless module *(the `W` in the name)*, a bluetooth chip, temperature sensor, and more.
+
+See the official [Raspberry Pi Pico documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
+for more information. 
+
+
+<Aside variant="tip">
+  You will have to connect a debug module (see next section) to the RPi. The debug module connects
+  to the RPi Pico via 3 debug pins. I would recommend buying the
+  [RPi pico with pins already pre-soldered](https://a.co/d/6ulNrik).
+</Aside>
+
+The Raspberry Pi Pico W is obviously not the only popular microcontroller of its kind.
+You could select a different microcontroller that fits a specific need or skill set.
+For example, the [Freenove ESP32-WROOM Board](https://store.freenove.com/products/fnk0090)
+is also not a bad choice, however in scope of our project we will stick to the Raspberry Pi.
+
+
+### Raspberry Pi Pico Debug Probe
+
+When programming and developing on a microcontroller, it is crucial that you know what is
+happening on the microcontroller when it is running. That is, when connecting your computer
+to the microcontroller you are able to actively view code deployment logs, runtime logging
+messages, error messages, and other connection-related messages.
+
+Typically microcontollers provide a debug probe/module that accomplishes just that. Our debug
+probe will connect via [UART serial](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
+port via the [**3 pins** *(TX, GND, RX)*](https://datasheets.raspberrypi.com/debug/debug-connector-specification.pdf)
+specially designated to it on the Raspberry Pi Pico and located next to the large wireless module.
+
+<Figure
+  src={debugProbe}
+  url="https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html"
+/>
+
+See the official [Raspberry Pi Debug Probe documentation](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
+for more information.
+
+<Aside variant="note">
+  There is a way to achieve this same function but without a Raspberry Pi debug probe. This
+  involves a *second* Raspberry Pi Pico connected to your main one. Here is [more information](https://www.youtube.com/watch?v=0i2gLeBal9Y)
+  about it. However, to gain simplicity by sacrificing cost we are sticking to the official
+  debug probe provided for the Raspberry Pi.
+</Aside>
+
+### Raspberry Pi Pico Breakout Board for Development
+
+For development and for actual final implementation of our Raspberry Pi Pico W, we will use breakout boards.
+A [breakout board](https://soldered.com/learn/breakout-boards-what-are-they-and-why-you-should-use-them/) will
+take these pins and “break them out” onto a separate circuit board. That is, it maps the inputs and outputs of our
+Raspberry Pi Pico W onto easily accessible connectors.
+
+During programming and troubleshooting we will utilize a more
+complete breakout board. This breakout board includes LEDs for pin inputs and outputs,
+more ground connectors, clear labels, and more. We will use this breakout board during
+initial programming, testing, and iterations. ([Online Link](https://a.co/d/6anFgCV))
+
+<Figure
+  src={breakoutBoardDev}
+  url="https://a.co/d/6anFgCV"
+/>
+
+<Aside variant="note">
+  Here lots of tutorials and manuals may use a electrical [breadboard](https://simple.wikipedia.org/wiki/Breadboard),
+  plugging wires and components like LEDs and buttons into the bread board. This acceptable, however
+  to simplify things and quickly get going we will use this development board that has
+  on-board LEDs. For buttons, for now, we will simulate a button press by simply touch
+  two wires together.
+</Aside>
+
+### Wire Assortment
+
+Last but not least. Any electrical project of this type will need wire. In our case, this
+assortment provides us with a small gauge wire in different colors. [Online Link](https://a.co/d/jcNjgDM)
+It will be slighly more than we will be using for our programming setup, however this wire
+will be used in later fabrication steps as well.
+
+
+<span class="text-accentColor font-bold">Alright! ... Now that we have that out of the way, let's move forward!</span>
