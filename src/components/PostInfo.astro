@@ -1,5 +1,6 @@
 ---
 import ShareButton from './ShareButton.astro'
+import RSSButton from './RSSButton.astro'
 
 const { title, date, tags, minutesRead } = Astro.props
 
@@ -39,6 +40,10 @@ const formattedDate = date.toLocaleDateString('en-US', {
       <span class="mx-2 text-gray-600">|</span>
       <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">
         <ShareButton />
+      </p>
+      <span class="mx-2 text-gray-600">|</span>
+      <p class="text-sm leading-5 tracking-wide text-gray-600 w500:text-xs">
+        <RSSButton />
       </p>
     </div>
     <!-- <div class="flex items-center"> -->

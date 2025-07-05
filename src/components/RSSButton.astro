@@ -1,0 +1,16 @@
+---
+// RSSButton.astro - Using Tabler icon
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="relative inline-block">
+  <a
+    href="/blog/rss.xml"
+    class="flex items-center text-gray-600 no-underline hover:text-gray-800 focus:outline-none dark:hover:text-gray-400"
+    style="color: rgb(75, 85, 99) !important;"
+    aria-label="Subscribe to RSS Feed"
+    title="Subscribe to RSS Feed"
+  >
+    <Icon name="tabler/rss" class="h-4 w-4" aria-hidden="true" />
+  </a>
+</div>
