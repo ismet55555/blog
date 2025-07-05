@@ -83,6 +83,7 @@ export default defineConfig({
           tooltipSuccessBackground: 'black'
         },
         uiFontFamily: 'inherit', // For code block editor
+        // codeFontSize: '1.1rem',
         borderColor: '#80808080',
         collapsibleSections: {
           closedTextColor: '#519639' // Bright blue

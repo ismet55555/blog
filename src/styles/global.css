@@ -12,6 +12,24 @@ prose p {
   margin-bottom: 2em;
 }
 
+.prose {
+  line-height: 1.6;
+  font-weight: 300;
+  font-size: 1.3rem;
+}
+
+p {
+  font-size: 1.3rem;
+}
+
+ul {
+  line-height: 1.4;
+}
+
+ol {
+  line-height: 1.4;
+}
+
 html {
   color: hsl(
     var(--colour-text-hue) var(--colour-text-saturation)
