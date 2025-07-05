@@ -51,8 +51,6 @@ export async function GET(context) {
     // Fix self-reference to use the correct domain
     customData: `
       <atom:link href="https://ismethandzic.com/blog/rss.xml" rel="self" type="application/rss+xml" />
-      <sy:updatePeriod>daily</sy:updatePeriod>
-      <sy:updateFrequency>1</sy:updateFrequency>
     `.trim()
   })
 }
