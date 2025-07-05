@@ -11,18 +11,10 @@
 
 ## TODO
 
-- Tools and components
-
-  - Just have the stuff for programming for now, come back for hardware stuff later!
-
 - GitHub Repo branch for tutorial
 
   - Each branch and code goes with a part
   - Add to post 6 and 7
-
-- IDE setup?
-  - VS Code - Plugins
-  - NeoVim - Plugins
 
 ## Posts
 

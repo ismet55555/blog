@@ -4,6 +4,7 @@
 
 ### Critical
 
+- Subscription - Email and RSS
 - Navigation side pane
   - <https://github.com/surjithctly/astro-navbar#readme>
 - Google analytics - Needs more setup!
@@ -19,11 +20,19 @@
 - Fonts
   - Sono
   - Calm - Monospaced
-  - <https://fonts.google.com/?preview.text=In%20the%20previous%20steps%20we%20simply%20edited%20files%20with%20pre-defefined%20code,%20before%0Arunning%20some%20commands%20in%20the%20terminal.%20This%20bare%20workflow%20may%20work,%20however%20there%0Aare%20some%20tools%20and%20methods%20that%20we%20can%20use%20to%20help%20us%20develop%20in%20Rust.%0A&preview.size=14&preview.layout=grid&lang=en_Latn&categoryFilters=Appearance:%2FMonospace%2FMonospace;Feeling:%2FExpressive%2FCalm;Sans+Serif:%2FSans%2F>*
+  - Selection
+    - <https://fonts.google.com/?preview.text=In%20the%20previous%20steps%20we%20simply%20edited%20files%20with%20pre-defefined%20code,%20before%0Arunning%20some%20commands%20in%20the%20terminal.%20This%20bare%20workflow%20may%20work,%20however%20there%0Aare%20some%20tools%20and%20methods%20that%20we%20can%20use%20to%20help%20us%20develop%20in%20Rust.%0A&preview.size=14&preview.layout=grid&lang=en_Latn&categoryFilters=Appearance:%2FMonospace%2FMonospace;Feeling:%2FExpressive%2FCalm;Sans+Serif:%2FSans%2F>\*
+    - <https://online-fonts.com/fonts?title=&categories=74&languages=476&alphabet=2&license_rules=619&sort_by=created>
+  - Examples:
+    - <https://ericmigi.com/blog/introducing-two-new-pebbleos-watches>
+      - San Francisco Mono - <https://online-fonts.com/fonts/san-francisco-mono>
+      - Menlo
+  - Cascadia Code
+  - JetBrains Mono
 - Mermaid graphs
   - <https://github.com/remcohaszing/rehype-mermaid>
   - <https://github.com/withastro/starlight/discussions/1259#discussioncomment-9300105>
-  - <https://code.juliancataldo.com/component/astro-diagram/#doc>
+  - <https://code.juliancataldo.com/compont/astro-diagram/#doc>
   - Example:
     - <https://mermaid.live/edit#pako:eNp1U9uO2yAQ_RVEFOXFm8T4koSHSrn2pZVWXamVaueB2DimscECvN1dy_9eDIm6TbVYQpyZc-ZYw9DBTOQUYjged4wzjUE30SWt6QSDyYkoOvGAC3wnkpFTRZXJdEMuu5ylaHk-MEdFOHwT0Pf9eJzysyRNCb58SzkwK6uIUjtagNKIqAQFqyo8itECkdBTWooLxaMwDBcR8TJRCYl_l0zTO3FN_mqjeUEWpzvtHV-VRNL8KiiKxSqL_xPcJCy7gDVIYal1o_BsRl9I3VR0mol6pjSROoUm-1kALcCTw--lm4-kVLfNe6nDTur2dWLrHcHDwyewSSzj6FIbG9v6ydZcEdjzZyYFrynXR4yxa-U_RJT8EPKiStE4o4Fmm-ZYW9_SdsmBSaXBoxS_aGZruU5dWcixHNpZsPeTdf5MeGbaOfzLvf-VhZLH8lWxjFRg07Iqv_PfO_-D8eeG8oH_3vkfoAdrKmvCcjOc3ZBLoZ3DFGJzzGlB2speQ2-opNXi6ZVnEGvZUg-awTyXN9A2OdF0x4iZyvoWbAj_KYSBBamUwxB38AViFCymQYDCeLmM0CpexR58hTiezlcojpf-HAXLwJx7D77ZAvPpyvej2MiipY98FAUepDnTQn51T8u-sP4PUvQNEw>
 - Charts
@@ -49,6 +58,7 @@
   - Email service
     - <https://buttondown.com/>
     - Mailchimp
+      - <https://dev.to/gedalyakrycer/create-an-email-list-with-react-mailchimp-965>
 - Adjust spacing on TOC
 - Figure out how to present References (smaller font?)
 - ASCII Heading?
@@ -70,7 +80,7 @@
 
 - Color
 
-  - Picker: https://htmlcolorcodes.com/color-picker/
+  - Picker: <https://htmlcolorcodes.com/color-picker/>
 
 - Emojis
 

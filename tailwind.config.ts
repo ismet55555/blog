@@ -10,13 +10,15 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inconsolata', ...defaultTheme.fontFamily.sans]
+        // sans: ['Source Code Pro', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         lightModeBg: '#DCDCDC',
         darkModeBg: '#1E1E1E',
         // accentColor: '#519639',
         // accentColor: '#3e9655',
-        accentColor: '#228B22',
+        accentColor: '#2c972c',
+        // accentColor: '#228B22',
         lightModeText: 'black',
         darkModeText: 'white'
       },

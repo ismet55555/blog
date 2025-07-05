@@ -82,7 +82,7 @@ export default defineConfig({
           editorTabBarBorderBottomColor: '#80808080',
           tooltipSuccessBackground: 'black'
         },
-        uiFontFamily: 'inherit',
+        uiFontFamily: 'inherit', // For code block editor
         borderColor: '#80808080',
         collapsibleSections: {
           closedTextColor: '#519639' // Bright blue

@@ -21,6 +21,7 @@
     "@expressive-code/plugin-line-numbers": "^0.40.1",
     "@fontsource/inconsolata": "^5.1.1",
     "@fontsource/sora": "^5.1.1",
+    "@fontsource/source-code-pro": "^5.2.6",
     "@giscus/react": "^3.1.0",
     "@iconify-json/tabler": "^1.2.16",
     "@iconify/react": "^5.2.0",
