@@ -17,7 +17,7 @@ export async function GET(context) {
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    site: context.site,
+    site: 'https://ismethandzic.com/blog',
 
     // Add feed-level metadata
     managingEditor: 'ismet.handzic@gmail.com (Ismet Handzic)',
@@ -25,15 +25,20 @@ export async function GET(context) {
     language: 'en-us',
     ttl: 60, // Cache for 60 minutes
 
-    items: sortedPosts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.pubDate,
-      description: post.data.description,
-      link: `/blog/${post.slug}/`,
-      guid: `/blog/${post.slug}/`,
-      categories: post.data.tags || [],
-      author: `ismet.handzic@gmail.com (${post.data.author || 'Ismet Handzic'})`
-    })),
+    items: sortedPosts.map((post) => {
+      // Use post.id since post.slug is undefined
+      const postSlug = post.id
+
+      return {
+        title: post.data.title,
+        pubDate: post.data.pubDate,
+        description: post.data.description,
+        link: `/blog/${postSlug}/`,
+        guid: `/blog/${postSlug}/`,
+        categories: post.data.tags || [],
+        author: `ismet.handzic@gmail.com (${post.data.author || 'Ismet Handzic'})`
+      }
+    }),
 
     // Enhanced XML namespaces
     xmlns: {
@@ -43,9 +48,9 @@ export async function GET(context) {
       sy: 'http://purl.org/rss/1.0/modules/syndication/'
     },
 
-    // Self-referencing atom:link and syndication info
+    // Fix self-reference to use the correct domain
     customData: `
-      <atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />
+      <atom:link href="https://ismethandzic.com/blog/rss.xml" rel="self" type="application/rss+xml" />
       <sy:updatePeriod>daily</sy:updatePeriod>
       <sy:updateFrequency>1</sy:updateFrequency>
     `.trim()

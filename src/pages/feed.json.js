@@ -16,8 +16,8 @@ export async function GET(context) {
   const jsonFeed = {
     version: 'https://jsonfeed.org/version/1.1',
     title: SITE_TITLE,
-    home_page_url: context.site,
-    feed_url: `${context.site}feed.json`,
+    home_page_url: 'https://ismethandzic.com/blog',
+    feed_url: 'https://ismethandzic.com/blog/feed.json',
     description: SITE_DESCRIPTION,
     language: 'en-us',
 
@@ -29,33 +29,38 @@ export async function GET(context) {
       }
     ],
 
-    items: sortedPosts.map((post) => ({
-      id: `${context.site}blog/${post.slug}/`,
-      url: `${context.site}blog/${post.slug}/`,
-      title: post.data.title,
-      content_text: post.data.description, // Plain text description
-      summary: post.data.description,
-      date_published: post.data.pubDate.toISOString(),
+    items: sortedPosts.map((post) => {
+      // Use post.id since post.slug is undefined (same as RSS fix)
+      const postSlug = post.id
 
-      // Author info
-      authors: [
-        {
-          name: post.data.author || 'Ismet Handzic',
-          email: 'ismet.handzic@gmail.com'
-        }
-      ],
+      return {
+        id: `https://ismethandzic.com/blog/${postSlug}/`,
+        url: `https://ismethandzic.com/blog/${postSlug}/`,
+        title: post.data.title,
+        content_text: post.data.description, // Plain text description
+        summary: post.data.description,
+        date_published: post.data.pubDate.toISOString(),
 
-      // Tags
-      tags: post.data.tags || [],
+        // Author info
+        authors: [
+          {
+            name: post.data.author || 'Ismet Handzic',
+            email: 'ismet.handzic@gmail.com'
+          }
+        ],
 
-      // Optional: Series information if you want to include it
-      ...(post.data.series && {
-        _series: {
-          name: post.data.series.name,
-          order: post.data.series.order
-        }
-      })
-    }))
+        // Tags
+        tags: post.data.tags || [],
+
+        // Optional: Series information if you want to include it
+        ...(post.data.series && {
+          _series: {
+            name: post.data.series.name,
+            order: post.data.series.order
+          }
+        })
+      }
+    })
   }
 
   return new Response(JSON.stringify(jsonFeed, null, 2), {
