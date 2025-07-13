@@ -1,19 +1,19 @@
 ---
 title: 'Big Button - Part 3 - Programming Hardware Components'
 description: 'Tools and components outline for the big button project programming'
-pubDate: 'Dec 3 2025'
+pubDate: 'July 13 2025'
 tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico']
-draft: true
+draft: false
 series: {
   name: "Big Button Tutorial",
   order: 3
 }
 previousPost:
   slug: "button_about_tutorial"
-  title: "Introduction"
-nextPost: 
-  slug: "button_program_hardware_connect"
-  title: "Connecting Programming Hardware"
+  title: "About this tutorial"
+# nextPost: 
+#   slug: "button_program_hardware_connect"
+#   title: "Connecting Programming Hardware"
 tag: 'HACKER'
 tagColor: 'green'
 aiHelp: [
@@ -38,8 +38,7 @@ import breakoutBoardDev from '../../images/button/hardware_overview/breakout-boa
 ## Introduction
 
 <Tag color="green" txt="💻 HACKER" /> In this post, we will go over the general tools, hardware, and components needed
-for the programming hardware parts for this project. Specifically, we are outlining
-all the components needed for our steps marked as <Tag color="green" txt="💻 HACKER" />.
+for the programming hardware parts for this project. 
 
 <Aside variant="tip">
   If you are unfamiliar with any of these tools or components, a quick google search or a 
@@ -70,7 +69,7 @@ the details for each item.
 
 | Name | Purpose | Online Link |
 |------|---------|-------------|
-| Raspberry Pi Pico W | Main microcontroller for the project | [Link](https://a.co/d/bqi2hE3) |
+| Raspberry Pi Pico 2 W | Main microcontroller for the project | [Link](https://a.co/d/8zmC3jx) |
 | Pico Debug Probe | For connecting to Pico for debugging | [Link](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) |
 | Pico Breakout Board (Dev) | For easy access to Pico pins during development | [Link](https://a.co/d/6anFgCV) |
 | Buzzer | For audio feedback | [Link](https://a.co/d/8HOhxGi) |
@@ -135,25 +134,31 @@ features and clamps, a good display, and a kick stand. Maybe something like
 
 ## Components
 
-### Raspberry Pi Pico W
+### Raspberry Pi Pico 2 W
 
-The [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) (RPi Pico W) 
+The [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) (RPi Pico 2 W) 
 [microcontroller](https://docs.rust-embedded.org/discovery/microbit/01-background/index.html)
 will be our central brain for this project. All logic will live on this microcontroller.
 
 <Figure
   src={rpiPico}
-  url="https://a.co/d/bqi2hE3"
+  url="https://a.co/d/8zmC3jx"
 />
 
-This Raspberry Pi is powered by an [arm-based](https://developer.arm.com/Processors/Cortex-M0-Plus)
-[RP2040](https://www.raspberrypi.com/products/rp2040/specifications/) chip ([RP2350](https://www.raspberrypi.com/products/rp2350/)
-for RPi Pico 2), while having other on-board [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
+This Raspberry Pi is powered by an [arm-based](https://developer.arm.com/Processors/Cortex-M33)
+[RP2350](https://www.raspberrypi.com/products/rp2350/) chip (the [RP2040](https://www.raspberrypi.com/products/rp2040/specifications/)
+is for the RPi Pico 1), while having other on-board [peripherals](https://www.labcenter.com/blog/sim-microcontroller-peripherals/)
 such as a wireless module *(the `W` in the name)*, a bluetooth chip, temperature sensor, and more.
+
+<Aside variant="note">
+  You are free to use the Raspberry Pi Pico 1 with the RP2040 chip, however the upcoming
+  code will have to be modified. Although, coding on the RP2040 chip is "easier", the
+  faster and more powerful RP2350 is designed to be more of a industry standard and
+  applicable for a more variety of situations.
+</Aside>
 
 See the official [Raspberry Pi Pico documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
 for more information. 
-
 
 <Aside variant="tip">
   You will have to connect a debug module (see next section) to the RPi. The debug module connects
@@ -161,10 +166,11 @@ for more information.
   [RPi pico with pins already pre-soldered](https://a.co/d/6ulNrik).
 </Aside>
 
-The Raspberry Pi Pico W is obviously not the only popular microcontroller of its kind.
+The Raspberry Pi Pico 2 W is obviously not the only popular microcontroller of its kind.
 You could select a different microcontroller that fits a specific need or skill set.
 For example, the [Freenove ESP32-WROOM Board](https://store.freenove.com/products/fnk0090)
 is also not a bad choice, however in scope of our project we will stick to the Raspberry Pi.
+
 
 
 ### Raspberry Pi Pico Debug Probe
@@ -196,7 +202,7 @@ for more information.
 
 ### Raspberry Pi Pico Breakout Board for Development
 
-For development and for actual final implementation of our Raspberry Pi Pico W, we will use breakout boards.
+For development and for actual final implementation of our Raspberry Pi Pico 2 W, we will use breakout boards.
 A [breakout board](https://soldered.com/learn/breakout-boards-what-are-they-and-why-you-should-use-them/) will
 take these pins and “break them out” onto a separate circuit board. That is, it maps the inputs and outputs of our
 Raspberry Pi Pico W onto easily accessible connectors.
