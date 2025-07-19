@@ -8,7 +8,7 @@ const { nextPost, previousPost } = Astro.props
       {previousPost && (
         <a
           href={`/blog/${previousPost.slug}`}
-          class="group flex flex-col border border-accentColor p-5 no-underline transition-colors hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
+          class="group flex flex-col border border-accentColor p-5 no-underline drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
         >
           <span class="text-lightModeTextLight dark:text-darkModeTextLight text-sm no-underline">
             Previous Post
@@ -22,7 +22,7 @@ const { nextPost, previousPost } = Astro.props
       {nextPost && (
         <a
           href={`/blog/${nextPost.slug}`}
-          class="group flex flex-col border border-accentColor p-5 no-underline transition-colors hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800 sm:text-right"
+          class="group flex flex-col border border-accentColor p-5 no-underline drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
         >
           <span class="text-lightModeTextLight dark:text-darkModeTextLight text-sm no-underline">
             Next Post

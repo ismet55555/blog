@@ -1,9 +1,9 @@
 ---
 title: 'Big Button - Part 4 - Connecting Programming Hardware'
 description: 'Everything you will need to connect all programming hardware for development'
-pubDate: 'Dec 4 2025'
+pubDate: 'July 19 2025'
 tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico', 'debug-probe']
-draft: true
+draft: false
 series: {
   name: "Big Button Tutorial",
   order: 4
@@ -11,11 +11,11 @@ series: {
 previousPost:
   slug: "button_program_hardware_overview"
   title: "Programming Tools and Components"
-nextPost: 
-  slug: "button_program_hardware_setup_test"
-  title: "Programming Hardware Setup and Test"
+# nextPost: 
+#   slug: "button_program_hardware_setup_test"
+#   title: "Programming Hardware Setup and Test"
 aiHelp: [
-  '8-bit style images - Dall-e',
+  '8-bit style images - Dall-e (ChatGPT)',
   'Spelling and grammar suggestions - Claude',
   'General post-hoc review - Claude'
 ]
@@ -32,7 +32,7 @@ import connect2 from '../../images/button/program_hardware_connect/connect2.webp
 
 ## Introduction
 
-<Tag color="green" txt="💻 HACKER" /> The goal of this post is to connect all of the hardware needed to start programming.
+<Tag color="green" txt="💻 HACKER" /> The goal of this part is to connect all of the hardware needed to start programming.
 We will lay out all needed hardware, carefully explain each, and show how each
 connects. 
 
@@ -44,37 +44,38 @@ verifying everything is ready to go for further programming and subsequent steps
 ## Hardware Needed
 
 0. A computer running Linux, MacOS, or Windows
-1. Raspberry Pi Pico W
+1. Raspberry Pi Pico 2 W
 2. Raspberry Pi Pico Debug Probe
 3. Raspberry Pi Pico Breakout Board - For Development and Testing
 
 <Aside variant="note">
-  Remember, all items needed for this entire project are listed in the [previous post](/blog/button_2_hardware_overview).
+  Remember, all items needed for this entire project are listed in
+  the [previous part](/blog/button_program_hardware_overview).
 </Aside>
 
 ## Soldering Header Pins
 
-Before we can connect the debug probe to the Raspberry Pi Pico W, we will have to ensure
-that the Raspberry Pi Pico W has 3 header pins soldered onto its [debug pin output](https://datasheets.raspberrypi.com/debug/debug-connector-specification.pdf)
+Before we can connect the debug probe to the Raspberry Pi Pico 2 W, we will have to ensure
+that the Pico has 3 header pins soldered onto its [debug pin output](https://datasheets.raspberrypi.com/debug/debug-connector-specification.pdf)
 as shown below. The debug probe will connect to these 3 header pins.
 
 <Figure
   src={headerPin}
-  caption="A Raspberry Pi Pico W with its 3 header pins connected to the debug probe"
+  caption="A Raspberry Pi Pico 2 W with its 3 header pins connected to the debug probe"
+  url="https://a.co/d/8zmC3jx"
 />
 
-Your Raspberry Pi Pico W [should come with the header pin included](https://a.co/d/cjhMqbk).
+Your Raspberry Pi Pico W [should come with the header pin included](https://a.co/d/8zmC3jx).
 However, if you do not have it, you can [order it here](https://a.co/d/5kvA77a).
 
 Before soldering the header pins into place, ensure they are positioned correctly.
 While there are a variety different ways to set this up, given the suggested
-soldering station from the previous station, here is an option to do that.
+soldering station from the previous part, here is an option to do that.
 
 <Figure
   src={headerSolderSetup}
-  caption="A Raspberry Pi Pico W and 3 header pin held by soldering station helping hands"
+  caption="A Raspberry Pi Pico 2 W and 3 header pin held by soldering station helping hands"
 />
-
 
 Next solder the 3 header pins onto the Pico. For reference here is a [great soldering tutorial](https://magpi.raspberrypi.com/articles/how-to-solder-gpio-pin-headers-to-raspberry-pi-pico)
 to get you started on how to solder header pins in general.
@@ -82,19 +83,20 @@ to get you started on how to solder header pins in general.
 <Aside variant="warning">
   If you have not soldered before, please be very careful with a hot soldering iron.
   [Please use all necessary safety precautions](https://www.youtube.com/watch?v=MmmXbMp30wU). In addition, feel free to test your
-  soldering skills on something else before soldering the Raspberry Pi Pico W.
+  soldering skills on something else before soldering your Raspberry Pi.
 </Aside>
 
 
 ## Breakout Board
 
-Let's place the Raspberry Pi Pico W into the breakout board. Orient the Pico the correct way,
+Let's place the Raspberry Pi Pico 2 W into the breakout board. Orient the Pico the correct way,
 carefully place all of the Pico's pins into the breakout board's connectors, and gently
-and evenly press the pico into the breakout board.
+and evenly press the Pico into the breakout board.
 
 <Figure
   src={breakoutBoardPico}
-  caption="A Raspberry Pi Pico W placed onto a breakout board for development"
+  caption="A Raspberry Pi Pico 2 W placed onto a breakout board for development"
+  url="https://a.co/d/6anFgCV"
 />
 
 
@@ -104,7 +106,7 @@ Now that we have all pieces ready, we are able to connect the debug probe. The
 debug probe should come with a USB cable and a cable that connects its
 JST-SH connector to a female 3-pin connector ([see here](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html#the-debug-probe)).
 
-We will first connect the debug probe module to the Raspberry Pi Pico W header pins we soldered
+We will first connect the debug probe module to the Raspberry Pi Pico 2 W header pins we soldered
 in the previous section. As we are connecting the header pins,
 **we will be looking at the Pico from the top, where the Pico's USB connection is on top.**
 
@@ -116,7 +118,7 @@ The pins are connected as follows:
 
 <Figure
   src={connect1}
-  caption="A Raspberry Pi debug probe connected to a Pico W and your computer"
+  caption="A Raspberry Pi debug probe connected to a Pico and your computer"
 />
 
 <Aside variant="note">
@@ -125,14 +127,14 @@ The pins are connected as follows:
   We will be **not** be using the serial UART wire to upload anything to the Pico.
 </Aside>
 
-Next, connect the debug probe and also the Raspberry Pi Pico W to your computer's USB port.
+Next, connect the debug probe and also the Raspberry Pi Pico 2 W to your computer's USB port.
 Note that you will obviously need two open USB A ports on your computer. However, you
 may want to use [some kind of USB hub](https://a.co/d/8otCfPq) in order to combine these into
 one single USB input or into a USB C port.
 
 Below is the entire setup. Note that I am using a small piece of tape between the debug probe
-cable and the Raspberry Pi Pico W USB output. Also there is a tie to tie together the
-USB cables.
+cable and the Raspberry Pi Pico 2 W USB output. Also, for better handling, there is a tie to
+tie together the USB cables.
 
 <Figure
   src={connect2}
@@ -143,12 +145,12 @@ USB cables.
   Remember, instead of using the debug probe we *could* also use a *second* Raspberry Pi Pico
   that connects to our main Pico and the computer. More information can be [found here](https://www.youtube.com/watch?v=0i2gLeBal9Y).
   This effectively loads up the [`debugprobe` firmware](https://github.com/raspberrypi/debugprobe)
-  onto the second Pico
+  onto the second Pico.
 </Aside>
 
 ## References
 
-- [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/)
+- [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/)
 - [Raspberry Pi Debug Probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html)
 - [Raspberry Pi Debug Probe Testing](https://www.jeffgeerling.com/blog/2023/testing-raspberry-pis-new-debug-probe)
 - [Breakout Board For Raspberry Pi Pico](https://store.freenove.com/products/fnk0081)
