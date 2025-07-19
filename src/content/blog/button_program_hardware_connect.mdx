@@ -22,6 +22,7 @@ aiHelp: [
 ---
 import Figure from '../../components/Figure.astro'
 import Tag from '../../components/Tag.astro'
+import crabWorking from '../../images/button/program_setup_test/crab-on-bench.webp';
 import headerPin from '../../images/button/program_hardware_connect/debug_probe_connect.webp';
 import headerSolderSetup from '../../images/button/program_hardware_connect/solder_setup.webp';
 import breakoutBoardPico from '../../images/button/program_hardware_connect/breakout_board_pico.webp';
@@ -40,6 +41,12 @@ connects.
 Finally, we will install all software for a simple [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
 verifying everything is ready to go for further programming and subsequent steps.
 */}
+
+<Figure
+  src={crabWorking}
+  caption="The Rust programming crab mascot connecting things"
+  url="https://docs.rust-embedded.org/book/"
+/>
 
 ## Hardware Needed
 
