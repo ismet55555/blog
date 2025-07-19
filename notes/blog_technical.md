@@ -4,7 +4,10 @@
 
 ### Critical
 
-- Subscription - Email and RSS
+- Subscription - Email
+
+### Nice to Have
+
 - Navigation side pane
   - <https://github.com/surjithctly/astro-navbar#readme>
 - Google analytics - Needs more setup!
@@ -14,10 +17,7 @@
 - Combine tutorial series
   - Navigation steps on the side within series
   - Or linear progression somehow
-
-### Nice to Have
-
-- Fonts
+- Fonts - DONE
   - Sono
   - Calm - Monospaced
   - Selection
@@ -51,7 +51,7 @@
 - Robots.txt
   - <https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt#why-astro-robots-txt>
 - Blog subscription
-  - RSS Feed
+  - RSS Feed - DONE
     - dlvrt.it
     - Tied to email campaign (integrate with mailchimp)
     - User how-to article
@@ -59,7 +59,7 @@
     - <https://buttondown.com/>
     - Mailchimp
       - <https://dev.to/gedalyakrycer/create-an-email-list-with-react-mailchimp-965>
-- Adjust spacing on TOC
+- Adjust spacing on TOC - DONE
 - Figure out how to present References (smaller font?)
 - ASCII Heading?
 

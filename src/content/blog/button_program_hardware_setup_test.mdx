@@ -1,9 +1,9 @@
 ---
 title: 'Big Button - Part 5 - Programming Hardware Setup and Test'
 description: 'Programming hardware tools setup for big button embedded project'
-pubDate: 'Dec 5 2025'
+pubDate: 'July 19 2025 2:00'
 tags: ['big-button', 'embedded', 'hardware', 'electrical', 'rpi-pico', 'debug-probe', 'rust']
-draft: true
+draft: false
 series: {
   name: "Big Button Tutorial",
   order: 5
@@ -39,10 +39,6 @@ That is, we are explaining and setting up:
 
 - Rust and Rust programming tools
 - Debugging and Target Interaction Toolkit
-
-{/*
-TODO: Run it by cloude for feedback
-*/}
 
 ## Rust
 
@@ -90,9 +86,9 @@ There is lots more information on this tool found in [the `cargo` book](https://
 code into an [executable/binary](https://en.wikipedia.org/wiki/Executable). This command
 is typically invoked via `cargo` rather than directly. You will often not use this exclusively by itself.
 
-To check if rust is already installed. Open up your computer [terminal](TODO) and enter the following
-command. If you do not get a version number, you do **not** have Rust installed and will
-have to install it.
+To check if rust is already installed. Open up your computer [terminal](https://support.apple.com/guide/terminal/welcome/mac)
+and enter the following command. If you do not get a version number, you do **not** have
+Rust installed and will have to install it.
 
 ```sh
 rustc --version
@@ -136,17 +132,14 @@ This includes:
 `probe-rs` is a embedded debugging and target interaction toolkit. It enables its user to
 program and debug microcontrollers via a debug probe device. 
 
-Essentially, the interiaction between your program/code and the microcontroller looks like this:
+Essentially, the interaction between your program/code and the microcontroller flows
+through the following order:
 
 1. Your super cool program/code
 2. `probe-rs` software
 3. USB protocol for hardware (ie. [CMSIS-DAP](https://os.mbed.com/handbook/CMSIS-DAP), [ST-Link](https://wiki.st.com/stm32mpu/wiki/ST-LINK), [J-Link](https://www.segger.com/products/debug-probes/j-link/), [FTDI](https://ftdichip.com/document/technical-notes/))
 4. Debug probe hardware
 5. Raspberry Pi Pico W Microcontroller
-
-{/*
-TODO: Mermaid chart of above
-*/}
 
 See more information about the [`probe-rs` tool here](https://probe.rs/docs/overview/about-probe-rs/).
 
@@ -155,7 +148,7 @@ See more information about the [`probe-rs` tool here](https://probe.rs/docs/over
   include [OpenOCD](https://openocd.org/) and [PyOCD](https://pyocd.io/).
 </Aside>
 
-### `probo-rs` Install and Setup
+### `probe-rs` Install and Setup
 
 The following are install methods and scripts that are found in the official `probe-rs` documentation.
 If you are interested in more details or other ways to install this tool
@@ -195,7 +188,7 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/relea
 ```
 
 For Linux you will have to set up [Userspace Device Management (udev)](https://en.wikipedia.org/wiki/Udev)
-rules for our debug probe seperately. **udev rules** are instructions that tell Linux what to do when specific devices
+rules for our debug probe separately. **udev rules** are instructions that tell Linux what to do when specific devices
 (like USB drives or debug probes) are plugged into your computer.
 These rules files control things like who can access the device, what name it gets,
 and what automatic actions should happen when the device is connected
@@ -233,8 +226,8 @@ The following debug probes were found:
 [0]: Debug Probe (CMSIS-DAP) -- 2e8a:000c:E6633861A3125F2C (CMSIS-DAP)
 ```
 
-If you see such and output, *great!* You are done with this section. 
-If you do not see that, try some of the follwoing steps.
+If you see such an output, *great!* You are done with this section. 
+If you do not see that, try some of the following steps.
 
 - Verify all hardware is connected and powered (usb port, debug probe)
 - Verify the USB port is properly working

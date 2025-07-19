@@ -185,6 +185,12 @@ Ok let us define what each one of these entries really mean and what we specifie
 | `<OPERATING_SYSTEM>` | Not specified. Bare-metal. |
 | `<APP_BINARY_INTERFACE>` | `eabi` - Standard embedded ABI for ARM systems ([Link](https://developer.arm.com/documentation/den0013/d/Application-Binary-Interfaces)) |
 
+<Aside variant="note">
+  Note that when running `cargo run`, the compile target `thumbv6m-none-eabi`
+  will be read from `rust-toolchain.toml` installing any tools, if needed. However,
+  we can explicitly install these compile tools with `rustup target add thumbv6m-none-eabi`
+</Aside>
+
 ### `.cargo/config.toml`
 
 By default and with a typical Rust project, `cargo` will know how to handle running
