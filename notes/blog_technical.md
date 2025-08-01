@@ -8,6 +8,13 @@
 
 ### Nice to Have
 
+- Sound effects on item hover
+  - Slight soft musical notes when hovering over blog items
+  - Hovering over images
+  - Interstaller soundtrack STAY noises
+  - Record guitar - 1 of 6 random sounds
+  - "swipe" for going to another screen
+  - https://pixabay.com/sound-effects/
 - Navigation side pane
   - <https://github.com/surjithctly/astro-navbar#readme>
 - Google analytics - Needs more setup!

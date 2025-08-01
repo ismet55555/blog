@@ -3,7 +3,7 @@ title: 'Big Button - Part 7 - Rust Project Setup'
 description: 'Finally getting to set up a Rust project for the Big Button'
 pubDate: 'Dec 7 2025'
 tags: ['big-button', 'embedded', 'rust', 'cargo', 'github']
-draft: true
+draft: false
 series: {
   name: "Big Button Tutorial",
   order: 7
@@ -114,11 +114,11 @@ Cool! This is the file and directory outline of what we just did.
 ```
 
 Note that the templated project we just created includes version control using
-[`git`](https://git-scm.com/), while automatically adding a `.gitignore` file,
-telling `git` which files and directories to not version control.
+[`git`](https://git-scm.com/), while automatically adding a [`.gitignore`](https://www.atlassian.com/git/tutorials/saving-changes/gitignore)
+file, telling `git` which files and directories to not version control.
 
 <Aside variant="note">
-  That this little `cargo` command can be used for any other Rust project you want to
+  This little `cargo` command can be used for any other Rust project you want to
   start from scratch.
 </Aside>
 
@@ -135,6 +135,8 @@ we will choose to store and version-control our project in [GitHub](https://gith
   caption="GitHub.com Source Control Mascot: Octocat"
   url="https://github.com/"
 />
+
+To create a new blank project repository in GitHub, do the following:
 
 1. Ensure you are [logged into GitHub.com](https://github.com/login)
 2. Create a new repository by visiting [this link](https://github.com/new)
@@ -155,7 +157,7 @@ have to connect our local Rust project to this remote repository.
   - [Getting Git right](https://www.atlassian.com/git) by Atlassian
 </Aside>
 
-The following commands are executed within your project's directory. This is the
+The following commands are executed locally within your project's directory. This is the
 directory your files like `Cargo.toml` are.
 
 ```sh
@@ -166,13 +168,13 @@ git remote add origin git@github.com:GITHUB_USERNAME/big-button.git
 # Rename the current branch to "main" (some people prefer this)
 git branch -M main
 
-# Git stage (aka. add) all newly created files and directories
+# Git stage (aka. add) all new changes, files, and directories
 git add .
 
-# Git commit the staged (aka. added) files and directories to the git branch
+# Git commit the staged (aka. added) changes, files, and directories to the current git branch (main)
 git commit -m "my initial commit"
 
-# Send this current and local branch to the remote GitHub repository
+# Send this current/local branch to the remote GitHub.com repository
 git push -u origin main
 ```
 
@@ -201,8 +203,8 @@ our output looks like the following.
 Hello, world!
 ```
 
-Note right now our Rust project has nothing to do with our embedded
-device. This is a very general starter setup.
+Note, right now our Rust project has nothing to do with our embedded
+device. This is a very general "hello world" starter setup.
 
 <span class="text-accentColor font-bold">
   OK! Easy enough. Let's move on and configure this project for our embedded project.
