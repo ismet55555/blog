@@ -25,6 +25,10 @@ const {
   frontmatter,
   minutesRead
 } = Astro.props
+
+// Determine if this is a tech post for dynamic styling
+const isTech = frontmatter.tech ?? true
+
 // const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
@@ -35,13 +39,20 @@ const {
   <ScrollProgressBar />
   <div
     id="markdown"
-    class="prose prose-lightMode w-full min-w-full text-lg leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:font-medium prose-headings:text-accentColor prose-a:text-blue-600 prose-a:no-underline prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-ol:text-lightModeText prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText hover:prose-a:text-blue-800 dark:text-darkModeText dark:prose-a:text-blue-400 dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText dark:hover:prose-a:text-blue-300 w500:text-lg w500:leading-[2.2] w500:prose-h1:text-3xl w500:prose-h2:text-2xl w500:prose-h3:text-lg w500:prose-h4:text-lg w500:prose-h5:text-lg w500:prose-h6:text-lg w400:text-base w400:leading-[2.2]"
+    class:list={[
+      'prose prose-lightMode w-full min-w-full text-lg leading-loose tracking-wide text-lightModeText dark:prose-darkMode prose-headings:font-medium prose-a:text-blue-600 prose-a:no-underline prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-ol:text-lightModeText prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText hover:prose-a:text-blue-800 dark:text-darkModeText dark:prose-a:text-blue-400 dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText dark:hover:prose-a:text-blue-300 w500:text-lg w500:leading-[2.2] w500:prose-h1:text-3xl w500:prose-h2:text-2xl w500:prose-h3:text-lg w500:prose-h4:text-lg w500:prose-h5:text-lg w500:prose-h6:text-lg w400:text-base w400:leading-[2.2]',
+      {
+        'prose-headings:text-techAccent': isTech,
+        'prose-headings:text-nonTechAccent': !isTech
+      }
+    ]}
   >
     <PostInfo
       title={frontmatter.title}
       date={frontmatter.pubDate}
       tags={frontmatter.tags}
       minutesRead={minutesRead || '0 min read'}
+      isTech={isTech}
     />
     <slot />
   </div>
@@ -49,11 +60,12 @@ const {
   <PostNavigation
     nextPost={frontmatter.nextPost}
     previousPost={frontmatter.previousPost}
+    isTech={isTech}
   />
 
   <Comments client:load />
   <AIHelp client:load items={frontmatter.aiHelp || []} />
-  <ScrollButtons />
+  <ScrollButtons isTech={isTech} />
 
   <style is:global>
     #markdown code:not(pre)::before,

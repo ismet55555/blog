@@ -1,5 +1,12 @@
 ---
-const { nextPost, previousPost } = Astro.props
+const { nextPost, previousPost, isTech = true } = Astro.props
+
+// Dynamic classes based on tech flag
+const borderClass = isTech ? 'border-techAccent' : 'border-nonTechAccent'
+const textAccentClass = isTech ? 'text-techAccent' : 'text-nonTechAccent'
+const bgHoverClass = isTech
+  ? 'hover:bg-green-100 dark:hover:bg-gray-800'
+  : 'hover:bg-orange-100 dark:hover:bg-gray-800'
 ---
 
 <!-- Previous / Next navigation for post -->{
@@ -8,12 +15,12 @@ const { nextPost, previousPost } = Astro.props
       {previousPost && (
         <a
           href={`/blog/${previousPost.slug}`}
-          class="group flex flex-col border border-accentColor p-5 no-underline drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
+          class={`group flex flex-col border p-5 no-underline drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 dark:border-gray-500 ${borderClass} ${bgHoverClass}`}
         >
           <span class="text-lightModeTextLight dark:text-darkModeTextLight text-sm no-underline">
             Previous Post
           </span>
-          <span class="text-accentColor no-underline">
+          <span class={`no-underline ${textAccentClass}`}>
             {previousPost.title}
           </span>
         </a>
@@ -22,12 +29,14 @@ const { nextPost, previousPost } = Astro.props
       {nextPost && (
         <a
           href={`/blog/${nextPost.slug}`}
-          class="group flex flex-col border border-accentColor p-5 no-underline drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
+          class={`group flex flex-col border p-5 no-underline drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 dark:border-gray-500 ${borderClass} ${bgHoverClass}`}
         >
           <span class="text-lightModeTextLight dark:text-darkModeTextLight text-sm no-underline">
             Next Post
           </span>
-          <span class="text-accentColor no-underline">{nextPost.title}</span>
+          <span class={`no-underline ${textAccentClass}`}>
+            {nextPost.title}
+          </span>
         </a>
       )}
     </nav>

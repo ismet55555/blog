@@ -4,6 +4,7 @@ description: 'Add configurations to the embedded Rust project'
 pubDate: 'Dec 8 2025'
 tags: ['big-button', 'embedded', 'rust', 'cargo']
 draft: true
+tech: true
 series: {
   name: "Big Button Tutorial",
   order: 8
@@ -36,7 +37,7 @@ import rocket_hyperspeed from '../../images/button/rust_project_config/rocket_hy
 This post will guide you to have your project set up to start adding
 Rust configuration and logic specifically for a embedded project.
 By the end of this post we will be able to run a short "Hello world" within our
-Raspberry Pi Pico W microcontroller!
+Raspberry Pi Pico 2 W microcontroller!
 
 <Figure
   src={rocket_repair}
@@ -147,7 +148,7 @@ channel = "nightly"
 # Lists the Rust components to include in the toolchain
 components = ["rust-src", "rust-std", "rustc-dev", "cargo", "rustfmt", "clippy"]
 
-# Defines the cross-compilation target for bare-metal ARM Cortex-M0 devices
+# Defines the cross-compilation target for bare-metal ARM Cortex-M0 devices - TODO
 # Format: <ARCHITECTURE>-<PLATFORM_VENDOR>-<OPERATING_SYSTEM>-<APP_BINARY_INTERFACE>
 targets = ["thumbv6m-none-eabi"]
 ```
@@ -173,17 +174,17 @@ Ok let us define what each one of these entries really mean and what we specifie
 - `targets`
 
     - This specifies where (what platform) our Rust program will ultimately run.
-    - We select `thumbv6m-none-eabi` for our Raspberry Pi Pico W microcontroller.
+    - We select `thumbv6m-none-eabi` for our Raspberry Pi Pico 2 W microcontroller.
     - The format and values are defined in the table below.
     
 | Target Name Part | Explanation |
 |-----------|-------------|
 | `<ARCHITECTURE>` | `thumbv6m` |
-|  | `thumb`: Thumb instruction set, a compact 16-bit encoding for ARM processors ([Link](https://developer.arm.com/documentation/ddi0210/c/CACBCAAE)) |
-|  | `v6m`: ARMv6-M architecture for Cortex-M0+ microcontrollers (RPi Pico W) ([Link](https://developer.arm.com/Processors/Cortex-M0-Plus)) |
+|  | `thumb`: Thumb instruction set, a compact 16-bit encoding for ARM processors TODO ([Link](https://developer.arm.com/documentation/ddi0210/c/CACBCAAE)) |
+|  | `v6m`: ARMv6-M architecture for Cortex-M0+ microcontrollers (RPi Pico 2 W) TODO ([Link](https://developer.arm.com/Processors/Cortex-M0-Plus)) |
 | `<PLATFORM_VENDOR>` | `none` - No specific vendor. Bare-metal target |
 | `<OPERATING_SYSTEM>` | Not specified. Bare-metal. |
-| `<APP_BINARY_INTERFACE>` | `eabi` - Standard embedded ABI for ARM systems ([Link](https://developer.arm.com/documentation/den0013/d/Application-Binary-Interfaces)) |
+| `<APP_BINARY_INTERFACE>` | `eabi` - Standard embedded ABI for ARM systems TODO ([Link](https://developer.arm.com/documentation/den0013/d/Application-Binary-Interfaces)) |
 
 <Aside variant="note">
   Note that when running `cargo run`, the compile target `thumbv6m-none-eabi`
@@ -298,7 +299,7 @@ readme = "README.md"
 # Rust program dependencies
 # Reference: https://doc.rust-lang.org/cargo/guide/dependencies.html
 [dependencies]
-cortex-m = "0.7"    # Core support for ARM Cortex-M microcontrollers
+cortex-m = "0.7"    # Core support for ARM Cortex-M microcontrollers - TDDO
 cortex-m-rt = "0.7" # Startup code and minimal runtime for Cortex-M
 panic-halt = "1.0"  # Basic panic handler that halts on panic
 defmt = "0.3"       # Deferred formatting for embedded logging

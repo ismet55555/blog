@@ -2,7 +2,7 @@
 import ShareButton from './ShareButton.astro'
 import RSSButton from './RSSButton.astro'
 
-const { title, date, tags, minutesRead } = Astro.props
+const { title, date, tags, minutesRead, isTech = true } = Astro.props
 
 const formattedDate = date.toLocaleDateString('en-US', {
   weekday: 'short',
@@ -10,11 +10,17 @@ const formattedDate = date.toLocaleDateString('en-US', {
   day: 'numeric',
   year: 'numeric'
 })
+
+// Dynamic accent color class
+const accentClass = isTech ? 'text-techAccent' : 'text-nonTechAccent'
 ---
 
 <!-- Top part of the blog post page -->
 <div class="mb-5">
-  <h2 transition:name={`${title}-${date}`} class="my-0 w-full text-4xl">
+  <h2
+    transition:name={`${title}-${date}`}
+    class={`my-0 w-full text-4xl ${accentClass}`}
+  >
     {title}
   </h2>
   <div class="flex items-center justify-between w500:flex-col w500:items-start">

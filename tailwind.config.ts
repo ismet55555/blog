@@ -6,6 +6,19 @@ import scrollbar from 'tailwind-scrollbar'
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    // Ensure these dynamic classes are always included
+    'prose-headings:text-techAccent',
+    'prose-headings:text-nonTechAccent',
+    'text-techAccent',
+    'text-nonTechAccent',
+    'border-techAccent',
+    'border-nonTechAccent',
+    'bg-techAccent',
+    'bg-nonTechAccent',
+    'hover:bg-green-100',
+    'hover:bg-orange-100'
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -14,12 +27,10 @@ export default {
       },
       colors: {
         lightModeBg: '#DCDCDC',
-        // darkModeBg: '#1E1E1E',
         darkModeBg: '#282828',
-        // accentColor: '#519639',
         accentColor: '#60a938',
-        // accentColor: '#2c972c',
-        // accentColor: '#228B22',
+        techAccent: '#60a938', // Tech accent
+        nonTechAccent: '#e67e22', // Non-Tech accent
         lightModeText: 'black',
         darkModeText: 'white'
       },

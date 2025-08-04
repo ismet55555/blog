@@ -41,6 +41,7 @@ const sortedPosts = await Promise.all(
         description={post.data.description}
         pubDate={post.data.pubDate}
         minutesRead={post.remarkPluginFrontmatter?.minutesRead || '0 min read'}
+        isTech={post.data.tech ?? true}
       />
     ))
   }

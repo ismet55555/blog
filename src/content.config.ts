@@ -35,6 +35,7 @@ const blog = defineCollection({
 
     // Optional fields with defaults
     draft: z.boolean().optional().default(false),
+    tech: z.boolean().optional().default(true),
 
     // Date fields - pubDate is required, updatedDate is optional
     pubDate: z.coerce.date(),

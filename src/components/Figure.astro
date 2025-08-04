@@ -7,6 +7,7 @@ interface Props {
   url?: string
   class?: string
   width?: string
+  isTech?: boolean
 }
 
 const {
@@ -14,11 +15,15 @@ const {
   caption,
   url,
   width = '1/2',
-  class: className = 'w-1/2 mx-auto border border-3 border-accentColor'
+  class: className = 'w-1/2 mx-auto border border-3 border-accentColor',
+  isTech = true
 } = Astro.props
 
+// Dynamic border color based on tech flag
+const borderColor = isTech ? 'border-techAccent' : 'border-nonTechAccent'
+
 const fullClassName =
-  `w-${width} mx-auto border border-3 border-accentColor drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] ${className}`.trim()
+  `w-${width} mx-auto border border-3 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] ${className} ${borderColor}`.trim()
 ---
 
 <figure>

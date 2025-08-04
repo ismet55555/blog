@@ -1,5 +1,12 @@
 ---
-const { url, title, description, pubDate, minutesRead } = Astro.props
+const {
+  url,
+  title,
+  description,
+  pubDate,
+  minutesRead,
+  isTech = true
+} = Astro.props
 
 const formattedDate = pubDate.toLocaleDateString('en-US', {
   weekday: 'short',
@@ -7,22 +14,30 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
   day: 'numeric',
   year: 'numeric'
 })
+
+// Dynamic classes based on tech flag
+const borderClass = isTech ? 'border-techAccent' : 'border-nonTechAccent'
+const titleClass = isTech ? 'text-techAccent' : 'text-nonTechAccent'
+const bgHoverClass = isTech
+  ? 'hover:bg-green-100 dark:hover:bg-gray-800'
+  : 'hover:bg-orange-100 dark:hover:bg-gray-800'
+const accentBgClass = isTech ? 'bg-techAccent' : 'bg-nonTechAccent'
 ---
 
 <!-- Preview on the list of blog posts -->
 <a
   href={`/blog/${url}`}
-  class="dark:hover:border:border-accentColor mb-[30px] block border border-accentColor p-6 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 hover:bg-green-100 dark:border-gray-500 dark:hover:bg-gray-800"
+  class={`mb-[30px] block border p-6 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 last:mb-0 hover:-translate-y-1 dark:border-gray-500 ${borderClass} ${bgHoverClass}`}
 >
   <div class="w-full">
     <h2
       transition:name={`${title}-${pubDate}`}
-      class="text-2xl font-bold font-medium text-accentColor w500:text-lg"
+      class={`text-2xl font-bold font-medium w500:text-lg ${titleClass}`}
     >
       {title}
     </h2>
     <span
-      class="relative bottom-0.5 block h-0.5 max-w-0 bg-accentColor transition-all duration-300 group-hover:max-w-full"
+      class={`relative bottom-0.5 block h-0.5 max-w-0 transition-all duration-300 group-hover:max-w-full ${accentBgClass}`}
     ></span>
   </div>
   <p

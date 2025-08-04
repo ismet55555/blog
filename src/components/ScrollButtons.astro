@@ -1,11 +1,21 @@
 ---
 import { Icon } from 'astro-icon/components'
+
+interface Props {
+  isTech?: boolean
+}
+
+const { isTech = true } = Astro.props
+
+// Dynamic classes based on tech flag
+const bgClass = isTech ? 'bg-techAccent' : 'bg-nonTechAccent'
+const ringClass = isTech ? 'focus:ring-techAccent' : 'focus:ring-nonTechAccent'
 ---
 
 <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
   <button
     id="scrollTopButton"
-    class="scroll-button scroll-top-button invisible flex h-12 w-12 items-center justify-center rounded-lg bg-accentColor bg-opacity-20 opacity-0 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+    class={`scroll-button scroll-top-button invisible flex h-12 w-12 items-center justify-center rounded-lg bg-opacity-20 opacity-0 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 ${bgClass} ${ringClass}`}
     aria-label="Scroll to top"
   >
     <Icon
@@ -17,7 +27,7 @@ import { Icon } from 'astro-icon/components'
 
   <button
     id="scrollBottomButton"
-    class="scroll-button scroll-bottom-button flex h-12 w-12 items-center justify-center rounded-lg bg-accentColor bg-opacity-20 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+    class={`scroll-button scroll-bottom-button flex h-12 w-12 items-center justify-center rounded-lg bg-opacity-20 drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 ${bgClass} ${ringClass}`}
     aria-label="Scroll to bottom"
   >
     <Icon

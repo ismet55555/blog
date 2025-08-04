@@ -1,0 +1,16 @@
+---
+// Component that applies dynamic accent color based on tech flag
+interface Props {
+  isTech: boolean
+  class?: string
+  style?: string
+}
+
+const { isTech, class: className = '', style = '', ...rest } = Astro.props
+const accentClass = isTech ? 'text-techAccent' : 'text-nonTechAccent'
+const fullClassName = `${accentClass} ${className}`.trim()
+---
+
+<span class={fullClassName} style={style} {...rest}>
+  <slot />
+</span>
