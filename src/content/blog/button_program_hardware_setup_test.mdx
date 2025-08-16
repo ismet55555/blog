@@ -32,7 +32,7 @@ import crabOnPi from '../../images/button/program_setup_test/crab-on-pi.webp';
 
 <span class="text-accentColor font-bold">Here we are finally doing some computer software stuff!</span>
 
-<Tag color="green" txt="💻 HACKER" /> We are going to install all software needed to start interacting with our Raspberry Pi Pico W
+<Tag color="green" txt="💻 HACKER" /> We are going to install all software needed to start interacting with our Raspberry Pi Pico 2 W
 microcontroller. We will setup everything for a simple connection [smoke test](https://en.wikipedia.org/wiki/Smoke_testing_(software)),
 verifying things are ready to go for further programming and subsequent steps.
 
@@ -140,7 +140,7 @@ through the following order:
 2. `probe-rs` software
 3. USB protocol for hardware (ie. [CMSIS-DAP](https://os.mbed.com/handbook/CMSIS-DAP), [ST-Link](https://wiki.st.com/stm32mpu/wiki/ST-LINK), [J-Link](https://www.segger.com/products/debug-probes/j-link/), [FTDI](https://ftdichip.com/document/technical-notes/))
 4. Debug probe hardware
-5. Raspberry Pi Pico W Microcontroller
+5. Raspberry Pi Pico 2 W Microcontroller
 
 See more information about the [`probe-rs` tool here](https://probe.rs/docs/overview/about-probe-rs/).
 
@@ -212,7 +212,7 @@ sudo udevadm trigger
 
 Let's verify that our setup worked by connecting our debug probe device
 to the computers USB port. For now, don't worry about the Raspberry
-Pi Pico W, we are just checking if we can talk to the debug probe.
+Pi Pico 2 W, we are just checking if we can talk to the debug probe.
 
 After connecting the debug probe, run the following command.
 
@@ -233,20 +233,6 @@ If you do not see that, try some of the following steps.
 - Verify all hardware is connected and powered (usb port, debug probe)
 - Verify the USB port is properly working
 - All of the listed commands executed successfully
-
-{/*
-`thumbv6m-none-eabi` is a target triple specifying a particular processor architecture and Application Binary Interface (ABI) for embedded development. Let's break it down:
-- `thumbv6m`: This refers to the Arm Thumb instruction set version 6 for Cortex-M series processors. Thumb is a compressed 16-bit instruction set for Arm processors that allows for higher code density and reduced memory usage compared to the full 32-bit Arm instruction set.
-- `none`: This means there is no underlying operating system or runtime environment on the target. The software runs directly on the "bare metal" of the processor.
-- `eabi`: This stands for Embedded Application Binary Interface, a standard that defines how compiled code interacts with the processor's registers, memory and stack at a low level. 
-
-So `thumbv6m-none-eabi` collectively specifies that the target processor uses the Thumb v6m instruction set, has no operating system, and follows the Embedded ABI calling conventions. This allows a compiler toolchain to generate the correct machine code for that specific type of processor.
-
-The Raspberry Pi Pico's RP2040 processor is a Cortex-M0+ core, which implements the Arm Thumb v6 instruction set. So when developing embedded software for the Pico, you would use a compiler toolchain and libraries that target `thumbv6m-none-eabi` to ensure compatibility.
-
-- [Notes on `thumbv6m-none-eabi` Target](https://doc.rust-lang.org/rustc/platform-support/thumbv6m-none-eabi.html)
-- [Raspberry Pi Pico W Cortex-M0+ Processor](https://developer.arm.com/Processors/Cortex-M0+)
-*/}
 
 ## References
 

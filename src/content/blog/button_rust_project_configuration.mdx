@@ -1,9 +1,9 @@
 ---
 title: 'Big Button - Part 8 - Rust Project Configuration'
 description: 'Add configurations to the embedded Rust project'
-pubDate: 'Dec 8 2025'
+pubDate: 'Aug 16 2025'
 tags: ['big-button', 'embedded', 'rust', 'cargo']
-draft: true
+draft: false
 tech: true
 series: {
   name: "Big Button Tutorial",
@@ -12,9 +12,9 @@ series: {
 previousPost:
   slug: "button_rust_project_setup"
   title: "Rust Project Setup"
-nextPost: 
-  slug: "button_rust_dev_workflow"
-  title: "Development Workflow"
+# nextPost: 
+#   slug: "button_rust_dev_workflow"
+#   title: "Development Workflow"
 aiHelp: [
   '8-bit style images - Dall-e (ChatGPT)',
   'Really explain specific file content - Claude',
@@ -34,14 +34,14 @@ import rocket_hyperspeed from '../../images/button/rust_project_config/rocket_hy
 ## Introduction
 
 <Tag color="green" txt="💻 HACKER" /> Ok let's dive into setting up our new baby Rust project and get it off the ground!
-This post will guide you to have your project set up to start adding
+This post will guide you through setting up your project to start adding
 Rust configuration and logic specifically for a embedded project.
-By the end of this post we will be able to run a short "Hello world" within our
+By the end of this post, we will be able to run a short "Hello world" within our
 Raspberry Pi Pico 2 W microcontroller!
 
 <Figure
   src={rocket_repair}
-  caption="Our Rust rocket being worked on and getting all riced out"
+  caption="Our Rust rocket being worked on and getting fully decked out"
   url="https://music.youtube.com/watch?v=HVN5ztsmwrU"
 />
 
@@ -123,9 +123,6 @@ Thumbs.db
 .project
 Session.vim
 .Session.vim
-
-# Secrets files
-**/*secrets.*
 ```
 
 ### `rust-toolchain.toml`
@@ -148,13 +145,13 @@ channel = "nightly"
 # Lists the Rust components to include in the toolchain
 components = ["rust-src", "rust-std", "rustc-dev", "cargo", "rustfmt", "clippy"]
 
-# Defines the cross-compilation target for bare-metal ARM Cortex-M0 devices - TODO
+# Defines the cross-compilation target for bare-metal ARM Cortex-M33 (ARMv8-M) devices
 # Format: <ARCHITECTURE>-<PLATFORM_VENDOR>-<OPERATING_SYSTEM>-<APP_BINARY_INTERFACE>
-targets = ["thumbv6m-none-eabi"]
+targets = ["thumbv8m.main-none-eabihf"] # "hf" indicates floating-point support
 ```
 
 This file that we just added will specify which Rust toolchain should be used
-for this project and which components/tools will the toolchain have..
+for this project and which components/tools will the toolchain have.
 
 Ok let us define what each one of these entries really mean and what we specified here.
 
@@ -164,7 +161,7 @@ Ok let us define what each one of these entries really mean and what we specifie
     - A full explanation of Rust release channels can be [seen here](https://rust-lang.github.io/rustup/concepts/channels.html)
     - We select `nightly` due to its recent developments in the embedded ecosystem. 
       Sorry for this short explanation, this is a larger discussion that is related 
-      embedded device dependence on `#![no_std]` which will make sense later.
+      embedded device dependence on `#![no_std]`, which will make sense later.
 
 - `components`
   
@@ -174,22 +171,25 @@ Ok let us define what each one of these entries really mean and what we specifie
 - `targets`
 
     - This specifies where (what platform) our Rust program will ultimately run.
-    - We select `thumbv6m-none-eabi` for our Raspberry Pi Pico 2 W microcontroller.
+    - We select `thumbv8m.main-none-eabihf` for our Raspberry Pi Pico 2 W microcontroller.
     - The format and values are defined in the table below.
+    - Note that the `hf` at the end refers to single-precision floating-point
+      support on the [RP2350 chip](https://www.raspberrypi.com/products/rp2350/).
     
 | Target Name Part | Explanation |
 |-----------|-------------|
-| `<ARCHITECTURE>` | `thumbv6m` |
-|  | `thumb`: Thumb instruction set, a compact 16-bit encoding for ARM processors TODO ([Link](https://developer.arm.com/documentation/ddi0210/c/CACBCAAE)) |
-|  | `v6m`: ARMv6-M architecture for Cortex-M0+ microcontrollers (RPi Pico 2 W) TODO ([Link](https://developer.arm.com/Processors/Cortex-M0-Plus)) |
+| `<ARCHITECTURE>` | `thumbv8m.main` |
+|  | `thumb`: Thumb instruction set, a compact 16-bit encoding for ARM processors ([Link](https://developer.arm.com/documentation/ddi0210/c/instruction-set-summary/thumb-instruction-set-summary)) |
+|  | `v8m`: ARMv8-M architecture for Cortex-M33 microcontrollers (RP2350) ([Link](https://developer.arm.com/Processors/Cortex-M33)) |
+|  | `main`: Main extension profile with full instruction set support |
 | `<PLATFORM_VENDOR>` | `none` - No specific vendor. Bare-metal target |
 | `<OPERATING_SYSTEM>` | Not specified. Bare-metal. |
-| `<APP_BINARY_INTERFACE>` | `eabi` - Standard embedded ABI for ARM systems TODO ([Link](https://developer.arm.com/documentation/den0013/d/Application-Binary-Interfaces)) |
+| `<APP_BINARY_INTERFACE>` | `eabihf` - Embedded ABI with hardware with floating-point (`hf`) support for RP2350 chip |
 
 <Aside variant="note">
-  Note that when running `cargo run`, the compile target `thumbv6m-none-eabi`
+  Note that when running `cargo run`, the compile target `thumbv8m.main-none-eabihf`
   will be read from `rust-toolchain.toml` installing any tools, if needed. However,
-  we can explicitly install these compile tools with `rustup target add thumbv6m-none-eabi`
+  we can explicitly install these compile tools with `rustup target add thumbv8m.main-none-eabihf`.
 </Aside>
 
 ### `.cargo/config.toml`
@@ -220,40 +220,31 @@ touch .cargo/config.toml
 Add the following configurations to the `config.toml` file we just created.
 *(Expand lines of code to view full file)*
 
-{/*
-TODO: Update for Pico 2
-*/}
-
-```toml title=".cargo/config.toml" collapse={7-10, 16-29, 35-36}
+```toml title=".cargo/config.toml" collapse={7-10, 16-24, 30-31}
 # Reference: https://doc.rust-lang.org/cargo/reference/config.html
 
 ##############################################################################
 # Build and Compiler Settings
 # Reference: https://doc.rust-lang.org/cargo/reference/config.html#build
 [build]
-target = "thumbv6m-none-eabi" # Chip: Cortex-M0 and Cortex-M0+ (RP2040)
-rustc = "rustc"               # Rust Compiler
-rustdoc = "rustdoc"           # Rust Documentation Generator
-jobs = 1                      # Number of parallel jobs to run
+target = "thumbv8m.main-none-eabihf" # Chip: Cortex-M33 (ARMv8-M) (RP2350)
+rustc = "rustc"                      # Rust Compiler
+rustdoc = "rustdoc"                  # Rust Documentation Generator
+jobs = 1                             # Number of parallel jobs to run
 
 ##############################################################################
 # Run Specification for Spcific Target Platform
 # Reference: https://doc.rust-lang.org/cargo/reference/config.html#target
-[target.thumbv6m-none-eabi]
+[target.thumbv8m.main-none-eabihf]
 runner = [
   "probe-rs",
   "run",
-  "--chip=RP2040",
+  "--chip=RP235x",
   "--log-format",
-  "{[{L}]%dimmed%bold} {{f:dimmed}:{l:dimmed}%30}: {s}",
+  "[{t}] {[{L}]%dimmed%bold} {{f:dimmed}:{l:dimmed}%30}: {s}",
 ]
 # Custom flags for compiler for this target
-rustflags = [
-  "-C",
-  "link-args=-Tlink.x -Tlink-rp.x -Tdefmt.x",
-  "-C",
-  "no-vectorize-loops",
-]
+rustflags = ["-C", "link-args=-Tlink.x -Tdefmt.x", "-C", "no-vectorize-loops"]
 
 ##############################################################################
 # Environmental Variables
@@ -278,18 +269,13 @@ defines the project's meta data, dependencies, runner profiles, and much more.
 We should already have the `Cargo.toml` file in our project, so let's edit it.
 Copy and paste the following into this file before we explain the contents.
 
-{/*
-TODO: Update for Pico 2
-*/}
-
-
 ```toml title="Cargo.toml" collapse={5-10, 16-46, 52-60}
 ########################################################################################
 # This Project/Package Metadata
-# Reference: https://doc.rust-lang.org/cargo/reference/manifest.html
+# Reference: https://doc.rust-lang.org/cargo/reference/workspaces.html#the-package-table
 [package]
-authors = ["Your Own Name"] # HEY YOU! UPDATE ME!
-edition = "2021"            # Reference: https://doc.rust-lang.org/edition-guide/rust-2021/index.html
+authors = ["YOUR OWN NAME"] # HEY YOU! UPDATE ME!
+edition = "2024"            # Rust code edition: https://doc.rust-lang.org/edition-guide/rust-2021/index.html
 license = "MIT"
 name = "big-button"
 version = "0.1.0"           # This project version
@@ -299,36 +285,37 @@ readme = "README.md"
 # Rust program dependencies
 # Reference: https://doc.rust-lang.org/cargo/guide/dependencies.html
 [dependencies]
-cortex-m = "0.7"    # Core support for ARM Cortex-M microcontrollers - TDDO
+cortex-m = "0.7"    # Core support for ARM Cortex-M microcontrollers (M33 for RP2350)
 cortex-m-rt = "0.7" # Startup code and minimal runtime for Cortex-M
 panic-halt = "1.0"  # Basic panic handler that halts on panic
-defmt = "0.3"       # Deferred formatting for embedded logging
-defmt-rtt = "0.4"   # RTT (Real-Time Transfer) transport for defmt
+defmt = "1.0"       # Deferred formatting for embedded logging
+defmt-rtt = "1.0"   # RTT (Real-Time Transfer) transport for defmt
 
 # Debug probe panic handler with defmt support
-panic-probe = { version = "0.3", features = ["print-defmt"] }
+panic-probe = { version = "1.0", features = ["print-defmt"] }
 
 # Embassy Rust embedded framework dependencies
-embassy-executor = { git = "https://github.com/embassy-rs/embassy.git", branch = "main", features = [
+embassy-embedded-hal = { version = "0.4", features = ["defmt"] }
+embassy-executor = { version = "0.8", features = [
   "arch-cortex-m",
   "executor-thread",
   "executor-interrupt",
   "defmt",
 ] }
-embassy-rp = { git = "https://github.com/embassy-rs/embassy.git", branch = "main", features = [
+embassy-rp = { version = "0.7", features = [
+  "critical-section-impl",
+  "time-driver",
   "defmt",
   "unstable-pac",
-  "time-driver",
-  "critical-section-impl",
-  "rp2040",
+  "rp235xb",
+  "binary-info",
 ] }
-embassy-time = { git = "https://github.com/embassy-rs/embassy.git", branch = "main", features = [
+embassy-time = { version = "0.4", features = [
   "defmt",
   "defmt-timestamp-uptime",
 ] }
-embassy-sync = { git = "https://github.com/embassy-rs/embassy.git", branch = "main", features = [
-  "defmt",
-] }
+embassy-sync = { version = "0.7", features = ["defmt"] }
+embassy-futures = { version = "0.1", features = ["defmt"] }
 
 ########################################################################################
 # Compiler profile for when running cargo run --release
@@ -340,7 +327,7 @@ debug-assertions = false # Debug assertion - disabled
 incremental = false      # Incremental compilation - disabled
 lto = 'fat'              # Link-time optimization - fat: Perform optimization across all crates
 opt-level = "s"          # Optimize compile - s: optimize for binary size
-overflow-checks = true   # Integer overflow checks - disabled
+overflow-checks = true   # Integer overflow checks - enabled
 panic = "abort"          # Panic strategy - abort: terminate process upon panic
 rpath = false            # Relative path - disabled
 ```
@@ -375,20 +362,86 @@ microcontroller.
 Add the following to a new file named `memory.x` within the root of your
 project directory.
 
-{/*
-TODO: Update for Pico 2
-*/}
-
-```js title="memory.x"
+```js title="memory.x" collapse={6-25, 29-40, 47-62, 66-75}
 /* memory.x - Tell linker how much memory is available and where it is */
 /* Note that these values are specific to our microcontroller */
-/* Source: https://github.com/embassy-rs/embassy/blob/main/examples/rp/memory.x */
+/* Source (Thank you!): https://github.com/embassy-rs/embassy/blob/main/examples/rp/memory.x */
 
 MEMORY {
-    BOOT2 : ORIGIN = 0x10000000, LENGTH = 0x100
-    FLASH : ORIGIN = 0x10000100, LENGTH = 2048K - 0x100
-    RAM   : ORIGIN = 0x20000000, LENGTH = 264K
+    /*
+     * The RP2350 has either external or internal flash.
+     *
+     * 2 MiB is a safe default here, although a Pico 2 has 4 MiB.
+     */
+    FLASH : ORIGIN = 0x10000000, LENGTH = 2048K
+    /*
+     * RAM consists of 8 banks, SRAM0-SRAM7, with a striped mapping.
+     * This is usually good for performance, as it distributes load on
+     * those banks evenly.
+     */
+    RAM : ORIGIN = 0x20000000, LENGTH = 512K
+    /*
+     * RAM banks 8 and 9 use a direct mapping. They can be used to have
+     * memory areas dedicated for some specific job, improving predictability
+     * of access times.
+     * Example: Separate stacks for core0 and core1.
+     */
+    SRAM8 : ORIGIN = 0x20080000, LENGTH = 4K
+    SRAM9 : ORIGIN = 0x20081000, LENGTH = 4K
 }
+
+SECTIONS {
+    /* ### Boot ROM info
+     *
+     * Goes after .vector_table, to keep it in the first 4K of flash
+     * where the Boot ROM (and picotool) can find it
+     */
+    .start_block : ALIGN(4)
+    {
+        __start_block_addr = .;
+        KEEP(*(.start_block));
+        KEEP(*(.boot_info));
+    } > FLASH
+
+} INSERT AFTER .vector_table;
+
+/* move .text to start /after/ the boot info */
+_stext = ADDR(.start_block) + SIZEOF(.start_block);
+
+SECTIONS {
+    /* ### Picotool 'Binary Info' Entries
+     *
+     * Picotool looks through this block (as we have pointers to it in our
+     * header) to find interesting information.
+     */
+    .bi_entries : ALIGN(4)
+    {
+        /* We put this in the header */
+        __bi_entries_start = .;
+        /* Here are the entries */
+        KEEP(*(.bi_entries));
+        /* Keep this block a nice round size */
+        . = ALIGN(4);
+        /* We put this in the header */
+        __bi_entries_end = .;
+    } > FLASH
+} INSERT AFTER .text;
+
+SECTIONS {
+    /* ### Boot ROM extra info
+     *
+     * Goes after everything in our program, so it can contain a signature.
+     */
+    .end_block : ALIGN(4)
+    {
+        __end_block_addr = .;
+        KEEP(*(.end_block));
+    } > FLASH
+
+} INSERT AFTER .uninit;
+
+PROVIDE(start_to_end = __end_block_addr - __start_block_addr);
+PROVIDE(end_to_start = __start_block_addr - __end_block_addr);
 ```
 
 The comprehensive nature and logic behind the contents of this `memory.x` file is beyond
@@ -396,9 +449,11 @@ the scope of this tutorial. However, let's roughly define what we see in this fi
 
 | Region | Short Definition | Start Memory Address | Length |
 |---------|-----------------|---------------|---------|
-| BOOT2 | [Second-stage bootloader](https://en.wikipedia.org/wiki/Bootloader#Second-stage_boot_loader) | 0x10000000 | 0x100 (256 bytes) |
-| FLASH | [Program flash storage](https://en.wikipedia.org/wiki/Flash_memory) | 0x10000100 | 2048K - 0x100 (~2MB) |
-| RAM | [Working memory](https://en.wikipedia.org/wiki/Random-access_memory) | 0x20000000 | 264K |
+| FLASH | [Program flash storage](https://en.wikipedia.org/wiki/Flash_memory) | 0x10000000 | 2048K (~2MB) |
+| RAM | [Working memory](https://en.wikipedia.org/wiki/Random-access_memory) (striped banks 0-7) | 0x20000000 | 512K |
+| SRAM8 | [Direct-mapped memory bank 8](https://en.wikipedia.org/wiki/Random-access_memory) | 0x20080000 | 4K |
+| SRAM9 | [Direct-mapped memory bank 9](https://en.wikipedia.org/wiki/Random-access_memory) | 0x20081000 | 4K |
+| BOOT2 | N/A - RP2350's Boot ROM is smarter | N/A | N/A |
 
 ### `build.rs`
 
@@ -414,7 +469,7 @@ It runs on the host machine (not the target device) during compilation. Hence, w
 tools/code available for processing.
 
 ```rs title="build.rs"
-//! This build script runs during code compilation
+//! This build script runs during code complilation
 //! Runs on host computer, where `std` Rust tools are available here
 
 use std::env;
@@ -431,7 +486,7 @@ fn main() {
         .unwrap();
     println!("cargo:rustc-link-search={}", out.display());
 
-    // Re-run on any changes `memory.x` and `build.rs`
+    // Re-run for any changes to `memory.x` and `build.rs`
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=memory.x");
 }
@@ -439,7 +494,7 @@ fn main() {
 
 ### `src/main.rs`
 
-Let's finalize our changes with editing one last and existing file. 
+Let's finalize our changes by editing one last file.
 
 Remember, in this blog tutorial step we are mainly concerned on laying out and
 testing the project base setup and configuration. Hence, we will save the
@@ -452,8 +507,8 @@ in this post yet. The princess is in another castle `:-/` )
 ```rs title="src/main.rs"
 #![no_std]
 #![no_main]
-#![allow(unused_variables)] // for development
-#![allow(unused_imports)] // for development
+#![allow(unused_variables)] // only used for development
+#![allow(unused_imports)] // only used for development
 
 use defmt::*;
 use defmt_rtt as _;
@@ -509,8 +564,10 @@ didn't accidentally forget a closing brace or something stupid small like that.
 If we did everything correctly so far, we should be able to run everything
 without issues.
 
-*Ensure that your Raspberry Pi Pico W and debug probe setup are both plugged into
-your computer's USB port and run the following command.*
+Ensure that your Raspberry Pi Pico 2 W and the debug probe setup are both plugged into
+your computer's USB port and connecting (`probe-rs list`)
+
+Run the following command in the terminal and within the project's root directiory:
 
 ```sh
 cargo run --release
@@ -520,16 +577,18 @@ After some compiling and running, you should get something like this as terminal
 
 ```txt frame="none"
    ....
-   Compiling big-button v0.1.0 (/home/you/projects/big-button)
-    Finished `release` profile [optimized + debuginfo] target(s) in 4.54s
-     Running `probe-rs run --chip=RP2040 --log-format '{[{L}]%dimmed%bold} {{f:dimmed}:{l:dimmed}%30}: {s}' target/thumbv6m-none-eabi/release/big-button`
-      Erasing ✔ [00:00:00] [##########################################################################################################################################] 12.00 KiB/12.00 KiB @ 63.22 KiB/s (eta 0s )
-  Programming ✔ [00:00:00] [##########################################################################################################################################] 12.00 KiB/12.00 KiB @ 32.72 KiB/s (eta 0s )
-    Finished in 0.589s
-[INFO ] main.rs:22    : Hello World!
-[INFO ] main.rs:25    : Goodbye World!
-[INFO ] main.rs:22    : Hello World!
-[INFO ] main.rs:25    : Goodbye World!
+   Compiling big-button v0.1.0 (/home/ismet/projects/TEMP/blog_test/big-button)
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.77s
+     Running `probe-rs run --chip=RP235x --log-format '[{t}] {[{L}]%dimmed%bold} {{f:dimmed}:{l:dimmed}%30}: {s}' target/thumbv8m.main-none-eabihf/release
+/big-button`
+      Erasing ✔ 100% [####################]  12.00 KiB @  52.50 KiB/s (took 0s)
+     Finished in 0.62s
+[0.000358] [INFO ] main.rs:23                    : Hello World!
+[1.000402] [INFO ] main.rs:26                    : Goodbye World!
+[2.000413] [INFO ] main.rs:23                    : Hello World!
+[3.000425] [INFO ] main.rs:26                    : Goodbye World!
+[4.000437] [INFO ] main.rs:23                    : Hello World!
+[5.000449] [INFO ] main.rs:26                    : Goodbye World!
 ```
 
 <Figure
@@ -543,9 +602,10 @@ or even just pull the USB cable to the Pico and debug probe out of
 the computer USB port *(discouraged)*.
 
 <Aside variant="note">
-  Just because you are not seeing the logs being streamed to your
+  Just because you are *not* seeing the logs being streamed to your
   computer terminal, does not mean the code/logic is not still running
-  on your microcontroller.
+  on your microcontroller. The whole point here is to have the microcontroller
+  independent from the computer.
 </Aside>
 
 <span class="text-accentColor font-bold">
