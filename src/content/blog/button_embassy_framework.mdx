@@ -1,0 +1,272 @@
+---
+title: 'Big Button - Part 10 - Embassy Embedded Rust Framework'
+description: 'A overview of the Embassy Embedded Rust framework'
+pubDate: 'Dec 10 2025'
+tags: ['big-button', 'embedded', 'rust', 'embassy', 'framework']
+draft: false
+tech: true
+series: {
+  name: "Big Button Tutorial",
+  order: 10
+}
+previousPost:
+  slug: "button_rust_dev_workflow"
+  title: "Development Workflow"
+# nextPost: 
+#   slug: "button_rust_project_configuration"
+#   title: "Rust Project Configuration"
+aiHelp: [
+  '8-bit style images - Dall-e (ChatGPT)',
+  'Spelling and grammar suggestions - Claude',
+  'General post-hoc review - Claude',
+  'List of Embassy framework advantages - Claude',
+  'Generate simple HAL code snippets - Claude',
+]
+---
+import Figure from '../../components/Figure.astro'
+import Tag from '../../components/Tag.astro'
+import embassyChip from '../../images/button/embassy_framework/embassy-on-chip.webp';
+import freeLunch from '../../images/button/embassy_framework/free-lunch.webp';
+import framework from '../../images/button/embassy_framework/framework.webp';
+import asyncWashCook from '../../images/button/embassy_framework/async-wash-cook.webp';
+import halDiagram from '../../images/button/embassy_framework/hal_diagram.webp';
+import tba from '../../images/tba.png';
+
+## Table of Contents
+
+## Introduction
+
+<Tag color="green" txt="💻 HACKER" /> Let's go over the concept
+of programming abstractions, levels of programming, programming frameworks,
+and the framework we will use for our embedded programming adventures.
+This again will be more of an explanatory-type part before we jump
+into more code.
+
+<Figure
+  src={embassyChip}
+  caption="Embassy on a chip"
+  url="https://youtu.be/SUsqnD9-42g?si=qMiWmpLAnb_kgFyZ"
+/>
+
+## From Standard Library to Frameworks
+
+You can program embedded devices using different levels of built-in tools. From using only the
+language's [standard library](https://en.wikipedia.org/wiki/Standard_library) (or core library
+in embedded) where you handle every detail yourself, to using a full framework that
+provides ready-made solutions for common tasks.
+
+Remember, that no advantage is free and must come at a cost (no free lunch 🥪).
+
+<Figure
+  src={freeLunch}
+  caption="An ideal and imaginary free lunch"
+  url="https://en.wikipedia.org/wiki/No_such_thing_as_a_free_lunch"
+/>
+
+If, for example, you want to use a framework function that quickly and conveniently does
+50 things behind the scenes, you are effectively trusting the framework's code to do
+what/how/when you need. You also are accepting less control of the underlying
+system (there might be other functions and configurations you would not know about).
+
+However, in contrast, standard library programming is not necessarily the correct/full answer all
+the time. The more you build from scratch with just basic tools, the more complex, time consuming,
+and error-prone programming will get.
+
+Most times, there is a trade-off between framework convenience, ease, programming speed
+and standard library control, customization, and minimal dependencies.
+
+You *CAN* program a microcontroller using only Rust's core library with no frameworks, manually
+handling every peripheral and interrupt, but it would take a ton of knowledge and effort to exactly
+get it to do what you want it to do.
+
+This is where frameworks come into play and shine!
+
+
+## Frameworks
+
+Generally speaking, a programming framework could just about be anything structured that
+makes programming easier, more convenient, and accessible. A set of custom functions
+could theoretically be considered a simple framework.
+
+<Figure
+  src={framework}
+  caption="Just a general physical version of a framework"
+  url="https://youtu.be/y8W7KbJTg7A?si=BJPmpLzcfOxabvTU"
+/>
+
+Here in our case, we are talking about an embedded hardware programming framework
+that enables us to program a microcontroller chip efficiently. That is, giving you
+a lot of pre-written code and ways for a more "plug-and-play" experience.
+
+<Aside variant="note">
+  You might be wondering: What is a difference between a framework and a
+  library/package? Generally speaking, a framework itself calls your code
+  and also may call library/package code. However, typically library/package
+  code does not call your code or the framework. (ie. *who calls who*)
+</Aside>
+
+## Embassy 🏢
+
+**Enter [Embassy](https://embassy.dev/)!** - A Rust-based asynchronous embedded
+programming framework.
+
+The obvious selling point about Embassy is that it is based in Rust programming language.
+However, there are other great features Embassy offers (check out their [website](https://embassy.dev/)).
+Let's discuss some of the more relevant advantages. 
+
+### Asynchronous Programming
+
+Asynchronous (non-blocking) programming is a programming paradigm that allows operations to execute
+independently of the main program flow. In the context of embedded systems, this means
+a microcontroller can start an operation (like reading from a sensor) and then
+continue with other work while waiting for that operation to complete.
+
+Here is an analogy for an asynchronous program flow:
+
+*Imagine trying to do the laundry while cooking dinner. You start the washing machine,
+then while it runs you chop vegetables and prepare your meal. When the washer
+beeps, you move clothes to the dryer, then return to cooking. By the time dinner
+is ready, your laundry is also done. **The two tasks were completed in parallel.***
+
+<Figure
+  src={asyncWashCook}
+  caption="Async is just letting the washer spin while you dice the onions."
+  url="https://youtu.be/wI2wJXWKGdY?si=wZl086eTPL-dyXSU"
+/>
+
+For this tutorial series, it is important to at least get a good conceptual grip on async programming.
+The comprehensive explanation of async programming and the contrast to parallel or concurrent
+programming is outside of the scope of this tutorial. However, I encourage you to review
+some great explanations on asynchronous programming: [Article 1](https://www.indeed.com/career-advice/career-development/asynchronous-programming),
+[Article 2](https://blog.veeso.dev/blog/en/async-rust-for-dummies/),
+[Video](https://www.youtube.com/watch?v=iz1afhgomys),
+[Short](https://youtu.be/v6sI1tidSw8?si=INO0Z4458LJvQ5EJ).
+
+Embassy's asynchronous approach offers:
+
+- **Power efficiency**: Tasks give up CPU processing while waiting, saving power in battery-operated devices
+- **No polling**: Wait for events without constantly checking status flags
+- **Task prioritization**: Assign importance levels to different operations
+- **Thread safety**: Compile-time guarantees prevent data races between concurrent operations
+- **Simplified concurrency**: Asynchronous code reads sequentially despite concurrent execution
+
+### Real-Time Operating System (RTOS)
+
+A Real-Time Operating System (RTOS) is a type of [operating system](https://simple.wikipedia.org/wiki/Operating_system)
+designed to process data and events with minimal delay and precise timing guarantees.
+
+The term "real-time" refers to the fact that the system must very quickly react to events
+(button presses, network requests, etc) within a small time-constraint.
+It's like a chef in a busy restaurant who must respond immediately when the bell rings
+for a new order - there's no time to wait or the customers will be unhappy.
+
+If you are interested in anything RTOS, checkout the [ROTS wikipedia entry](https://en.wikipedia.org/wiki/Real-time_operating_system)
+or this [video](https://www.youtube.com/watch?v=bd5EtpSDOHk).
+
+The Embassy framework is an RTOS that includes the following advantages:
+
+- **Cooperative multitasking**: Tasks run until they explicitly give up control
+- **Lightweight executor**: Minimal overhead compared to traditional RTOS solutions
+- **Deterministic timing**: Predictable execution patterns for time-sensitive applications
+- **No dynamic allocation**: Static task allocation eliminates heap fragmentation
+- **Interrupt integration**: Seamless handling of hardware interrupts within the async model
+
+<Aside variant="note">
+  Remember, Embassy is not the only or the most popular RTOS framework out there.
+  Others include [FreeRTOS](https://www.freertos.org/), [pyRTOS](https://github.com/Rybec/pyRTOS),
+  and [many others](https://en.wikipedia.org/wiki/Comparison_of_real-time_operating_systems)
+</Aside>
+
+
+### Hardware Abstraction Layer (HAL)
+
+The [Hardware Abstraction Layer (HAL)](https://en.wikipedia.org/wiki/Hardware_abstraction#In_operating_systems)
+is exactly as it sounds: A layer that abstracts the underlying hardware code making the
+hardware functions more accessible.
+
+The HAL allows the same code to be used across different hardware devices. For example,
+setting an LED to high/on, would look very similar on a Raspberry Pi Pico or a 
+STM32 microcontroller. This allows programmers to easier update hardware-related code.
+HAL often allows programmers to write device-independent code.
+
+<Figure
+  src={halDiagram}
+  caption="Diagram of layers of HAL programming code abstraction"
+  url="https://en.wikipedia.org/wiki/Hardware_abstraction"
+  class = "w-3/4 mx-auto border border-3 border-accentColor"
+/>
+
+The Embassy project maintains these HALs for select hardware, but you can still
+use HALs from other projects with Embassy. That is, if you want more control for 
+the underlying layer you can use the specific HALs (ie. [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html),
+[embassy-stm32](https://docs.embassy.dev/embassy-stm32/git/stm32h743xg/index.html))
+
+As a simplified example, here is a program setting an LED to high/on for a Raspberry Pi Pico:
+
+```rust title="hal-embassy-rp.rs"
+#![no_std]
+#![no_main]
+
+use embassy_executor::Spawner;
+use embassy_rp::gpio::{Level, Output};  // <-- NOTE
+use {defmt_rtt as _, panic_probe as _};
+
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    let p = embassy_rp::init(Default::default());
+    
+    // Configure "PIN_25" as output, set as initially high
+    let mut led = Output::new(p.PIN_25, Level::High);
+    
+    // Set LED to on
+    led.set_high();
+}
+```
+
+And here is the same code but coded for a STM32 microcontroller:
+
+```rust title="hal-embassy-stm32.rs"
+#![no_std]
+#![no_main]
+
+use embassy_executor::Spawner;
+use embassy_stm32::gpio::{Level, Output, Speed};  // <-- NOTE
+use {defmt_rtt as _, panic_probe as _};
+
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    let p = embassy_stm32::init(Default::default());
+    
+    // Configure "PC13" as output, set as initially high
+    let mut led = Output::new(p.PC13, Level::High, Speed::Low);
+    
+    // Set LED to on
+    led.set_high();
+}
+```
+
+From these two example code snippets it becomes obvious that Embassy's
+HAL abstraction hides code complexity and tries to keep code consistent across
+systems. While there are minor differences (i.e. `Speed::Low`), the code is
+generally the same.
+
+Some advantages of Embassy's HAL system include:
+
+- **Cross-platform abstractions**: Single API works across different microcontroller families
+- **Peripheral drivers**: Ready-made implementations for UART, SPI, I2C, GPIO, and more
+- **Type-state API**: Impossible to misuse peripherals due to compile-time checks
+- **Target-specific modules**: Specialized support for:
+  - STM32 microcontrollers via `embassy-stm32`
+  - Raspberry Pi microcontrollers via `embassy-rp`
+  - Nordic nRF chips via `embassy-nrf`
+  - ESP32 chips via `embassy-esp`
+
+## Resources
+
+- [Embassy Framework FAQ](https://embassy.dev/book/#_frequently_asked_questions)
+- [Embassy Framework System Description](https://embassy.dev/book/#_system_description)
+
+
+<span class="text-accentColor font-bold">
+  OK. Now let's start CODING!
+</span>
