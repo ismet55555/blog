@@ -27,26 +27,17 @@
 - Rust Programming Resources
 - Rust Project Setup
 - Rust Project Configuration
-
-### Incomplete
-
 - Active Programming Workflow
-
-  - clippy or bacon
-  - Re-running or bacon or watch command
-    - How to handle seperate terminals
-    - Show a sketch of using two different terminals? fancy ray.so?
-  - In VS Code? - do i have to cover everything?? probably not
-
 - Detour: Embassy Framework Explained
 
-  - Some diagram of what is going on with async
+### Incomplete
 
 - Handling Program Configuration and Secrets
 
 - Setting system clock frequency
-
   - Notes about battery usage and performance
+
+- Software: implementation: State machine
 
 - LED - Simple
 
@@ -64,7 +55,6 @@
 - Software: implementation: Button
 - Software: implementation: Buzzer
 - Software: implementation: Network Request
-- Software: implementation: State machine
 - Software: implementation: Unit Testing
 
 - Automation: DevOps and Maintenance
