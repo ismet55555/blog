@@ -294,14 +294,14 @@ defmt-rtt = "1.0"   # RTT (Real-Time Transfer) transport for defmt
 panic-probe = { version = "1.0", features = ["print-defmt"] }
 
 # Embassy Rust embedded framework dependencies
-embassy-embedded-hal = { version = "0.4", features = ["defmt"] }
-embassy-executor = { version = "0.8", features = [
+embassy-embedded-hal = { version = "0.5", features = ["defmt"] }
+embassy-executor = { version = "0.9", features = [
   "arch-cortex-m",
   "executor-thread",
   "executor-interrupt",
   "defmt",
 ] }
-embassy-rp = { version = "0.7", features = [
+embassy-rp = { version = "0.8", features = [
   "critical-section-impl",
   "time-driver",
   "defmt",
@@ -309,7 +309,7 @@ embassy-rp = { version = "0.7", features = [
   "rp235xb",
   "binary-info",
 ] }
-embassy-time = { version = "0.4", features = [
+embassy-time = { version = "0.5", features = [
   "defmt",
   "defmt-timestamp-uptime",
 ] }

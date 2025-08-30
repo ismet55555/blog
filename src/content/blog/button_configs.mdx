@@ -2,7 +2,7 @@
 title: 'Big Button - Part 11 - Handling Project Configurations'
 description: 'Loading pre-defined configurations for our project'
 pubDate: 'Aug 24 2025'
-tags: ['big-button', 'embedded', 'rust', 'cargo', 'github', 'configs']
+tags: ['big-button', 'embedded', 'rust', 'cargo', 'configs']
 draft: false
 tech: true
 series: {
@@ -12,15 +12,15 @@ series: {
 previousPost:
   slug: "button_embassy_framework"
   title: "Embassy Framework Explained"
-# nextPost: 
-#   slug: "button_rust_project_configuration"
-#   title: "Rust Project Configuration"
+nextPost: 
+  slug: "button_secrets"
+  title: "Rust Project Secrets"
 aiHelp: [
   '8-bit style images - Dall-e (ChatGPT)',
   'Really explain specific file content - Claude',
+  'Check clarity and flow - Claude',
   'Spelling and grammar suggestions - Claude',
   'General post-hoc review - Claude',
-  'Check clarity and flow - Claude'
 ]
 ---
 import Figure from '../../components/Figure.astro'
@@ -77,7 +77,27 @@ maintainable in the long run?*
 </Aside>
 
 
-## Configurations
+## File Changes
+
+For a quick indicator of what files we will add or change in this part,
+expand the following file tree.
+
+```sh frame="none" collapse={1-16}
+.
+├── build.rs              # <--- Changes
+├── .cargo
+│   └── config.toml
+├── Cargo.lock
+├── Cargo.toml            # <--- Changes
+├── configs.json          # <--- Added
+├── .git
+├── memory.x
+├── README.md             # <--- Changes
+├── rust-toolchain.toml
+└── src
+    ├── main.rs           # <--- Changes
+```
+
 
 ### `configs.json`
 
@@ -96,7 +116,7 @@ package and lots of other tools.
 We will add a `configs.json` to the root/top directory of our project and also add
 one single temporary configuration key and value to the file. 
 
-```json title="configs.json"
+```json title="configs.json" showLineNumbers
 {
   "number_of_messages": "5"
 }
@@ -135,7 +155,7 @@ available in `build.rs` and will not be available for the actual microcontroller
 The added dependencies, `serde` and `serde_json`, are solely there to read our
 configuration file content.
 
-```toml title="Cargo.toml" collapse={1-46, 55-67}
+```toml title="Cargo.toml" showLineNumbers collapse={1-46, 55-67} ins={48-53}
 ########################################################################################
 # This Project/Package Metadata
 # Reference: https://doc.rust-lang.org/cargo/reference/workspaces.html#the-package-table
@@ -161,14 +181,14 @@ defmt-rtt = "1.0"   # RTT (Real-Time Transfer) transport for defmt
 panic-probe = { version = "1.0", features = ["print-defmt"] }
 
 # Embassy Rust embedded framework dependencies
-embassy-embedded-hal = { version = "0.4", features = ["defmt"] }
-embassy-executor = { version = "0.8", features = [
+embassy-embedded-hal = { version = "0.5", features = ["defmt"] }
+embassy-executor = { version = "0.9", features = [
   "arch-cortex-m",
   "executor-thread",
   "executor-interrupt",
   "defmt",
 ] }
-embassy-rp = { version = "0.7", features = [
+embassy-rp = { version = "0.8", features = [
   "critical-section-impl",
   "time-driver",
   "defmt",
@@ -176,7 +196,7 @@ embassy-rp = { version = "0.7", features = [
   "rp235xb",
   "binary-info",
 ] }
-embassy-time = { version = "0.4", features = [
+embassy-time = { version = "0.5", features = [
   "defmt",
   "defmt-timestamp-uptime",
 ] }
@@ -223,7 +243,7 @@ to be used while the program is running.
 We will modify `build.rs` one step at a time. First, let's add our needed
 dependencies to the top of the file.
 
-```rust title="build.rs" ins={6, 8-9} {12}
+```rust title="build.rs" showLineNumbers ins={6, 8-9}
 //! This build script runs during code compilation
 //! Runs on host computer, where `std` Rust tools are available here
 //! Reference: https://doc.rust-lang.org/cargo/reference/build-scripts.html
@@ -235,7 +255,7 @@ use std::io;
 use std::path::Path;
 use std::path::PathBuf;
 
-// ... continued existing code ...
+// ....
 ```
 
 Next, let's write the new configuration loading function. Right now, all
@@ -254,8 +274,8 @@ In this case, you can also read the `println!` messages within the code to under
 happening at what points.
 
 
-```rust title="build.rs" {1}
-// ^^^ previous existing code ^^^
+```rust title="build.rs" showLineNumbers startLineNumber=33
+// ....
 
 /// Loads configuration values from configs.json and generates a configs.rs file
 /// with Rust constants for use in the embedded application
@@ -269,7 +289,7 @@ fn load_configs(out_dir: &str, config_keys: [&str; 1]) -> io::Result<()> {
 
     println!("Creating new blank 'configs.rs' file within the output directory ...");
     let dest_path = Path::new(&out_dir).join("configs.rs");
-    let mut f = fs::File::create(dest_path)?;
+    let mut output_file = fs::File::create(dest_path)?;
 
     let project_root_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
     println!("Project root directory: {project_root_dir:?}");
@@ -316,8 +336,8 @@ to match (e.g. `[&str; 3]` for three configuration values).
 Next, we will write the parsed configuration keys and values to the `configs.rs`
 Rust file as uppercase constants, which is ultimately interpreted by the microcontroller.
 
-```rust title="build.rs" {1, 11} ins={13-23}"
-// ^^^ previous existing code ^^^
+```rust title="build.rs" showLineNumbers startLineNumber=33 collapse={10-38} ins={40-50}
+// ....
 
 /// Loads configuration values from configs.json and generates a configs.rs file
 /// with Rust constants for use in the embedded application
@@ -326,14 +346,41 @@ Rust file as uppercase constants, which is ultimately interpreted by the microco
 /// * `out_dir` - The target build directory path
 /// * `config_keys` - Array of configuration keys to extract from configs.json
 fn load_configs(out_dir: &str, config_keys: [&str; 1]) -> io::Result<()> {
+    println!("[BUILD TASK] LOADING PROGRAM CONFIGURATIONS");
+    println!("Configuration output directory: {out_dir:?}");
 
-    // ... previous existing code ...
+    println!("Creating new blank 'configs.rs' file within the output directory ...");
+    let dest_path = Path::new(&out_dir).join("configs.rs");
+    let mut output_file = fs::File::create(dest_path)?;
+
+    let project_root_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
+    println!("Project root directory: {project_root_dir:?}");
+
+    let configs_path = Path::new(&project_root_dir).join("configs.json");
+    println!("Looking for configs file at filepath: {configs_path:?}");
+    if !configs_path.exists() {
+        let error_message = "Failed to find 'configs.json' in the project root directory. 
+                             Please see instructions within README.md on creating this file";
+        return Err(io::Error::new(io::ErrorKind::NotFound, error_message));
+    };
+
+    println!("Reading raw text from 'configs.json' ...");
+    let contents_raw_string = fs::read_to_string(configs_path)?;
+
+    println!("Parsing 'configs.json' as a JSON file ...");
+    let config_values: serde_json::Value = serde_json::from_str(&contents_raw_string)?;
+    for config_key in config_keys.iter() {
+        if !config_values.as_object().unwrap().contains_key(*config_key) {
+            let error_message = format!("Key '{}' not found in 'configs.json' file", config_key);
+            return Err(io::Error::new(io::ErrorKind::InvalidData, error_message));
+        }
+    }
 
     println!("Writing from 'configs.json' to 'configs.rs' as UPPERCASE constants ...");
     for config_key in config_keys.iter() {
         print!("  - {}", config_key.to_uppercase());
         writeln!(
-            f,
+            output_file,
             "pub const {}: &str = {:?};",
             config_key.to_uppercase(),
             config_values[config_key].as_str().unwrap()
@@ -353,7 +400,7 @@ Finally, we will use this newly created loading function, `load_configs()`, in t
 We need to list what top-level JSON configuration keys we will be reading, 
 while also properly handling the potential return error.
 
-```rust title="build.rs" collapse={1-12} ins={27-31} {34}
+```rust title="build.rs" showLineNumbers collapse={1-12} ins={27, 29-32}
 //! This build script runs during code compilation
 //! Runs on host computer, where `std` Rust tools are available here
 //! Reference: https://doc.rust-lang.org/cargo/reference/build-scripts.html
@@ -377,9 +424,10 @@ fn main() {
     // Ensure 'memory.x' is on the linker search path
     println!("cargo:rustc-link-search={}", out_dir.display());
 
-    // Re-run for any changes to `memory.x` and `build.rs`
+    // Re-run for any changes to the following files
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=memory.x");
+    println!("cargo:rerun-if-changed=configs.json");
 
     // Load configurations from local 'configs.json' file
     let configs_keys = ["number_of_messages"];
@@ -387,7 +435,7 @@ fn main() {
         .unwrap_or_else(|error| panic!("[ERROR] {error:?}"))
 }
 
-// ... continued existing code ...
+// ....
 ```
 
 ### `src/main.rs`
@@ -413,7 +461,7 @@ The turbofish syntax (`::<Type>`) explicitly tells Rust what type to parse the
 string into. It is necessary here because `parse()` can convert strings to many
 different types (u8, u32, bool, etc.), and Rust can't always tell which one you want.
 
-```rust title="src/main.rs" {26} collapse={1-13} ins={15-18, 26-27}
+```rust title="src/main.rs" showLineNumbers collapse={1-13} ins={15-18, 26-27}
 #![no_std]
 #![no_main]
 #![allow(unused_variables)] // only used for development
@@ -441,8 +489,6 @@ async fn main(spawner: Spawner) {
 
     // Parse and define a configuration value
     let number_of_messages = NUMBER_OF_MESSAGES.parse::<u8>().unwrap();
-
-    // ... previous existing code ...
 }
 ```
 
@@ -450,13 +496,31 @@ OK! Let's actually use our little starter configuration value that we specified
 within `configs.json`! Let's define a simple for-loop with our constant from
 the configuration file.
 
-```rust title="src/main.rs" {1, 6} ins={11-21}
-// ^^^ previously existing code ^^^
+```rust title="src/main.rs" showLineNumbers collapse={1-18} ins={29, 31-34, 36-39}
+#![no_std]
+#![no_main]
+#![allow(unused_variables)] // only used for development
+#![allow(unused_imports)] // only used for development
+
+use defmt::*;
+use defmt_rtt as _;
+use panic_probe as _;
+
+use embassy_executor::Spawner;
+use embassy_rp::config::Config;
+use embassy_rp::gpio;
+use embassy_time::Timer;
+
+// Loading configurations
+// Note: This comes from the 'configs.rs' file created in 'build.rs' from 'configs.json'
+// Note: All loaded configurations will be UPPERCASE string slice (&str) constants
+include!(concat!(env!("OUT_DIR"), "/configs.rs"));
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
-
-    // ... previously existing code ...
+    // Initialize system with proper clock configuration
+    let config = Config::default();
+    let _peripherals = embassy_rp::init(config);
 
     // Parse and define a configuration value
     let number_of_messages = NUMBER_OF_MESSAGES.parse::<u8>().unwrap();
@@ -522,7 +586,7 @@ the internet that I wanted to try.
 
 Run me with `cargo run --release`
 
-### Configurations
+## Configurations
 
 This project contains a `configs.json` file that contains various
 configuration values for this program. The program will load these
