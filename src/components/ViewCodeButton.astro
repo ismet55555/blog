@@ -1,0 +1,51 @@
+---
+interface Props {
+  href: string
+  text?: string
+  isTech?: boolean
+}
+
+const {
+  href,
+  text = 'See this Code on GitHub',
+  isTech = true
+} = Astro.props as Props
+
+const accentBorder = isTech
+  ? 'border border-techAccent dark:border-techAccent'
+  : 'border border-nonTechAccent dark:border-nonTechAccent'
+
+const accentText = isTech
+  ? '!text-techAccent visited:!text-techAccent hover:!text-techAccent focus:!text-techAccent'
+  : '!text-nonTechAccent visited:!text-nonTechAccent hover:!text-nonTechAccent focus:!text-nonTechAccent'
+
+const bgHoverClass = isTech
+  ? 'hover:bg-green-100 dark:hover:bg-gray-800'
+  : 'hover:bg-orange-100 dark:hover:bg-gray-800'
+---
+
+<div class="my-8 w-full">
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`not-prose block w-full ${accentBorder} p-3 text-center font-mono text-base font-semibold tracking-wider drop-shadow-[4px_6px_12px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-1 no-underline ${accentText} ${bgHoverClass}`}
+  >
+    <span class="mr-2">&gt;</span>
+    <span>{text}</span>
+    <span class="ml-2 animate-pulse">▂</span>
+  </a>
+</div>
+
+<style>
+  @keyframes pulse {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>

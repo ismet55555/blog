@@ -14,7 +14,10 @@
 - GitHub Repo branch for tutorial
 
   - Each branch and code goes with a part
-  - Add to post 6 and 7
+  - Add to post 6 and forware
+  - Nice button "View Code So Far"
+  - GitHub logo or code symbol
+  - Button looks like a nice terminal
 
 ## Posts
 
@@ -29,19 +32,25 @@
 - Rust Project Configuration
 - Active Programming Workflow
 - Detour: Embassy Framework Explained
+- Handling Program Configuration
+- Handling Program Secrets
 
 ### Incomplete
 
-- Handling Program Configuration and Secrets
+- Software: Setting system clock frequency
+  - Battery usage
+  - Performance
 
-- Setting system clock frequency
-  - Notes about battery usage and performance
+- Software: State machine
+  - Theory
+  - Diagrams
+  - How it will work in our program
 
-- Software: implementation: State machine
+- Button object
 
 - LED - Simple
 
-  - peripherals_split
+  - peripherals_split - assign_resources
   - Struct
   - Basic getters and setters
   - Very simple blinking
