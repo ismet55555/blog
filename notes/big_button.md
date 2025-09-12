@@ -11,6 +11,12 @@
 
 ## TODO
 
+- Add .rustfmt.toml to all branches and udpate code snippets!
+
+- Add GitHub link to each section with code (starting at part 7?)
+
+- Add GitHub branch diff at each step
+
 - GitHub Repo branch for tutorial
 
   - Each branch and code goes with a part
@@ -38,6 +44,7 @@
 ### Incomplete
 
 - Software: Setting system clock frequency
+  - Configuration for clock frequency
   - Battery usage
   - Performance
 

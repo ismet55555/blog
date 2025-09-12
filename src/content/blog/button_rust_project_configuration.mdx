@@ -124,6 +124,25 @@ Session.vim
 .Session.vim
 ```
 
+### `.rustfmt.toml`
+
+This configuration file defines how our code is automatically formatted when running
+`cargo fmt`. By keeping a shared set of formatting rules in the project, we ensure
+that everyone working on the codebase follows the same style. This removes debates
+over code style, makes diffs easier to read, and keeps the project consistent
+and professional.
+
+Here are some sensible default formatting values for our project.
+Note that our expanded width of 120 characters allows us to have a little more
+width without stacking the code vertically.
+
+```toml
+# Rust Formatter Configurations
+
+max_width = 120                 # Maximum line width before wrapping
+trailing_comma = "Vertical"     # Put trailing commas on vertical lists
+```
+
 ### `rust-toolchain.toml`
 
 Ok. Here we are getting to the serious stuff!

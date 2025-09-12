@@ -85,3 +85,26 @@ graph TD
     style H2 fill:#e1f5e1
     style H3 fill:#e1f5e1
 ```
+
+
+```md
+---
+config:
+  look: handDrawn
+  theme: redux
+---
+flowchart LR
+    XTAL["Crystal<br>Oscillator<br>*(12 MHz)*"] == multiply ==> PLL_SYS["System<br>PLL"] & PLL_USB["USB<br>PLL"]
+    ROSC["Ring<br>Oscillator<br>*(~6.5 MHz)*"] ==> RTC["Real-Time<br>Clock<br>*(~47 kHz)*"]
+    
+    PLL_SYS == direct ==> CPU["CPU<br>Cores"]
+    PLL_SYS == divide ==> PERIPH["Peripherals<br>(UART, SPI, I2C)"]
+    PLL_USB == direct ==> USB["USB<br>Controller"]
+    PLL_USB == divide ==> ADC["ADC<br>Sampling"]
+    
+    style XTAL fill:#e1f5e1
+    style ROSC fill:#ffe0b2
+    style PLL_SYS fill:#e1f5e1
+    style PLL_USB fill:#e1f5e1
+    style RTC fill:#ffe0b2
+```
