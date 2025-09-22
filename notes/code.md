@@ -86,7 +86,6 @@ graph TD
     style H3 fill:#e1f5e1
 ```
 
-
 ```md
 ---
 config:
@@ -107,4 +106,27 @@ flowchart LR
     style PLL_SYS fill:#e1f5e1
     style PLL_USB fill:#e1f5e1
     style RTC fill:#ffe0b2
+```
+
+```md
+---
+config:
+  look: handDrawn
+  theme: redux
+---
+stateDiagram-v2
+    [*] --> OFF         : Car purchased
+    OFF --> ON          : Start engine
+    ON --> MOVING       : Press gas pedal
+    MOVING --> ON       : Press brake (stop)
+    ON --> OFF          : Turn off engine
+    
+    OFF: 🔑 Engine off
+    ON: ⚡ Engine on, not moving
+    MOVING: 🚗 Driving
+
+
+    style OFF fill:#e1f5e1
+    style ON fill:#e1f5e1
+    style MOVING fill:#e1f5e1
 ```

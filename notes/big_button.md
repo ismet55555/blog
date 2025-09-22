@@ -40,18 +40,10 @@
 - Detour: Embassy Framework Explained
 - Handling Program Configuration
 - Handling Program Secrets
+- Software: Setting system clock frequency
+- Software: State machine
 
 ### Incomplete
-
-- Software: Setting system clock frequency
-  - Configuration for clock frequency
-  - Battery usage
-  - Performance
-
-- Software: State machine
-  - Theory
-  - Diagrams
-  - How it will work in our program
 
 - Button object
 

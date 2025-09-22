@@ -69,3 +69,16 @@ Some may think about the bad side of the coin is adapting a personality
 like being a flat-earher or worst case all-in on like being a cyber criminal.
 It has to be *mostly* constructive to you, and *mostly* not destructive
 to the community or the environment.
+
+## Writing has become selfish
+
+- Everything is being summarized and clarified by AI
+- Emails, docs, messages, tutorials, etc
+- Is real writing only for ourselves now given it is being consumed and processed? (processed food?)
+- Readers do not care about coherent writing any more or good formatting and structure
+- Will the future be people writing in a efficient gist prompt language that conveys
+  the point to the AI that will relay it to the reader
+- Will writing only be a art form to enjoy, less of a communication medium as it is today
+- It is like all of the sudden someone said to speak in whatever language (even your own)
+  you like, and the other person will get the gist of what you are saying.
+
