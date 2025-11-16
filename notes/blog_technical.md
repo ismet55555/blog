@@ -5,6 +5,9 @@
 ### Critical
 
 - Subscription - Email
+- Add first image in blog to front preview page
+- Scroll for reading
+  - Each click will scroll down just a little
 
 ### Nice to Have
 
@@ -15,6 +18,7 @@
   - Record guitar - 1 of 6 random sounds
   - "swipe" for going to another screen
   - https://pixabay.com/sound-effects/
+
 - Navigation side pane
   - <https://github.com/surjithctly/astro-navbar#readme>
 - Google analytics - Needs more setup!
@@ -105,3 +109,7 @@
 - [Pico Plant](https://github.com/maciekglowka/pico_plant/tree/main)
 - [Rust Robotic Sumo Bot](https://github.com/massimiliano-mantione/rustlab-2023-robotic-sumo/tree/main/bot/src)
 - [Pi Pico Alarmclock](https://github.com/1-rafael-1/pi-pico-alarmclock-rust/tree/main)
+
+## Various Ideas
+
+- Look at the way this book is compiled, marketed, and sold: https://refactoring.guru/design-patterns/book

@@ -130,3 +130,113 @@ stateDiagram-v2
     style ON fill:#e1f5e1
     style MOVING fill:#e1f5e1
 ```
+
+
+```md
+## NOTES
+
+- Diagram
+    - broker/event-bus, publishers, subscribers, topics, messages
+    - In embassy, no broker, topic is a channel
+- Decoupling of components
+    - Publishers and subscribers don't even have to know about each other
+    - Common message format
+- Generally used for mobile and IoT devices, however for our application we
+  are using it for communication within the microcontroller chip
+- Common uses:
+    - Event notification system
+    - System state change
+- In our case
+    - The button is a publisher
+    - Anything that is interested in the button press events can subscribe
+- Benefits
+    - Decoupling of internal systems (button, LED, buzzer, WiFi requests, etc)
+    - Faster response time (nanoseconds) - No polling (periodically checking of state)
+
+- Implementation Variations
+    - Filtering and Subscription Schemes - **IMPLEMENT THIS???**
+        - Topic-based pub-sub
+        - Content-based pub-sub
+        - Type-based pub-sub
+            - `subscriber.subscribe::<TemperatureEvent>();`
+        - Hybrid Systems
+    - Architectural
+        - Broker-based - Central routing point
+        - Brokerless (peer-to-peer) - **THIS**
+            - Typically refers to seperate servcie or process
+            - Embassy is this
+            - Shared memory/in-memory broker-like pattern
+                - Think of the broker as the allocated memory
+            - No seperate broker processes or services
+            - Not like MQTT or RabbitMQ)
+            - Advantages
+                - zero network overhead - low lateency - nanoseconds
+    - Delivery Guarantee Variations
+        - Fire and forget - **THIS?**
+        - Guaranteed delivery, possible duplicates
+        - Guaranteed single delivery
+
+- Embassy Framework
+
+    - Good for embedded here
+        - No dynamic memory allocation (no heap)
+        - Support async operations - tasks wait for messages without "busy-waiting"
+        - Power efficient - CPU sleep while waiting
+        - Multiple async tasks can publish and subscribe to shared channels
+
+    - `embassy-sync` crate *move to implementation*
+
+- State machine integration *move to implementation*
+    - Can subscribe to events state transition (consumer)
+    - State change can trigger publishing of event
+    - Move to state machine implmenmetation section?
+   
+- Messaging synchronization primitives in Embassy (or whatever these are called)
+    - `PubSubChannel`
+        - Boardcast to multiple handlers (LED, buzzer, API client, etc)
+    - `Channel`
+        - point-to-point communication
+        - Only one task should process each message
+    - `PriorityChannel`
+        - Multiple producer, multiple consumes
+        - Each message is only received by single consumer
+        - Higher priority items shifted to the front of the channel
+        - Critical events must be processed before normal events
+    - `Watch`
+        - multiple receivers and immediately overwrites the previous value when new one is sent
+        - Receivers always provided with latest values
+        - Broadcasting state updates
+    - `Mutex` (Async)
+    - `RwLock` (Read-Write Lock)
+    - `Semaphore`
+    - `Pipe`
+        - Streaming byte data between tasks
+        - Serial protocol
+    - `Oncecell`/`OnceLock`
+    - `AtomicU32`
+        - Share a simple U32 (or less in size) value among tasks
+        - Simple flags
+        - Performance-critical application
+
+    - Create a chart / Comparison matrix
+        - Multiple cosumers, messge queue, latest value only, popular use-case
+
+    - Recommendation:
+        - Button Events - `PubSubChannel`
+        - System status - `Watch` - **SHOULD CHANGE FROM `Signal`?**
+    
+
+- Embassy and Pub-sub *move to implementation*
+
+    - `PubSubChannel` - Why this one specifically
+    - See other options (maybe folded section)
+
+- Rust module explained
+
+    - Why group like-code
+
+- Resources (At end)
+
+    - https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
+    - https://www.geeksforgeeks.org/system-design/what-is-pub-sub/
+```
