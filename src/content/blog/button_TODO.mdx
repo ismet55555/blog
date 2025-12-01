@@ -1,0 +1,162 @@
+---
+title: 'Big Button - Part 16 - TODO'
+description: 'TODO'
+pubDate: 'Dec 21 2026'
+tags: ['big-button', 'embedded', 'rust', 'rp2350', 'TODO']
+draft: true
+tech: true
+series: {
+  name: "Big Button Tutorial",
+  order: 16
+}
+previousPost:
+  slug: "button_pub_sub_module"
+  title: "Pub-Sub and Modules"
+# nextPost: 
+#   slug: "button_"
+#   title: "N/A"
+aiHelp: [
+  '8-bit style images - Dall-e (ChatGPT)',
+  'Spelling and grammar suggestions - Claude',
+  'Check clarity and flow - Claude',
+  'General post-hoc review - Claude',
+  'Topic research. Check tech accuracy - Cloud'
+]
+---
+import Figure from '../../components/Figure.astro'
+import Tag from '../../components/Tag.astro'
+import ViewCodeButton from '../../components/ViewCodeButton.astro'
+
+import tba from '../../images/tba.png';
+
+## Table of Contents
+
+## Introduction
+<Tag color="green" txt="💻 HACKER" /> TODO
+
+
+## Outline
+
+- Alternate
+  - Button - short, long, hold press
+  - assign_resources
+  - system ready mechanism
+
+- About
+  - If you have been following along witht his entire project series, all major pieces should
+    be in place. 
+  - Ready to add light things up and add LED light functionality
+  - Goal is to control 8 simple LEDs
+  - For now controlling LEDs means simply turning them on and off
+    - Differentiating between LED simple (on/off) and LED PWM (continous)
+
+- LED
+  - Simple, not patterns
+  - cut the fat
+
+- main.rs
+  - `assign_resources`
+
+- state_machine.rs
+  - Simple button press implementation, where all leds blink?
+  - SM subscribes to button, publishes to LED
+  - `get_current_event` -> add a watch for button press
+
+<Aside variant="note">
+    TODO
+</Aside>
+
+<Figure
+  src={tba}
+  caption="TODO"
+  url="TODO"
+/>
+
+
+## File Changes
+
+For a quick indicator of what files we will add or change in this part,
+expand the following file tree. Here we are only showing the `src`
+project directory. 
+
+Note that we are adding an entire directory for anything related to the
+button and button press. This will keep code structure clearer and more organized.
+
+```sh frame="none" collapse={1-100}
+src
+├── button
+├── led                   # <--- New
+│   ├── consumer_loop.rs  # <--- New
+│   ├── core.rs           # <--- New
+│   ├── messaging.rs      # <--- New
+│   ├── mod.rs            # <--- New
+│   └── utility.rs        # <--- New
+├── clocks_config.rs
+├── main.rs               # <--- Changes
+├── state_machine.rs      # <--- Changes
+└── utility.rs
+```
+
+### `led/messaging.rs`
+
+TODO
+
+```rust title="src/led/messaging.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+
+### `led/core.rs`
+
+TODO
+
+```rust title="src/core/mod.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+### `led/utility.rs`
+
+TODO
+
+```rust title="src/utility/mod.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+### `led/consumer_loop.rs`
+
+TODO
+
+```rust title="src/led/consumer_loop.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+### `led/mod.rs`
+
+TODO
+
+```rust title="src/led/mod.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+### `state_machine.rs`
+
+TODO
+
+```rust title="src/state_machine.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+### `main.rs`
+
+TODO
+
+```rust title="src/main.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+TODO
+```
+
+
+<br/>
+<ViewCodeButton href="https://github.com/ismet55555/big-button/tree/TODO" />
+<span class="block text-center text-accentColor font-bold">
+    TODO ...
+</span>

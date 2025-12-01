@@ -2,6 +2,24 @@
 
 Just random useful blog website code snippets
 
+## Images
+
+```mdx
+import tba from '../../images/tba.png';
+
+<Figure
+  src={tba}
+  caption="TODO"
+  url="TODO"
+/>
+
+<Figure
+  src={tba}
+  caption="TODO"
+  url="TODO"
+/>
+```
+
 ## Aside Blocks
 
 ```mdx
@@ -129,6 +147,40 @@ stateDiagram-v2
     style OFF fill:#e1f5e1
     style ON fill:#e1f5e1
     style MOVING fill:#e1f5e1
+```
+
+```md
+---
+config:
+  look: handDrawn
+  theme: redux
+  themeVariables:
+    fontSize: 16px
+  flowchart:
+    curve: basis
+    padding: 20
+    nodeSpacing: 80
+    rankSpacing: 80
+    diagramPadding: 20
+---
+graph TD
+    A["<b>⬇️ Button Pressed Down</b>"] --> B{"<b>Released before<br/>long hold timeout?</b>"}
+    B -->|"&nbsp;&nbsp;✓ Yes&nbsp;&nbsp;"| C{"<b>Press Duration<br/>< long press threshold?</b>"}
+    B -->|"&nbsp;&nbsp;✗ No&nbsp;&nbsp;<br/>(Timeout expires)"| D["<b>🔴 LONG HOLD</b>"]
+    C -->|"&nbsp;&nbsp;✓ Yes&nbsp;&nbsp;"| E["<b>🟢 SHORT PRESS</b>"]
+    C -->|"&nbsp;&nbsp;✗ No&nbsp;&nbsp;"| F["<b>🟡 LONG PRESS</b>"]
+    
+    style A fill:#e1f5e1,stroke:#000000,stroke-width:3px,color:#000000
+    style B fill:#e1f5e1,stroke:#000000,stroke-width:3px,color:#000000
+    style C fill:#e1f5e1,stroke:#000000,stroke-width:3px,color:#000000
+    style E fill:#86efac,stroke:#22c55e,stroke-width:4px,color:#000000
+    style F fill:#fde047,stroke:#eab308,stroke-width:4px,color:#000000
+    style D fill:#fca5a5,stroke:#ef4444,stroke-width:4px,color:#000000
+    
+    linkStyle default stroke:#000000,stroke-width:3px
+    
+    classDef decision fill:#e1f5e1,stroke:#000000,stroke-width:2px
+    class B,C decision
 ```
 
 

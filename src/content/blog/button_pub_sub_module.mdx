@@ -1,6 +1,6 @@
 ---
 title: 'Big Button - Part 15 - Organizing Code with Pub/Sub Messaging and Rust Modules'
-description: 'Implement Publisher-Subscriber messaging pattern and organize code with Rust modules.'
+description: 'Implement Publisher-Subscriber messaging pattern, adding button code, and organize code with Rust modules.'
 pubDate: 'Nov 15 2025'
 tags: ['big-button', 'embedded', 'rust', 'rp2350', 'design-patterns', 'pub-sub', 'modules']
 draft: false
@@ -12,9 +12,9 @@ series: {
 previousPost:
   slug: "button_state_machine"
   title: "The State Machine"
-# nextPost: 
-#   slug: "button_"
-#   title: "N/A"
+nextPost: 
+  slug: "button_button_press"
+  title: "Button Press Types"
 aiHelp: [
   '8-bit style images - Dall-e (ChatGPT)',
   'Spelling and grammar suggestions - Claude',
@@ -245,7 +245,7 @@ anticipating a variety of different press types (i.e., short press, long press, 
 For now, let's define a `PressType` enum with one single press type: `RegularPress`.
 
 
-```rust title="src/messaging.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+```rust title="src/button/messaging.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
 //! Button module - Messaging - Pub-Sub
 
 #![allow(dead_code)] // only used for development
@@ -266,7 +266,7 @@ We will next define the *message* structure that is passed by the *publisher*
 into the Pub/Sub *channel*. This message should be specific to the button press and
 tell us some useful information about the button press event.
 
-```rust title="src/messaging.rs" showLineNumbers startLineNumber=16 collapse={} ins={} 
+```rust title="src/button/messaging.rs" showLineNumbers startLineNumber=16 collapse={} ins={} 
 /// Button pub-sub message item definition/structure that is passed via channel
 #[derive(Debug, Copy, Clone)]
 pub struct ButtonMessage {
@@ -289,7 +289,7 @@ Lastly, let's define our Pub/Sub topic/channel with [`PubSubChannel`](https://do
 This is the conduit, or pipe, into which the message is fed by a publisher,
 and from which subscribers read these messages.
 
-```rust title="src/messaging.rs" showLineNumbers startLineNumber=29 collapse={} ins={} 
+```rust title="src/button/messaging.rs" showLineNumbers startLineNumber=29 collapse={} ins={} 
 /// Button pub-sub topic channel
 /// Other program parts can listen to this topic to get button press events
 /// 2 total capacity/messages, 3 subscribers, and 1 publisher
@@ -325,7 +325,7 @@ let's introduce a few [Rust type aliases](https://doc.rust-lang.org/reference/it
 Type aliases define a new name for an existing type. For example, here we
 are defining our `ItemId`, `ItemHandle`, and `ItemInfo`.
 
-```rust title="button/core.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+```rust title="src/button/core.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
 //! Button module
 
 use defmt::*;
@@ -358,7 +358,7 @@ defined earlier. This publisher will allow us to broadcast button press events t
 subscribers listening on the channel. Notice that our publisher matches our previously
 defined pub/sub definition of 2 total messages, 3 subscribers, and 1 publisher.
 
-```rust title="button/core.rs" showLineNumbers startLineNumber=20 collapse={} ins={} 
+```rust title="src/button/core.rs" showLineNumbers startLineNumber=20 collapse={} ins={} 
 /// Handle for individual Buttons - Button has all provisioned buttons defined
 pub struct Button<'a> {
     /// Button definitions - `[(<BUTTON ID>, <`[Input]` HANDLE>), ...]`
@@ -381,7 +381,7 @@ These helper methods establish a pattern we'll use throughout: always validate i
 before performing operations. This defensive programming approach is especially important
 in embedded systems where runtime errors can be difficult to debug.
 
-```rust title="button/core.rs" showLineNumbers startLineNumber=28 collapse={} ins={} 
+```rust title="src/button/core.rs" showLineNumbers startLineNumber=28 collapse={} ins={} 
 impl<'a> Button<'a> {
     /// Constructor
     ///
@@ -428,7 +428,7 @@ The implementation creates a human-readable representation showing all configure
 For example, if we have buttons with IDs 1 and 2, it would format as: `Button { Buttons: {ID: 1} {ID: 2} }`.
 This formatting capability is invaluable during development and debugging. 
 
-```rust title="button/core.rs" showLineNumbers startLineNumber=55 collapse={} ins={} 
+```rust title="src/button/core.rs" showLineNumbers startLineNumber=55 collapse={} ins={} 
 /// Implement the `Format` trait for debugging
 /// This allows us to print the struct with `defmt::info!` and friends
 impl<'a> Format for Button<'a> {
@@ -457,7 +457,7 @@ You might notice that `debounce_high_to_low()` and `debounce_low_to_high()` are 
 We could combine them into a single function with a parameter to specify the direction,
 but for this tutorial, we're keeping them separate for two reasons: clarity and understanding.
 
-```rust title="button/core.rs" showLineNumbers startLineNumber=28 collapse={} ins={} 
+```rust title="src/button/core.rs" showLineNumbers startLineNumber=28 collapse={} ins={} 
 impl<'a> Button<'a> {
 
     ....
@@ -523,7 +523,7 @@ When a complete button press cycle occurs (press down and release), we create a 
 containing all the relevant information. This message is then published through our
 pub-sub channel using `button_pubsub_publisher.publish()`.
 
-```rust title="src/core.rs" showLineNumbers startLineNumber=28 collapse={} ins={} 
+```rust title="src/button/core.rs" showLineNumbers startLineNumber=28 collapse={} ins={} 
 impl<'a> Button<'a> {
 
     ....
@@ -585,7 +585,7 @@ to monitor the button press. All we are doing here is initializing/creating our 
 and calling its `monitor_press()` method with button ID `0`. Remember, the `monitor_press()`
 method has an infinite `loop` within it.
 
-```rust title="src/consumer_loop.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+```rust title="src/button/consumer_loop.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
 //! Button module - Task manager module
 
 use defmt::*;
@@ -621,7 +621,7 @@ We will tie all of our button files into a Rust module within a new `button/` di
 After creating the `button` module directory, let's add a `mod.rs` file within it.
 Within that file, add the following code.
 
-```rust title="src/mod.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
+```rust title="src/button/mod.rs" showLineNumbers startLineNumber=1 collapse={} ins={} 
 //! Button module - Module definition - Responsible for handling system buttons
 
 // Map all parts of this module
@@ -751,12 +751,11 @@ cargo run --release
 
 Let's touch the two wires together... ummm, I mean press a button!
 
-```txt frame="none" collapse={12-29} mark={34-37}
+```txt frame="none" collapse={10-28} mark={33-36}
    ....
    Compiling big-button v0.1.0 (/home/you/projects/big-button)
     Finished `release` profile [optimized + debuginfo] target(s) in 0.77s
-     Running `probe-rs run --chip=RP235x --log-format '[{t}] {[{L}]%dimmed%bold} {{f:dimmed}:{l:dimmed}%30}: {s}' target/thumbv8m.main-none-eabihf/release
-/big-button`
+     Running `probe-rs run --chip=RP235x --log-format '[{t}] {[{L}]%dimmed%bold} {{f:dimmed}:{l:dimmed}%30}: {s}' target/thumbv8m.main-none-eabihf/release/big-button`
       Erasing ✔ 100% [####################]  12.00 KiB @  52.50 KiB/s (took 0s)
      Finished in 1.06s
 [0.000510] [INFO ] main.rs:33             : ==================================
