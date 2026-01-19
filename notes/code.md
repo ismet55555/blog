@@ -17,6 +17,8 @@ import tba from '../../images/tba.png';
   src={tba}
   caption="TODO"
   url="TODO"
+  width= '4/5'
+  class= 'w-4/5 mx-auto border border-3 border-accentColor'
 />
 ```
 
@@ -181,6 +183,39 @@ graph TD
     
     classDef decision fill:#e1f5e1,stroke:#000000,stroke-width:2px
     class B,C decision
+```
+
+```md
+---
+config:
+  look: handDrawn
+  theme: neutral
+---
+sequenceDiagram
+    participant SM as 📊 System Manager
+    participant Button as 🔴 Button Subsystem
+    participant Other as Other Subsystem
+    
+    rect rgb(255, 245, 230)
+        Note over SM,Other: Initialization Phase
+        SM->>SM: Start watching<br/>for ready signals
+        Note over Button: Initialize<br/>GPIO pins
+        Note over Other: Initialize<br/>components
+        Button->>SM: 📡 BUTTON_READY_SIGNAL
+        Other->>SM: 📡 OTHER_READY_SIGNAL
+    end
+    
+    rect rgb(230, 240, 255)
+        Note over SM: Wait for ALL<br/>subsystems ready
+    end
+    
+    rect rgb(240, 255, 240)
+        Note over SM,Other: System Ready
+        SM->>Button: 📡 SYSTEM_READY broadcast
+        SM->>Other: 📡 SYSTEM_READY broadcast
+        Note over Button: Begin monitoring<br/>button presses
+        Note over Other: Begin main<br/>operations
+    end
 ```
 
 
