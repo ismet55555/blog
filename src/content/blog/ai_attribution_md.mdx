@@ -38,7 +38,7 @@ Did the AI tool or an actual person write this line of code?
 
 <Figure
   src={legoHands}
-  caption="TODO"
+  caption="Developing with human-AI collaboration"
   url="TODO.com"
   width= '4/5'
   class= 'w-4/5 mx-auto border border-3 border-accentColor'
@@ -186,7 +186,7 @@ That's what `AI_ATTRIBUTION.md` provides.
 
 <Figure
   src={handsPointingToBook}
-  caption="TODO"
+  caption="Attributing progress and units of work"
   url="TODO.com"
   width= '4/5'
   class= 'w-4/5 mx-auto border border-3 border-accentColor'
@@ -344,6 +344,33 @@ Most developers start with markdown and generate other formats when needed.
   [AI_ATTRIBUTION.md GitHub Repository Project](https://github.com/ismet55555/ai-attribution)
 </Aside>
 
+### Room for Improvement
+
+This framework is a starting point, not a finished product. Here are three key challenges that
+need solutions:
+
+- **Model-Dependent Attribution Evaluation** - The framework relies on AI to judge involvement
+  levels, with humans able to modify entries as needed. Different AI models may evaluate the
+  same work differently due to their [non-deterministic](https://en.wikipedia.org/wiki/Nondeterministic_algorithm)
+  nature. One might call work `ASSISTED`,
+  while another says `GUIDED`. This creates inconsistency across projects. Specialized tooling
+  could provide a dedicated attribution model, but the goal is to remain tool-agnostic without
+  requiring installations.
+
+- **Workflow Integration** - The biggest barrier is remembering to log. Attribution happens
+  when you or your AI agent remember to update the file. The ideal solution is automatic
+  hooks, [git commit](https://www.atlassian.com/git/tutorials/git-hooks), [pre-commit](https://pre-commit.com/) 
+  checks, or IDE prompts, that remind the model to log at natural
+  breakpoints. Custom tooling could solve this, but it conflicts with the framework's
+  lightweight, drop-it-in-your-repo design.
+
+- **Multi-AI Workflow Synchronization** - Modern development often uses multiple AI tools
+  simultaneously: a chat web interface for architecture, an IDE agent for code, and a CLI agent
+  for refactoring. Each contributes to the same feature, but there's no automatic way to
+  synchronize their entries into one log. You end up with fragmented records or manual
+  reconciliation. A centralized service could coordinate tools, but that introduces
+  infrastructure complexity the framework avoids.
+
 <SectionDividerDash />
 
 ## Conclusion
@@ -376,7 +403,7 @@ collaboration honestly.
 
 <Figure
   src={thumbsUpHands}
-  caption="TODO"
+  caption="A successfull and transparent human-AI collaboration"
   url="TODO.com"
   width= '4/5'
   class= 'w-4/5 mx-auto border border-3 border-accentColor'
