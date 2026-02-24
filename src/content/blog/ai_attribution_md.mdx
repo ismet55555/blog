@@ -18,7 +18,9 @@ import Tag from '../../components/Tag.astro'
 import ViewCodeButton from '../../components/ViewCodeButton.astro'
 import SectionDividerDash from '../../components/SectionDividerDash.astro'
 import tba from '../../images/tba.png';
-import legoHands from '../../images/ai_attribution/legoHands.png';
+import legoHands from '../../images/ai_attribution/legoHands.webp';
+import handsPointingToBook from '../../images/ai_attribution/handsPointingToBook.webp';
+import thumbsUpHands from '../../images/ai_attribution/thumbsUpHands.webp';
 
 ## Table of Contents
 
@@ -182,15 +184,24 @@ code review, and taking responsibility for their work.
 
 That's what `AI_ATTRIBUTION.md` provides.
 
+<Figure
+  src={handsPointingToBook}
+  caption="TODO"
+  url="TODO.com"
+  width= '4/5'
+  class= 'w-4/5 mx-auto border border-3 border-accentColor'
+/>
+
 
 <SectionDividerDash />
 
 
 ## `AI_ATTRIBUTION.md`
 
-**[`AI_ATTRIBUTION.md`](https://github.com/ismet55555/ai-attribution) is a single markdown
-file that lives in your project repository. It's a structured log that tracks who had
-creative control over specific work—you or the AI tool.**
+*[`AI_ATTRIBUTION.md`](https://github.com/ismet55555/ai-attribution) is a single markdown file
+that lives in your project repository. It is a structured log that tracks who had creative control
+over specific work, you or the AI tool. It can be edited and maintained by AI (preferably) or
+manually by you.*
 
 ### The Core Concept: Six Levels of Creative Control
 
@@ -364,7 +375,7 @@ We're building the tools that will define how humans and AI work together. Let's
 collaboration honestly.
 
 <Figure
-  src={tba}
+  src={thumbsUpHands}
   caption="TODO"
   url="TODO.com"
   width= '4/5'
