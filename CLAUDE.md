@@ -115,3 +115,28 @@ import Component from '@/components/Component.astro'
 - The `tech` field determines accent color (green for tech, orange for non-tech)
 - Navigation between posts is handled via `nextPost`/`previousPost` frontmatter fields
 - All external links automatically open in new tabs via the `externalAnchorPlugin`
+
+## AI Attribution
+
+This project maintains an `AI_ATTRIBUTION.md` file in the project root: a
+living log of human and AI contributions and how to maintain it.
+
+Read this file when:
+- You are about to log a contribution (task done, feature done, session ending)
+- The user asks about attribution or AI involvement
+- You need the current configuration
+
+Do not read this file on every task; only when updating or referencing it.
+
+When writing a log entry, focus on these sections:
+- Configuration (current settings)
+- Involvement Levels (level selection)
+- Contribution Types (scope tagging)
+- Log Entries → Log Fields (required/optional fields)
+- Log (placement)
+
+Skip these sections unless needed:
+- Why Use This File (human rationale)
+- Granularity descriptions (you already have the setting)
+- Log Entries → Log Format (unless the format just changed)
+- Migration (only during version upgrades)
