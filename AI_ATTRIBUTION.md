@@ -509,6 +509,18 @@ quoted. Null values are empty between delimiters.
 
 ## Log
 
+### 2026-02-24 — Quote reusable component [🟠 ASSISTED — code]
+
+**Human:** Requested a reusable `Quote` component for blog articles, inspired by Medium and Substack styling. Specified it should use a mono font but thinner/lighter than the main text, be slightly larger than paragraph text, and sit slightly outside the paragraph block on the left. Directed all visual refinements: removing the double border line (prose default vs. custom), adjusting font weight, size, opacity, and positioning. Chose where to test it in the blog post (intro quote in `ai_attribution_md.mdx`).
+
+**AI (Claude):** Created `Quote.astro` component with optional `attribution` prop. Implemented the left accent border, light font weight, italic styling, and negative left margin. Updated the blog post to import and use the component. Iterated on styling per human feedback: switched from serif to inherited mono font, increased size, added `border-none` to suppress prose blockquote border, added `!important` to override prose text color.
+
+**Commits:** *uncommitted*
+
+**Notes:** Component lives at `src/components/Quote.astro`. First used in `src/content/blog/ai_attribution_md.mdx` replacing the bold-italic intro quote.
+
+---
+
 ### 2026-02-23 — SectionDividerDash reusable component [🟠 ASSISTED — code]
 
 **Human:** Identified the need for a subtle divider line between major blog sections. Specified the visual requirements: centered, 15% paragraph width, matching text color, subtle opacity. Chose the component name `SectionDividerDash`. Directed the replacement of `<br/>` tags with the new component in the blog post, and caught that a `<br/>` inside an `<Aside>` component should not be replaced.
