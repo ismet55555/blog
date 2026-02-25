@@ -4,6 +4,7 @@ import { getCollection, render } from 'astro:content'
 
 import Base from '@/layouts/Base.astro'
 import PostPreview from '@/components/PostPreview.astro'
+import EmailSubscribe from '@/components/EmailSubscribe'
 
 // import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 
@@ -32,6 +33,9 @@ const sortedPosts = await Promise.all(
   <div class="mb-5 p-5 text-lg">
     Welcome to my blog about mostly technical topics. I hope you can find
     something interesting or useful here.
+  </div>
+  <div class="mb-5">
+    <EmailSubscribe client:visible />
   </div>
   {
     sortedPosts.map((post) => (

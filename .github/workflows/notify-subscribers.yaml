@@ -1,0 +1,70 @@
+name: Notify Subscribers of New Blog Posts
+
+on:
+  # Runs automatically after the deploy workflow completes
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types: [completed]
+    branches: [main]
+  # Allows manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    # Only run if the deploy workflow succeeded (skip on failure or manual trigger)
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check for new blog posts and notify subscribers
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: |
+          # Find new blog post files added in the latest commit
+          NEW_POSTS=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/*.md' 'src/content/blog/*.mdx')
+
+          if [ -z "$NEW_POSTS" ]; then
+            echo "No new blog posts detected. Skipping notification."
+            exit 0
+          fi
+
+          # Process each new post
+          for POST_FILE in $NEW_POSTS; do
+            echo "New post found: $POST_FILE"
+
+            # Extract frontmatter fields
+            TITLE=$(sed -n '/^---$/,/^---$/{ /^title:/{ s/^title:[[:space:]]*//; s/^["'"'"']//; s/["'"'"']$//; p; } }' "$POST_FILE")
+            DESCRIPTION=$(sed -n '/^---$/,/^---$/{ /^description:/{ s/^description:[[:space:]]*//; s/^["'"'"']//; s/["'"'"']$//; p; } }' "$POST_FILE")
+            DRAFT=$(sed -n '/^---$/,/^---$/{ /^draft:/{ s/^draft:[[:space:]]*//; p; } }' "$POST_FILE")
+
+            # Skip draft posts
+            if [ "$DRAFT" = "true" ]; then
+              echo "Skipping draft post: $TITLE"
+              continue
+            fi
+
+            # Derive the post URL slug from the filename
+            SLUG=$(basename "$POST_FILE" | sed 's/\.\(md\|mdx\)$//')
+            POST_URL="https://ismet55555.github.io/blog/${SLUG}"
+
+            echo "Sending notification for: $TITLE"
+
+            # Send email via Buttondown API
+            curl -s -X POST "https://api.buttondown.com/v1/emails" \
+              -H "Authorization: Token $BUTTONDOWN_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$(cat <<EOF
+          {
+            "subject": "New Post: ${TITLE}",
+            "body": "${DESCRIPTION}\n\n[Read the full post](${POST_URL})",
+            "status": "sent"
+          }
+          EOF
+          )"
+
+            echo "Notification sent for: $TITLE"
+          done

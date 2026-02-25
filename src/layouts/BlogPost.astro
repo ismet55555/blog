@@ -10,6 +10,7 @@ import PostNavigation from '@/components/PostNavigation.astro'
 import ScrollProgressBar from '@/components/ScrollProgressBar.astro'
 import Comments from '@/components/Comments'
 import AIHelp from '@/components/AIHelp.tsx'
+import EmailSubscribe from '@/components/EmailSubscribe'
 import ScrollButtons from '../components/ScrollButtons.astro'
 import Tag from '@/components/Tag.astro'
 
@@ -63,6 +64,7 @@ const isTech = frontmatter.tech ?? true
     isTech={isTech}
   />
 
+  <EmailSubscribe client:visible />
   <Comments client:load />
   <AIHelp client:load items={frontmatter.aiHelp || []} />
   <ScrollButtons isTech={isTech} />
