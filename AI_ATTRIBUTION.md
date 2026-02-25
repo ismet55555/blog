@@ -509,13 +509,23 @@ quoted. Null values are empty between delimiters.
 
 ## Log
 
+### 2026-02-24 — Email subscription service via Buttondown [🟠 ASSISTED — code, config]
+
+**Human:** Directed the integration of Buttondown as the email subscription service. Specified placement on the home page and at the end of blog posts. Guided the visual design, component behavior, and GitHub Actions workflow for subscriber notifications on new posts.
+
+**AI (Claude Opus 4.6):** Created `EmailSubscribe.tsx` React component with form handling, validation, success/error states, and theme-aware styling. Set up `.github/workflows/notify-subscribers.yaml` GitHub Actions workflow to trigger Buttondown email notifications on pushes to main. Updated `BlogPost.astro` layout and `index.astro` to include the subscription component.
+
+**Commits:** `388b788`
+
+---
+
 ### 2026-02-24 — Quote reusable component [🟠 ASSISTED — code]
 
 **Human:** Requested a reusable `Quote` component for blog articles, inspired by Medium and Substack styling. Specified it should use a mono font but thinner/lighter than the main text, be slightly larger than paragraph text, and sit slightly outside the paragraph block on the left. Directed all visual refinements: removing the double border line (prose default vs. custom), adjusting font weight, size, opacity, and positioning. Chose where to test it in the blog post (intro quote in `ai_attribution_md.mdx`).
 
 **AI (Claude):** Created `Quote.astro` component with optional `attribution` prop. Implemented the left accent border, light font weight, italic styling, and negative left margin. Updated the blog post to import and use the component. Iterated on styling per human feedback: switched from serif to inherited mono font, increased size, added `border-none` to suppress prose blockquote border, added `!important` to override prose text color.
 
-**Commits:** *uncommitted*
+**Commits:** `e7c97f4`
 
 **Notes:** Component lives at `src/components/Quote.astro`. First used in `src/content/blog/ai_attribution_md.mdx` replacing the bold-italic intro quote.
 
@@ -527,6 +537,6 @@ quoted. Null values are empty between delimiters.
 
 **AI (Claude):** Created the `SectionDividerDash.astro` component with Tailwind classes for centering, width, and theme-aware border color. Updated the blog post import and replaced `<br/>` usages with the new component. Initially replaced all `<br/>` instances including one inside an `<Aside>` that should have remained, then corrected it.
 
-**Commits:** *uncommitted*
+**Commits:** `88df112`
 
 **Notes:** Component lives at `src/components/SectionDividerDash.astro`. First used in `src/content/blog/ai_attribution_md.mdx`.
